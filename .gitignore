@@ -1,0 +1,13 @@
+.git
+.idea
+.coverage
+.site-packages
+.venv
+.DS_Store
+*.pyc
+static/
+asset/.sass-cache/
+.sass-cache/
+.idea/
+.sql
+image/
