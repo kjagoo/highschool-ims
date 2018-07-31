@@ -1,0 +1,2878 @@
+-- MySQL dump 10.10
+--
+-- Host: localhost    Database: highschool
+-- ------------------------------------------------------
+-- Server version	5.0.7-beta-nt
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `balances`
+--
+
+DROP TABLE IF EXISTS `balances`;
+CREATE TABLE `balances` (
+  `admno` varchar(100) NOT NULL default '',
+  `balance` double default NULL,
+  `term` varchar(100) NOT NULL default '',
+  `year` varchar(100) NOT NULL default '',
+  `form` varchar(100) NOT NULL default '',
+  PRIMARY KEY  (`admno`,`term`,`year`,`form`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `balances`
+--
+
+
+/*!40000 ALTER TABLE `balances` DISABLE KEYS */;
+LOCK TABLES `balances` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `balances` ENABLE KEYS */;
+
+--
+-- Table structure for table `bank_accounts`
+--
+
+DROP TABLE IF EXISTS `bank_accounts`;
+CREATE TABLE `bank_accounts` (
+  `account_number` varchar(255) NOT NULL,
+  `bank_name` varchar(255) NOT NULL,
+  `branch` varchar(255) NOT NULL,
+  `account_name` varchar(255) NOT NULL,
+  PRIMARY KEY  (`account_number`,`bank_name`,`branch`,`account_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bank_accounts`
+--
+
+
+/*!40000 ALTER TABLE `bank_accounts` DISABLE KEYS */;
+LOCK TABLES `bank_accounts` WRITE;
+INSERT INTO `bank_accounts` VALUES ('0311083872','BARCLAYS BANK','THIKA','OUR LADY OF FATIMA KIRIKO GIRLS SECONDARY SCHOOL'),('1106606388','KCB TUITION ACC','THIKA','OUR LADY OF FATIMA KIRIKO'),('1106606450','KCB OPERATIONS ACC','THIKA','OUR LADY OF FATIMA KIRIKO OPS ACC2'),('1166222950','KCB DEVELOPMENT ACC','THIKA','OUR LADY OF FATIMA KIRIKO SEC'),('522123','LIPA KARO NA MPESA','THIKA','OUR LADY OF FATIMA KIRIKO GIRLS SECONDARY SCHOOL'),('CASH','PETTY CASH','SCHOOL','OUR LADY OF FATIMA KIRIKO  PETTY CASH');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `bank_accounts` ENABLE KEYS */;
+
+--
+-- Table structure for table `books_invemtory`
+--
+
+DROP TABLE IF EXISTS `books_invemtory`;
+CREATE TABLE `books_invemtory` (
+  `bookid` int(100) NOT NULL auto_increment,
+  `title` varchar(255) NOT NULL,
+  `author` varchar(100) NOT NULL,
+  `publisher` varchar(100) NOT NULL,
+  `sn` varchar(100) NOT NULL,
+  `category` varchar(100) NOT NULL,
+  `form` varchar(100) NOT NULL,
+  `yrofedition` int(4) NOT NULL,
+  `noofpcs` int(10) NOT NULL,
+  `btype` varchar(100) NOT NULL,
+  `bookstatus` varchar(100) NOT NULL default 'Available',
+  `comments` text NOT NULL,
+  PRIMARY KEY  (`bookid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `books_invemtory`
+--
+
+
+/*!40000 ALTER TABLE `books_invemtory` DISABLE KEYS */;
+LOCK TABLES `books_invemtory` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `books_invemtory` ENABLE KEYS */;
+
+--
+-- Table structure for table `bursaries`
+--
+
+DROP TABLE IF EXISTS `bursaries`;
+CREATE TABLE `bursaries` (
+  `cheque_no` varchar(200) NOT NULL,
+  `cheque_from` varchar(100) NOT NULL,
+  `amount` float(18,2) NOT NULL,
+  `account_no` varchar(100) NOT NULL,
+  `comments` text,
+  `year` int(4) NOT NULL,
+  `term` int(1) NOT NULL,
+  PRIMARY KEY  (`cheque_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bursaries`
+--
+
+
+/*!40000 ALTER TABLE `bursaries` DISABLE KEYS */;
+LOCK TABLES `bursaries` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `bursaries` ENABLE KEYS */;
+
+--
+-- Table structure for table `bursaries_allocations`
+--
+
+DROP TABLE IF EXISTS `bursaries_allocations`;
+CREATE TABLE `bursaries_allocations` (
+  `id` int(100) NOT NULL auto_increment,
+  `cheque_no` varchar(100) NOT NULL,
+  `admno` varchar(100) NOT NULL,
+  `amount` float(18,2) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bursaries_allocations`
+--
+
+
+/*!40000 ALTER TABLE `bursaries_allocations` DISABLE KEYS */;
+LOCK TABLES `bursaries_allocations` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `bursaries_allocations` ENABLE KEYS */;
+
+--
+-- Table structure for table `catoutof`
+--
+
+DROP TABLE IF EXISTS `catoutof`;
+CREATE TABLE `catoutof` (
+  `subject` varchar(20) NOT NULL,
+  `cat` int(5) NOT NULL,
+  `form` int(5) NOT NULL,
+  `year` int(5) NOT NULL,
+  `term` int(5) NOT NULL,
+  `outof` int(5) NOT NULL,
+  `states` varchar(100) NOT NULL,
+  PRIMARY KEY  (`subject`,`cat`,`form`,`year`,`term`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `catoutof`
+--
+
+
+/*!40000 ALTER TABLE `catoutof` DISABLE KEYS */;
+LOCK TABLES `catoutof` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `catoutof` ENABLE KEYS */;
+
+--
+-- Table structure for table `chequeexpenses`
+--
+
+DROP TABLE IF EXISTS `chequeexpenses`;
+CREATE TABLE `chequeexpenses` (
+  `no` int(100) NOT NULL,
+  `paymentof` varchar(100) NOT NULL,
+  `chequeno` varchar(20) NOT NULL,
+  `bankname` varchar(20) NOT NULL,
+  `dateofpay` varchar(20) NOT NULL,
+  `amount` double NOT NULL,
+  `votehead` varchar(100) NOT NULL,
+  `accountno` varchar(100) NOT NULL,
+  `year` varchar(100) NOT NULL,
+  `payee` varchar(100) NOT NULL,
+  PRIMARY KEY  (`no`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `chequeexpenses`
+--
+
+
+/*!40000 ALTER TABLE `chequeexpenses` DISABLE KEYS */;
+LOCK TABLES `chequeexpenses` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `chequeexpenses` ENABLE KEYS */;
+
+--
+-- Table structure for table `contacts_groups`
+--
+
+DROP TABLE IF EXISTS `contacts_groups`;
+CREATE TABLE `contacts_groups` (
+  `group_id` int(100) NOT NULL auto_increment,
+  `group_name` varchar(100) NOT NULL,
+  `telephones` int(100) NOT NULL,
+  PRIMARY KEY  (`group_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `contacts_groups`
+--
+
+
+/*!40000 ALTER TABLE `contacts_groups` DISABLE KEYS */;
+LOCK TABLES `contacts_groups` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `contacts_groups` ENABLE KEYS */;
+
+--
+-- Table structure for table `current_op`
+--
+
+DROP TABLE IF EXISTS `current_op`;
+CREATE TABLE `current_op` (
+  `code` int(1) NOT NULL default '1',
+  `term` int(1) default NULL,
+  `year` int(4) default NULL,
+  PRIMARY KEY  (`code`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `current_op`
+--
+
+
+/*!40000 ALTER TABLE `current_op` DISABLE KEYS */;
+LOCK TABLES `current_op` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `current_op` ENABLE KEYS */;
+
+--
+-- Table structure for table `d_locks`
+--
+
+DROP TABLE IF EXISTS `d_locks`;
+CREATE TABLE `d_locks` (
+  `d_lock` varchar(100) NOT NULL,
+  PRIMARY KEY  (`d_lock`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `d_locks`
+--
+
+
+/*!40000 ALTER TABLE `d_locks` DISABLE KEYS */;
+LOCK TABLES `d_locks` WRITE;
+INSERT INTO `d_locks` VALUES ('open');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `d_locks` ENABLE KEYS */;
+
+--
+-- Table structure for table `department`
+--
+
+DROP TABLE IF EXISTS `department`;
+CREATE TABLE `department` (
+  `dname` varchar(100) NOT NULL,
+  `did` varchar(100) NOT NULL,
+  `hodname` varchar(100) NOT NULL,
+  PRIMARY KEY  (`dname`,`did`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `department`
+--
+
+
+/*!40000 ALTER TABLE `department` DISABLE KEYS */;
+LOCK TABLES `department` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `department` ENABLE KEYS */;
+
+--
+-- Table structure for table `examoutof`
+--
+
+DROP TABLE IF EXISTS `examoutof`;
+CREATE TABLE `examoutof` (
+  `subject` varchar(20) NOT NULL,
+  `form` int(5) NOT NULL,
+  `outof` int(5) NOT NULL,
+  `years` int(5) NOT NULL,
+  `states` varchar(100) NOT NULL,
+  PRIMARY KEY  (`subject`,`form`,`years`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `examoutof`
+--
+
+
+/*!40000 ALTER TABLE `examoutof` DISABLE KEYS */;
+LOCK TABLES `examoutof` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `examoutof` ENABLE KEYS */;
+
+--
+-- Table structure for table `examstatus`
+--
+
+DROP TABLE IF EXISTS `examstatus`;
+CREATE TABLE `examstatus` (
+  `year` int(100) NOT NULL,
+  `term` int(100) NOT NULL,
+  `form` int(10) NOT NULL,
+  `stream` varchar(100) NOT NULL,
+  `subject` varchar(100) NOT NULL,
+  `examtype` varchar(100) NOT NULL,
+  `s_status` varchar(100) NOT NULL,
+  PRIMARY KEY  (`year`,`term`,`form`,`stream`,`subject`,`examtype`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `examstatus`
+--
+
+
+/*!40000 ALTER TABLE `examstatus` DISABLE KEYS */;
+LOCK TABLES `examstatus` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `examstatus` ENABLE KEYS */;
+
+--
+-- Table structure for table `expenses`
+--
+
+DROP TABLE IF EXISTS `expenses`;
+CREATE TABLE `expenses` (
+  `ref` int(100) NOT NULL auto_increment,
+  `t_date` varchar(100) NOT NULL,
+  `mainaccount` varchar(100) NOT NULL,
+  `account` varchar(100) NOT NULL,
+  `e_mode` varchar(100) NOT NULL,
+  `bank` varchar(100) NOT NULL,
+  `expense_on` varchar(100) NOT NULL,
+  `amount` float(18,2) NOT NULL,
+  `refno` varchar(255) NOT NULL,
+  PRIMARY KEY  (`ref`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `expenses`
+--
+
+
+/*!40000 ALTER TABLE `expenses` DISABLE KEYS */;
+LOCK TABLES `expenses` WRITE;
+INSERT INTO `expenses` VALUES (1,'2017-11-24','','LT&T','Cash','CASH','TYRE CHANGE',200.00,'DRIVER'),(2,'2017-11-29','','PE','Cash','CASH','NHIF',1350.00,'NOM'),(3,'2017-11-29','','ADMIN_COST','Cash','CASH','ONION',1000.00,'MATRON');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `expenses` ENABLE KEYS */;
+
+--
+-- Table structure for table `fees`
+--
+
+DROP TABLE IF EXISTS `fees`;
+CREATE TABLE `fees` (
+  `payable` double NOT NULL,
+  `form` varchar(100) NOT NULL,
+  `term` varchar(100) NOT NULL,
+  `year` varchar(100) NOT NULL,
+  `bes` double NOT NULL,
+  `ses` double NOT NULL,
+  `pe` double NOT NULL,
+  `activity` double NOT NULL,
+  `medical` double NOT NULL,
+  `ewc` double NOT NULL,
+  `rmi` double NOT NULL,
+  `ltt` double NOT NULL,
+  `contigencies` double NOT NULL,
+  `development` double NOT NULL,
+  `caution` double NOT NULL,
+  `pocket` double NOT NULL,
+  `mock` double NOT NULL,
+  `uniform` double NOT NULL,
+  `lunch` double NOT NULL,
+  `harambee` double NOT NULL,
+  PRIMARY KEY  (`form`,`term`,`year`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `fees`
+--
+
+
+/*!40000 ALTER TABLE `fees` DISABLE KEYS */;
+LOCK TABLES `fees` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `fees` ENABLE KEYS */;
+
+--
+-- Table structure for table `feestructures`
+--
+
+DROP TABLE IF EXISTS `feestructures`;
+CREATE TABLE `feestructures` (
+  `serialno` int(100) NOT NULL,
+  `admno` int(100) NOT NULL,
+  `amount` double NOT NULL,
+  `modeofpay` varchar(10) default NULL,
+  `chequeno` varchar(100) NOT NULL,
+  `bankname` varchar(100) NOT NULL,
+  `boarding` double NOT NULL,
+  `tution` double NOT NULL,
+  `pe` double NOT NULL,
+  `activity` double NOT NULL,
+  `medical` double NOT NULL,
+  `ewc` double NOT NULL,
+  `rmi` double NOT NULL,
+  `ltt` double NOT NULL,
+  `constigency` double NOT NULL,
+  `develop` double NOT NULL,
+  `caution` double NOT NULL,
+  `pocket` double NOT NULL,
+  `mock` double NOT NULL,
+  `uniform` double NOT NULL,
+  `bank` double default NULL,
+  `installment` int(10) default NULL,
+  `term` int(11) NOT NULL default '0',
+  `year` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`serialno`,`admno`,`term`,`year`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `feestructures`
+--
+
+
+/*!40000 ALTER TABLE `feestructures` DISABLE KEYS */;
+LOCK TABLES `feestructures` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `feestructures` ENABLE KEYS */;
+
+--
+-- Table structure for table `finance_added_fees`
+--
+
+DROP TABLE IF EXISTS `finance_added_fees`;
+CREATE TABLE `finance_added_fees` (
+  `admno` varchar(100) NOT NULL,
+  `fiscal_year` int(4) NOT NULL,
+  `term` varchar(10) NOT NULL,
+  `votehead` varchar(100) NOT NULL,
+  `amount` decimal(18,2) NOT NULL,
+  PRIMARY KEY  (`admno`,`fiscal_year`,`term`,`votehead`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `finance_added_fees`
+--
+
+
+/*!40000 ALTER TABLE `finance_added_fees` DISABLE KEYS */;
+LOCK TABLES `finance_added_fees` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `finance_added_fees` ENABLE KEYS */;
+
+--
+-- Table structure for table `finance_balances`
+--
+
+DROP TABLE IF EXISTS `finance_balances`;
+CREATE TABLE `finance_balances` (
+  `admno` varchar(100) NOT NULL,
+  `form` varchar(10) NOT NULL default '',
+  `term` varchar(10) NOT NULL default '',
+  `year` int(4) NOT NULL,
+  `balance` float(18,2) NOT NULL,
+  `updated` int(4) NOT NULL,
+  PRIMARY KEY  (`admno`,`form`,`term`,`year`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `finance_balances`
+--
+
+
+/*!40000 ALTER TABLE `finance_balances` DISABLE KEYS */;
+LOCK TABLES `finance_balances` WRITE;
+INSERT INTO `finance_balances` VALUES ('4140','','TERM 1',2018,15268.00,2018),('4153','','TERM 1',2018,1768.00,2018),('4160','','TERM 1',2018,14268.00,2018),('4165','','TERM 1',2018,6268.00,2018),('4190','','TERM 1',2018,15268.00,2018),('4296','','TERM 1',2018,19268.00,2018),('4509','FORM 1','TERM 3',2017,651.00,0),('4512','FORM 1','TERM 3',2017,0.00,0),('4514','FORM 1','TERM 3',2017,0.00,0),('4517','FORM 1','TERM 3',2017,0.00,0),('4519','FORM 1','TERM 3',2017,893.00,0),('4521','FORM 1','TERM 3',2017,0.00,0),('4526','FORM 1','TERM 3',2017,9651.00,0),('4532','FORM 1','TERM 3',2017,9151.00,0),('4535','FORM 1','TERM 3',2017,2951.00,0),('4538','FORM 1','TERM 3',2017,0.00,0),('4546','FORM 1','TERM 3',2017,0.00,0),('4547','FORM 1','TERM 3',2017,0.00,0),('4552','FORM 1','TERM 3',2017,0.00,0),('4553','FORM 1','TERM 3',2017,8501.00,0),('4555','FORM 1','TERM 3',2017,0.00,0),('4557','FORM 1','TERM 3',2017,1.00,0),('4558','FORM 1','TERM 3',2017,0.00,0),('4561','FORM 1','TERM 3',2017,101.00,0),('4564','FORM 1','TERM 3',2017,0.00,0),('4567','FORM 1','TERM 3',2017,0.00,0),('4572','FORM 1','TERM 3',2017,0.00,0),('4573','FORM 1','TERM 3',2017,0.00,0),('4574','FORM 1','TERM 3',2017,1.00,0),('4577','FORM 1','TERM 3',2017,0.00,0),('4581','FORM 1','TERM 3',2017,151.00,0),('4583','FORM 1','TERM 3',2017,0.00,0),('4584','FORM 1','TERM 3',2017,151.00,0),('4593','FORM 1','TERM 3',2017,0.00,0),('4594','FORM 1','TERM 3',2017,191.00,0),('4596','FORM 1','TERM 3',2017,601.00,0),('4599','FORM 1','TERM 3',2017,0.00,0),('4600','FORM 1','TERM 3',2017,0.00,0),('4606','FORM 1','TERM 3',2017,12501.00,0),('4609','FORM 1','TERM 3',2017,-50501.00,0),('4611','FORM 1','TERM 3',2017,2151.00,0),('4615','FORM 1','TERM 3',2017,151.00,0),('4617','FORM 1','TERM 3',2017,0.00,0),('4619','FORM 1','TERM 3',2017,0.00,0),('4621','FORM 1','TERM 3',2017,1901.00,0),('4635','FORM 1','TERM 3',2017,0.00,0),('4641','FORM 1','TERM 3',2017,0.00,0),('4642','FORM 1','TERM 3',2017,0.00,0),('4645','FORM 1','TERM 3',2017,0.00,0),('4648','FORM 1','TERM 3',2017,16001.00,0);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `finance_balances` ENABLE KEYS */;
+
+--
+-- Table structure for table `finance_estimates`
+--
+
+DROP TABLE IF EXISTS `finance_estimates`;
+CREATE TABLE `finance_estimates` (
+  `fiscal_yr` int(20) NOT NULL,
+  `votehead` varchar(255) NOT NULL,
+  `amount` decimal(18,2) default '0.00',
+  PRIMARY KEY  (`fiscal_yr`,`votehead`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `finance_estimates`
+--
+
+
+/*!40000 ALTER TABLE `finance_estimates` DISABLE KEYS */;
+LOCK TABLES `finance_estimates` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `finance_estimates` ENABLE KEYS */;
+
+--
+-- Table structure for table `finance_fees`
+--
+
+DROP TABLE IF EXISTS `finance_fees`;
+CREATE TABLE `finance_fees` (
+  `fiscal_yr` int(20) NOT NULL,
+  `term` varchar(255) NOT NULL,
+  `form` varchar(255) NOT NULL,
+  `votehead` varchar(255) NOT NULL,
+  `amount` decimal(18,2) default '0.00',
+  PRIMARY KEY  (`fiscal_yr`,`votehead`,`term`,`form`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `finance_fees`
+--
+
+
+/*!40000 ALTER TABLE `finance_fees` DISABLE KEYS */;
+LOCK TABLES `finance_fees` WRITE;
+INSERT INTO `finance_fees` VALUES (2018,'TERM 1','FORM 1','ACTIVITY','125.00'),(2018,'TERM 1','FORM 2','ACTIVITY','125.00'),(2018,'TERM 1','FORM 3','ACTIVITY','125.00'),(2018,'TERM 1','FORM 4','ACTIVITY','125.00'),(2018,'TERM 2','FORM 1','ACTIVITY','75.00'),(2018,'TERM 2','FORM 2','ACTIVITY','75.00'),(2018,'TERM 2','FORM 3','ACTIVITY','75.00'),(2018,'TERM 2','FORM 4','ACTIVITY','75.00'),(2018,'TERM 3','FORM 1','ACTIVITY','50.00'),(2018,'TERM 3','FORM 2','ACTIVITY','50.00'),(2018,'TERM 3','FORM 3','ACTIVITY','50.00'),(2018,'TERM 3','FORM 4','ACTIVITY','50.00'),(2018,'TERM 1','FORM 1','ADMIN_COST','925.00'),(2018,'TERM 1','FORM 2','ADMIN_COST','925.00'),(2018,'TERM 1','FORM 3','ADMIN_COST','925.00'),(2018,'TERM 1','FORM 4','ADMIN_COST','925.00'),(2018,'TERM 2','FORM 1','ADMIN_COST','555.00'),(2018,'TERM 2','FORM 2','ADMIN_COST','555.00'),(2018,'TERM 2','FORM 3','ADMIN_COST','555.00'),(2018,'TERM 2','FORM 4','ADMIN_COST','555.00'),(2018,'TERM 3','FORM 1','ADMIN_COST','370.00'),(2018,'TERM 3','FORM 2','ADMIN_COST','370.00'),(2018,'TERM 3','FORM 3','ADMIN_COST','370.00'),(2018,'TERM 3','FORM 4','ADMIN_COST','370.00'),(2018,'TERM 1','FORM 1','BES','13693.00'),(2018,'TERM 1','FORM 2','BES','13693.00'),(2018,'TERM 1','FORM 3','BES','13693.00'),(2018,'TERM 1','FORM 4','BES','13693.00'),(2018,'TERM 2','FORM 1','BES','8215.00'),(2018,'TERM 2','FORM 2','BES','8215.00'),(2018,'TERM 2','FORM 3','BES','8215.00'),(2018,'TERM 2','FORM 4','BES','8215.00'),(2018,'TERM 3','FORM 1','BES','5477.00'),(2018,'TERM 3','FORM 2','BES','5477.00'),(2018,'TERM 3','FORM 3','BES','5477.00'),(2018,'TERM 3','FORM 4','BES','5477.00'),(2018,'TERM 1','FORM 1','CAUTION','0.00'),(2018,'TERM 1','FORM 2','CAUTION','0.00'),(2018,'TERM 1','FORM 3','CAUTION','0.00'),(2018,'TERM 1','FORM 4','CAUTION','0.00'),(2018,'TERM 1','FORM 1','EWC','2450.00'),(2018,'TERM 1','FORM 2','EWC','2450.00'),(2018,'TERM 1','FORM 3','EWC','2450.00'),(2018,'TERM 1','FORM 4','EWC','2450.00'),(2018,'TERM 2','FORM 1','EWC','1470.00'),(2018,'TERM 2','FORM 2','EWC','1470.00'),(2018,'TERM 2','FORM 3','EWC','1470.00'),(2018,'TERM 2','FORM 4','EWC','1470.00'),(2018,'TERM 3','FORM 1','EWC','980.00'),(2018,'TERM 3','FORM 2','EWC','980.00'),(2018,'TERM 3','FORM 3','EWC','980.00'),(2018,'TERM 3','FORM 4','EWC','980.00'),(2018,'TERM 1','FORM 1','LT&T','325.00'),(2018,'TERM 1','FORM 2','LT&T','325.00'),(2018,'TERM 1','FORM 3','LT&T','325.00'),(2018,'TERM 1','FORM 4','LT&T','325.00'),(2018,'TERM 2','FORM 1','LT&T','195.00'),(2018,'TERM 2','FORM 2','LT&T','195.00'),(2018,'TERM 2','FORM 3','LT&T','195.00'),(2018,'TERM 2','FORM 4','LT&T','195.00'),(2018,'TERM 3','FORM 1','LT&T','130.00'),(2018,'TERM 3','FORM 2','LT&T','130.00'),(2018,'TERM 3','FORM 3','LT&T','130.00'),(2018,'TERM 3','FORM 4','LT&T','130.00'),(2018,'TERM 1','FORM 1','PE','1550.00'),(2018,'TERM 1','FORM 2','PE','1550.00'),(2018,'TERM 1','FORM 3','PE','1550.00'),(2018,'TERM 1','FORM 4','PE','1550.00'),(2018,'TERM 2','FORM 1','PE','1230.00'),(2018,'TERM 2','FORM 2','PE','1230.00'),(2018,'TERM 2','FORM 3','PE','1230.00'),(2018,'TERM 2','FORM 4','PE','1230.00'),(2018,'TERM 3','FORM 1','PE','320.00'),(2018,'TERM 3','FORM 2','PE','320.00'),(2018,'TERM 3','FORM 3','PE','320.00'),(2018,'TERM 3','FORM 4','PE','320.00'),(2018,'TERM 1','FORM 1','RMI','1200.00'),(2018,'TERM 1','FORM 2','RMI','1200.00'),(2018,'TERM 1','FORM 3','RMI','1200.00'),(2018,'TERM 1','FORM 4','RMI','1200.00'),(2018,'TERM 2','FORM 1','RMI','720.00'),(2018,'TERM 2','FORM 2','RMI','720.00'),(2018,'TERM 2','FORM 3','RMI','720.00'),(2018,'TERM 2','FORM 4','RMI','720.00'),(2018,'TERM 3','FORM 1','RMI','480.00'),(2018,'TERM 3','FORM 2','RMI','480.00'),(2018,'TERM 3','FORM 3','RMI','480.00'),(2018,'TERM 3','FORM 4','RMI','480.00');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `finance_fees` ENABLE KEYS */;
+
+--
+-- Table structure for table `finance_feestructures`
+--
+
+DROP TABLE IF EXISTS `finance_feestructures`;
+CREATE TABLE `finance_feestructures` (
+  `receipt_no` int(100) NOT NULL,
+  `admno` int(100) NOT NULL,
+  `dateofpay` varchar(100) NOT NULL,
+  `modeofpay` varchar(100) NOT NULL,
+  `votehead` varchar(100) NOT NULL,
+  `votehead_amt` decimal(18,2) NOT NULL default '0.00',
+  `term` varchar(100) NOT NULL,
+  `year` int(100) NOT NULL,
+  `statusis` varchar(100) NOT NULL,
+  `servedby` varchar(100) NOT NULL,
+  `total_amount` decimal(18,2) NOT NULL default '0.00',
+  `words` text NOT NULL,
+  `bank_account` varchar(100) default NULL,
+  `balance` decimal(18,2) default '0.00',
+  `payment_for` varchar(100) default 'School',
+  `bankreceipt` varchar(1000) default NULL,
+  PRIMARY KEY  (`receipt_no`,`admno`,`dateofpay`,`modeofpay`,`votehead`,`votehead_amt`,`term`,`year`,`statusis`,`servedby`,`total_amount`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `finance_feestructures`
+--
+
+
+/*!40000 ALTER TABLE `finance_feestructures` DISABLE KEYS */;
+LOCK TABLES `finance_feestructures` WRITE;
+INSERT INTO `finance_feestructures` VALUES (1,0,'2017-11-24','Cash','Income','1000.00','TERM 3',2017,'OK','DANIEL  KURIA  NGUGI','1000.00','One thousands  Shillings only','CASH','0.00','Thara',NULL),(2,0,'2017-11-24','Cash','Income','1000.00','TERM 1',2017,'OK','DANIEL  KURIA  NGUGI','1000.00','One thousands  Shillings only','CASH','0.00','bus',NULL),(3,0,'2017-11-24','Cheque','ACTIVITY','200000.00','TERM 3',2017,'OK','DANIEL  KURIA  NGUGI','2100500.00','Two million, one hundred thousands, five hundred   Shillings only','1106606450','0.00','Operation Income','25201'),(3,0,'2017-11-24','Cheque','ADMIN COST','1500000.00','TERM 3',2017,'OK','DANIEL  KURIA  NGUGI','2100500.00','Two million, one hundred thousands, five hundred   Shillings only','1106606450','0.00','Operation Income','25201'),(3,0,'2017-11-24','Cheque','LT&T','50500.00','TERM 3',2017,'OK','DANIEL  KURIA  NGUGI','2100500.00','Two million, one hundred thousands, five hundred   Shillings only','1106606450','0.00','Operation Income','25201'),(3,0,'2017-11-24','Cheque','PE','100000.00','TERM 3',2017,'OK','DANIEL  KURIA  NGUGI','2100500.00','Two million, one hundred thousands, five hundred   Shillings only','1106606450','0.00','Operation Income','25201'),(3,0,'2017-11-24','Cheque','RMI','250000.00','TERM 3',2017,'OK','DANIEL  KURIA  NGUGI','2100500.00','Two million, one hundred thousands, five hundred   Shillings only','1106606450','0.00','Operation Income','25201'),(4,4140,'2017-11-24','Cash','ACTIVITY','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','5000.00','Five thousands  Shillings only','PETTY_CASH','15268.00','School',''),(4,4140,'2017-11-24','Cash','ADMIN_COST','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','5000.00','Five thousands  Shillings only','PETTY_CASH','15268.00','School',''),(4,4140,'2017-11-24','Cash','BES','5000.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','5000.00','Five thousands  Shillings only','PETTY_CASH','15268.00','School',''),(4,4140,'2017-11-24','Cash','CAUTION','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','5000.00','Five thousands  Shillings only','PETTY_CASH','15268.00','School',''),(4,4140,'2017-11-24','Cash','EWC','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','5000.00','Five thousands  Shillings only','PETTY_CASH','15268.00','School',''),(4,4140,'2017-11-24','Cash','LT&T','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','5000.00','Five thousands  Shillings only','PETTY_CASH','15268.00','School',''),(4,4140,'2017-11-24','Cash','PE','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','5000.00','Five thousands  Shillings only','PETTY_CASH','15268.00','School',''),(4,4140,'2017-11-24','Cash','RMI','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','5000.00','Five thousands  Shillings only','PETTY_CASH','15268.00','School',''),(5,4160,'2017-11-24','Cash','ACTIVITY','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','6000.00','Six thousands  Shillings only','PETTY_CASH','14268.00','School',''),(5,4160,'2017-11-24','Cash','ADMIN_COST','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','6000.00','Six thousands  Shillings only','PETTY_CASH','14268.00','School',''),(5,4160,'2017-11-24','Cash','BES','6000.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','6000.00','Six thousands  Shillings only','PETTY_CASH','14268.00','School',''),(5,4160,'2017-11-24','Cash','CAUTION','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','6000.00','Six thousands  Shillings only','PETTY_CASH','14268.00','School',''),(5,4160,'2017-11-24','Cash','EWC','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','6000.00','Six thousands  Shillings only','PETTY_CASH','14268.00','School',''),(5,4160,'2017-11-24','Cash','LT&T','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','6000.00','Six thousands  Shillings only','PETTY_CASH','14268.00','School',''),(5,4160,'2017-11-24','Cash','PE','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','6000.00','Six thousands  Shillings only','PETTY_CASH','14268.00','School',''),(5,4160,'2017-11-24','Cash','RMI','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','6000.00','Six thousands  Shillings only','PETTY_CASH','14268.00','School',''),(6,4190,'2017-11-24','Cash','ACTIVITY','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','5000.00','Five thousands  Shillings only','PETTY_CASH','15268.00','School',''),(6,4190,'2017-11-24','Cash','ADMIN_COST','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','5000.00','Five thousands  Shillings only','PETTY_CASH','15268.00','School',''),(6,4190,'2017-11-24','Cash','BES','5000.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','5000.00','Five thousands  Shillings only','PETTY_CASH','15268.00','School',''),(6,4190,'2017-11-24','Cash','CAUTION','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','5000.00','Five thousands  Shillings only','PETTY_CASH','15268.00','School',''),(6,4190,'2017-11-24','Cash','EWC','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','5000.00','Five thousands  Shillings only','PETTY_CASH','15268.00','School',''),(6,4190,'2017-11-24','Cash','LT&T','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','5000.00','Five thousands  Shillings only','PETTY_CASH','15268.00','School',''),(6,4190,'2017-11-24','Cash','PE','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','5000.00','Five thousands  Shillings only','PETTY_CASH','15268.00','School',''),(6,4190,'2017-11-24','Cash','RMI','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','5000.00','Five thousands  Shillings only','PETTY_CASH','15268.00','School',''),(7,4165,'2017-11-24','Cash','ACTIVITY','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','14000.00','Fourteen thousands  Shillings only','PETTY_CASH','6268.00','School',''),(7,4165,'2017-11-24','Cash','ADMIN_COST','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','14000.00','Fourteen thousands  Shillings only','PETTY_CASH','6268.00','School',''),(7,4165,'2017-11-24','Cash','BES','13693.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','14000.00','Fourteen thousands  Shillings only','PETTY_CASH','6268.00','School',''),(7,4165,'2017-11-24','Cash','CAUTION','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','14000.00','Fourteen thousands  Shillings only','PETTY_CASH','6268.00','School',''),(7,4165,'2017-11-24','Cash','EWC','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','14000.00','Fourteen thousands  Shillings only','PETTY_CASH','6268.00','School',''),(7,4165,'2017-11-24','Cash','LT&T','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','14000.00','Fourteen thousands  Shillings only','PETTY_CASH','6268.00','School',''),(7,4165,'2017-11-24','Cash','PE','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','14000.00','Fourteen thousands  Shillings only','PETTY_CASH','6268.00','School',''),(7,4165,'2017-11-24','Cash','RMI','307.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','14000.00','Fourteen thousands  Shillings only','PETTY_CASH','6268.00','School',''),(8,4153,'2017-11-24','Direct Deposit','ACTIVITY','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','18500.00','Eighteen thousands, five hundred  Shillings only','PETTY_CASH','1768.00','School',''),(8,4153,'2017-11-24','Direct Deposit','ADMIN_COST','925.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','18500.00','Eighteen thousands, five hundred  Shillings only','PETTY_CASH','1768.00','School',''),(8,4153,'2017-11-24','Direct Deposit','BES','13693.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','18500.00','Eighteen thousands, five hundred  Shillings only','PETTY_CASH','1768.00','School',''),(8,4153,'2017-11-24','Direct Deposit','CAUTION','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','18500.00','Eighteen thousands, five hundred  Shillings only','PETTY_CASH','1768.00','School',''),(8,4153,'2017-11-24','Direct Deposit','EWC','2357.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','18500.00','Eighteen thousands, five hundred  Shillings only','PETTY_CASH','1768.00','School',''),(8,4153,'2017-11-24','Direct Deposit','LT&T','325.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','18500.00','Eighteen thousands, five hundred  Shillings only','PETTY_CASH','1768.00','School',''),(8,4153,'2017-11-24','Direct Deposit','PE','0.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','18500.00','Eighteen thousands, five hundred  Shillings only','PETTY_CASH','1768.00','School',''),(8,4153,'2017-11-24','Direct Deposit','RMI','1200.00','TERM 1',2018,'OK','DANIEL  KURIA  NGUGI','18500.00','Eighteen thousands, five hundred  Shillings only','PETTY_CASH','1768.00','School',''),(9,0,'2017-12-05','Cash','Income','1000.00','TERM 3',2017,'OK','DANIEL  KURIA  NGUGI','1000.00','One thousands  Shillings only','CASH','0.00','TEA LEAVES',NULL);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `finance_feestructures` ENABLE KEYS */;
+
+--
+-- Table structure for table `finance_fiscalyr`
+--
+
+DROP TABLE IF EXISTS `finance_fiscalyr`;
+CREATE TABLE `finance_fiscalyr` (
+  `fiscal_year` int(4) NOT NULL,
+  `status` varchar(100) default 'OPEN',
+  PRIMARY KEY  (`fiscal_year`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `finance_fiscalyr`
+--
+
+
+/*!40000 ALTER TABLE `finance_fiscalyr` DISABLE KEYS */;
+LOCK TABLES `finance_fiscalyr` WRITE;
+INSERT INTO `finance_fiscalyr` VALUES (2017,'OPEN');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `finance_fiscalyr` ENABLE KEYS */;
+
+--
+-- Table structure for table `finance_operationalvoteheads`
+--
+
+DROP TABLE IF EXISTS `finance_operationalvoteheads`;
+CREATE TABLE `finance_operationalvoteheads` (
+  `fiscal_year` int(4) NOT NULL default '0',
+  `term` varchar(100) NOT NULL default '',
+  `votehead` varchar(100) NOT NULL default '',
+  `code` varchar(100) NOT NULL default '',
+  PRIMARY KEY  (`fiscal_year`,`term`,`votehead`,`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `finance_operationalvoteheads`
+--
+
+
+/*!40000 ALTER TABLE `finance_operationalvoteheads` DISABLE KEYS */;
+LOCK TABLES `finance_operationalvoteheads` WRITE;
+INSERT INTO `finance_operationalvoteheads` VALUES (2017,'TERM 3','ACTIVITY','4'),(2017,'TERM 3','ADMIN COST','5'),(2017,'TERM 3','LT&T','1'),(2017,'TERM 3','PE','2'),(2017,'TERM 3','RMI','4');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `finance_operationalvoteheads` ENABLE KEYS */;
+
+--
+-- Table structure for table `finance_paybills`
+--
+
+DROP TABLE IF EXISTS `finance_paybills`;
+CREATE TABLE `finance_paybills` (
+  `ref` int(100) NOT NULL auto_increment,
+  `payee` varchar(100) NOT NULL,
+  `invoice` varchar(100) NOT NULL,
+  `p_type` varchar(100) NOT NULL,
+  `bank` varchar(100) NOT NULL,
+  `t_date` varchar(100) NOT NULL,
+  `amount` float(18,2) NOT NULL,
+  `mainaccount` varchar(100) NOT NULL,
+  `group_category` varchar(100) NOT NULL,
+  `expense_on` varchar(100) default NULL,
+  `memo` text NOT NULL,
+  PRIMARY KEY  (`ref`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `finance_paybills`
+--
+
+
+/*!40000 ALTER TABLE `finance_paybills` DISABLE KEYS */;
+LOCK TABLES `finance_paybills` WRITE;
+INSERT INTO `finance_paybills` VALUES (1,'CRIMOSKA LTD','0292','Cheque','1106606388','2017-11-29',91500.00,'','ADMIN_COST',NULL,'1235');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `finance_paybills` ENABLE KEYS */;
+
+--
+-- Table structure for table `finance_student_invoices`
+--
+
+DROP TABLE IF EXISTS `finance_student_invoices`;
+CREATE TABLE `finance_student_invoices` (
+  `admno` varchar(100) NOT NULL,
+  `year` int(4) NOT NULL,
+  `term` varchar(100) NOT NULL,
+  `form` varchar(100) NOT NULL,
+  `amount` float(18,2) NOT NULL,
+  PRIMARY KEY  (`admno`,`year`,`term`,`form`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `finance_student_invoices`
+--
+
+
+/*!40000 ALTER TABLE `finance_student_invoices` DISABLE KEYS */;
+LOCK TABLES `finance_student_invoices` WRITE;
+INSERT INTO `finance_student_invoices` VALUES ('4134',2018,'TERM 1','FORM 4',20268.00),('4134',2018,'TERM 2','FORM 4',12460.00),('4134',2018,'TERM 3','FORM 4',7807.00),('4136',2018,'TERM 1','FORM 4',20268.00),('4136',2018,'TERM 2','FORM 4',12460.00),('4136',2018,'TERM 3','FORM 4',7807.00),('4137',2018,'TERM 1','FORM 4',20268.00),('4137',2018,'TERM 2','FORM 4',12460.00),('4137',2018,'TERM 3','FORM 4',7807.00),('4139',2018,'TERM 1','FORM 4',20268.00),('4139',2018,'TERM 2','FORM 4',12460.00),('4139',2018,'TERM 3','FORM 4',7807.00),('4140',2018,'TERM 1','FORM 4',20268.00),('4140',2018,'TERM 2','FORM 4',12460.00),('4140',2018,'TERM 3','FORM 4',7807.00),('4141',2018,'TERM 1','FORM 4',20268.00),('4141',2018,'TERM 2','FORM 4',12460.00),('4141',2018,'TERM 3','FORM 4',7807.00),('4142',2018,'TERM 1','FORM 4',20268.00),('4142',2018,'TERM 2','FORM 4',12460.00),('4142',2018,'TERM 3','FORM 4',7807.00),('4143',2018,'TERM 1','FORM 4',20268.00),('4143',2018,'TERM 2','FORM 4',12460.00),('4143',2018,'TERM 3','FORM 4',7807.00),('4144',2018,'TERM 1','FORM 4',20268.00),('4144',2018,'TERM 2','FORM 4',12460.00),('4144',2018,'TERM 3','FORM 4',7807.00),('4145',2018,'TERM 1','FORM 4',20268.00),('4145',2018,'TERM 2','FORM 4',12460.00),('4145',2018,'TERM 3','FORM 4',7807.00),('4146',2018,'TERM 1','FORM 4',20268.00),('4146',2018,'TERM 2','FORM 4',12460.00),('4146',2018,'TERM 3','FORM 4',7807.00),('4148',2018,'TERM 1','FORM 4',20268.00),('4148',2018,'TERM 2','FORM 4',12460.00),('4148',2018,'TERM 3','FORM 4',7807.00),('4149',2018,'TERM 1','FORM 4',20268.00),('4149',2018,'TERM 2','FORM 4',12460.00),('4149',2018,'TERM 3','FORM 4',7807.00),('4150',2018,'TERM 1','FORM 4',20268.00),('4150',2018,'TERM 2','FORM 4',12460.00),('4150',2018,'TERM 3','FORM 4',7807.00),('4151',2018,'TERM 1','FORM 4',20268.00),('4151',2018,'TERM 2','FORM 4',12460.00),('4151',2018,'TERM 3','FORM 4',7807.00),('4152',2018,'TERM 1','FORM 4',20268.00),('4152',2018,'TERM 2','FORM 4',12460.00),('4152',2018,'TERM 3','FORM 4',7807.00),('4153',2018,'TERM 1','FORM 4',20268.00),('4153',2018,'TERM 2','FORM 4',12460.00),('4153',2018,'TERM 3','FORM 4',7807.00),('4154',2018,'TERM 1','FORM 4',20268.00),('4154',2018,'TERM 2','FORM 4',12460.00),('4154',2018,'TERM 3','FORM 4',7807.00),('4155',2018,'TERM 1','FORM 4',20268.00),('4155',2018,'TERM 2','FORM 4',12460.00),('4155',2018,'TERM 3','FORM 4',7807.00),('4157',2018,'TERM 1','FORM 4',20268.00),('4157',2018,'TERM 2','FORM 4',12460.00),('4157',2018,'TERM 3','FORM 4',7807.00),('4158',2018,'TERM 1','FORM 4',20268.00),('4158',2018,'TERM 2','FORM 4',12460.00),('4158',2018,'TERM 3','FORM 4',7807.00),('4159',2018,'TERM 1','FORM 4',20268.00),('4159',2018,'TERM 2','FORM 4',12460.00),('4159',2018,'TERM 3','FORM 4',7807.00),('4160',2018,'TERM 1','FORM 4',20268.00),('4160',2018,'TERM 2','FORM 4',12460.00),('4160',2018,'TERM 3','FORM 4',7807.00),('4161',2018,'TERM 1','FORM 4',20268.00),('4161',2018,'TERM 2','FORM 4',12460.00),('4161',2018,'TERM 3','FORM 4',7807.00),('4162',2018,'TERM 1','FORM 4',20268.00),('4162',2018,'TERM 2','FORM 4',12460.00),('4162',2018,'TERM 3','FORM 4',7807.00),('4163',2018,'TERM 1','FORM 4',20268.00),('4163',2018,'TERM 2','FORM 4',12460.00),('4163',2018,'TERM 3','FORM 4',7807.00),('4164',2018,'TERM 1','FORM 4',20268.00),('4164',2018,'TERM 2','FORM 4',12460.00),('4164',2018,'TERM 3','FORM 4',7807.00),('4165',2018,'TERM 1','FORM 4',20268.00),('4165',2018,'TERM 2','FORM 4',12460.00),('4165',2018,'TERM 3','FORM 4',7807.00),('4166',2018,'TERM 1','FORM 4',20268.00),('4166',2018,'TERM 2','FORM 4',12460.00),('4166',2018,'TERM 3','FORM 4',7807.00),('4167',2018,'TERM 1','FORM 4',20268.00),('4167',2018,'TERM 2','FORM 4',12460.00),('4167',2018,'TERM 3','FORM 4',7807.00),('4168',2018,'TERM 1','FORM 4',20268.00),('4168',2018,'TERM 2','FORM 4',12460.00),('4168',2018,'TERM 3','FORM 4',7807.00),('4170',2018,'TERM 1','FORM 4',20268.00),('4170',2018,'TERM 2','FORM 4',12460.00),('4170',2018,'TERM 3','FORM 4',7807.00),('4171',2018,'TERM 1','FORM 4',20268.00),('4171',2018,'TERM 2','FORM 4',12460.00),('4171',2018,'TERM 3','FORM 4',7807.00),('4172',2018,'TERM 1','FORM 4',20268.00),('4172',2018,'TERM 2','FORM 4',12460.00),('4172',2018,'TERM 3','FORM 4',7807.00),('4173',2018,'TERM 1','FORM 4',20268.00),('4173',2018,'TERM 2','FORM 4',12460.00),('4173',2018,'TERM 3','FORM 4',7807.00),('4174',2018,'TERM 1','FORM 4',20268.00),('4174',2018,'TERM 2','FORM 4',12460.00),('4174',2018,'TERM 3','FORM 4',7807.00),('4175',2018,'TERM 1','FORM 4',20268.00),('4175',2018,'TERM 2','FORM 4',12460.00),('4175',2018,'TERM 3','FORM 4',7807.00),('4176',2018,'TERM 1','FORM 4',20268.00),('4176',2018,'TERM 2','FORM 4',12460.00),('4176',2018,'TERM 3','FORM 4',7807.00),('4177',2018,'TERM 1','FORM 4',20268.00),('4177',2018,'TERM 2','FORM 4',12460.00),('4177',2018,'TERM 3','FORM 4',7807.00),('4179',2018,'TERM 1','FORM 4',20268.00),('4179',2018,'TERM 2','FORM 4',12460.00),('4179',2018,'TERM 3','FORM 4',7807.00),('4180',2018,'TERM 1','FORM 4',20268.00),('4180',2018,'TERM 2','FORM 4',12460.00),('4180',2018,'TERM 3','FORM 4',7807.00),('4181',2018,'TERM 1','FORM 4',20268.00),('4181',2018,'TERM 2','FORM 4',12460.00),('4181',2018,'TERM 3','FORM 4',7807.00),('4182',2018,'TERM 1','FORM 4',20268.00),('4182',2018,'TERM 2','FORM 4',12460.00),('4182',2018,'TERM 3','FORM 4',7807.00),('4183',2018,'TERM 1','FORM 4',20268.00),('4183',2018,'TERM 2','FORM 4',12460.00),('4183',2018,'TERM 3','FORM 4',7807.00),('4184',2018,'TERM 1','FORM 4',20268.00),('4184',2018,'TERM 2','FORM 4',12460.00),('4184',2018,'TERM 3','FORM 4',7807.00),('4186',2018,'TERM 1','FORM 4',20268.00),('4186',2018,'TERM 2','FORM 4',12460.00),('4186',2018,'TERM 3','FORM 4',7807.00),('4187',2018,'TERM 1','FORM 4',20268.00),('4187',2018,'TERM 2','FORM 4',12460.00),('4187',2018,'TERM 3','FORM 4',7807.00),('4188',2018,'TERM 1','FORM 4',20268.00),('4188',2018,'TERM 2','FORM 4',12460.00),('4188',2018,'TERM 3','FORM 4',7807.00),('4189',2018,'TERM 1','FORM 4',20268.00),('4189',2018,'TERM 2','FORM 4',12460.00),('4189',2018,'TERM 3','FORM 4',7807.00),('4190',2018,'TERM 1','FORM 4',20268.00),('4190',2018,'TERM 2','FORM 4',12460.00),('4190',2018,'TERM 3','FORM 4',7807.00),('4191',2018,'TERM 1','FORM 4',20268.00),('4191',2018,'TERM 2','FORM 4',12460.00),('4191',2018,'TERM 3','FORM 4',7807.00),('4193',2018,'TERM 1','FORM 4',20268.00),('4193',2018,'TERM 2','FORM 4',12460.00),('4193',2018,'TERM 3','FORM 4',7807.00),('4194',2018,'TERM 1','FORM 4',20268.00),('4194',2018,'TERM 2','FORM 4',12460.00),('4194',2018,'TERM 3','FORM 4',7807.00),('4195',2018,'TERM 1','FORM 4',20268.00),('4195',2018,'TERM 2','FORM 4',12460.00),('4195',2018,'TERM 3','FORM 4',7807.00),('4196',2018,'TERM 1','FORM 4',20268.00),('4196',2018,'TERM 2','FORM 4',12460.00),('4196',2018,'TERM 3','FORM 4',7807.00),('4197',2018,'TERM 1','FORM 4',20268.00),('4197',2018,'TERM 2','FORM 4',12460.00),('4197',2018,'TERM 3','FORM 4',7807.00),('4198',2018,'TERM 1','FORM 4',20268.00),('4198',2018,'TERM 2','FORM 4',12460.00),('4198',2018,'TERM 3','FORM 4',7807.00),('4199',2018,'TERM 1','FORM 4',20268.00),('4199',2018,'TERM 2','FORM 4',12460.00),('4199',2018,'TERM 3','FORM 4',7807.00),('4200',2018,'TERM 1','FORM 4',20268.00),('4200',2018,'TERM 2','FORM 4',12460.00),('4200',2018,'TERM 3','FORM 4',7807.00),('4202',2018,'TERM 1','FORM 4',20268.00),('4202',2018,'TERM 2','FORM 4',12460.00),('4202',2018,'TERM 3','FORM 4',7807.00),('4203',2018,'TERM 1','FORM 4',20268.00),('4203',2018,'TERM 2','FORM 4',12460.00),('4203',2018,'TERM 3','FORM 4',7807.00),('4204',2018,'TERM 1','FORM 4',20268.00),('4204',2018,'TERM 2','FORM 4',12460.00),('4204',2018,'TERM 3','FORM 4',7807.00),('4205',2018,'TERM 1','FORM 3',20268.00),('4205',2018,'TERM 2','FORM 3',12460.00),('4205',2018,'TERM 3','FORM 3',7807.00),('4206',2018,'TERM 1','FORM 4',20268.00),('4206',2018,'TERM 2','FORM 4',12460.00),('4206',2018,'TERM 3','FORM 4',7807.00),('4207',2018,'TERM 1','FORM 4',20268.00),('4207',2018,'TERM 2','FORM 4',12460.00),('4207',2018,'TERM 3','FORM 4',7807.00),('4208',2018,'TERM 1','FORM 4',20268.00),('4208',2018,'TERM 2','FORM 4',12460.00),('4208',2018,'TERM 3','FORM 4',7807.00),('4209',2018,'TERM 1','FORM 4',20268.00),('4209',2018,'TERM 2','FORM 4',12460.00),('4209',2018,'TERM 3','FORM 4',7807.00),('4210',2018,'TERM 1','FORM 4',20268.00),('4210',2018,'TERM 2','FORM 4',12460.00),('4210',2018,'TERM 3','FORM 4',7807.00),('4211',2018,'TERM 1','FORM 4',20268.00),('4211',2018,'TERM 2','FORM 4',12460.00),('4211',2018,'TERM 3','FORM 4',7807.00),('4212',2018,'TERM 1','FORM 4',20268.00),('4212',2018,'TERM 2','FORM 4',12460.00),('4212',2018,'TERM 3','FORM 4',7807.00),('4213',2018,'TERM 1','FORM 4',20268.00),('4213',2018,'TERM 2','FORM 4',12460.00),('4213',2018,'TERM 3','FORM 4',7807.00),('4214',2018,'TERM 1','FORM 4',20268.00),('4214',2018,'TERM 2','FORM 4',12460.00),('4214',2018,'TERM 3','FORM 4',7807.00),('4215',2018,'TERM 1','FORM 4',20268.00),('4215',2018,'TERM 2','FORM 4',12460.00),('4215',2018,'TERM 3','FORM 4',7807.00),('4216',2018,'TERM 1','FORM 4',20268.00),('4216',2018,'TERM 2','FORM 4',12460.00),('4216',2018,'TERM 3','FORM 4',7807.00),('4218',2018,'TERM 1','FORM 4',20268.00),('4218',2018,'TERM 2','FORM 4',12460.00),('4218',2018,'TERM 3','FORM 4',7807.00),('4220',2018,'TERM 1','FORM 4',20268.00),('4220',2018,'TERM 2','FORM 4',12460.00),('4220',2018,'TERM 3','FORM 4',7807.00),('4221',2018,'TERM 1','FORM 4',20268.00),('4221',2018,'TERM 2','FORM 4',12460.00),('4221',2018,'TERM 3','FORM 4',7807.00),('4222',2018,'TERM 1','FORM 4',20268.00),('4222',2018,'TERM 2','FORM 4',12460.00),('4222',2018,'TERM 3','FORM 4',7807.00),('4223',2018,'TERM 1','FORM 4',20268.00),('4223',2018,'TERM 2','FORM 4',12460.00),('4223',2018,'TERM 3','FORM 4',7807.00),('4224',2018,'TERM 1','FORM 4',20268.00),('4224',2018,'TERM 2','FORM 4',12460.00),('4224',2018,'TERM 3','FORM 4',7807.00),('4225',2018,'TERM 1','FORM 4',20268.00),('4225',2018,'TERM 2','FORM 4',12460.00),('4225',2018,'TERM 3','FORM 4',7807.00),('4226',2018,'TERM 1','FORM 4',20268.00),('4226',2018,'TERM 2','FORM 4',12460.00),('4226',2018,'TERM 3','FORM 4',7807.00),('4228',2018,'TERM 1','FORM 4',20268.00),('4228',2018,'TERM 2','FORM 4',12460.00),('4228',2018,'TERM 3','FORM 4',7807.00),('4229',2018,'TERM 1','FORM 4',20268.00),('4229',2018,'TERM 2','FORM 4',12460.00),('4229',2018,'TERM 3','FORM 4',7807.00),('4230',2018,'TERM 1','FORM 4',20268.00),('4230',2018,'TERM 2','FORM 4',12460.00),('4230',2018,'TERM 3','FORM 4',7807.00),('4231',2018,'TERM 1','FORM 4',20268.00),('4231',2018,'TERM 2','FORM 4',12460.00),('4231',2018,'TERM 3','FORM 4',7807.00),('4232',2018,'TERM 1','FORM 4',20268.00),('4232',2018,'TERM 2','FORM 4',12460.00),('4232',2018,'TERM 3','FORM 4',7807.00),('4233',2018,'TERM 1','FORM 4',20268.00),('4233',2018,'TERM 2','FORM 4',12460.00),('4233',2018,'TERM 3','FORM 4',7807.00),('4234',2018,'TERM 1','FORM 4',20268.00),('4234',2018,'TERM 2','FORM 4',12460.00),('4234',2018,'TERM 3','FORM 4',7807.00),('4235',2018,'TERM 1','FORM 4',20268.00),('4235',2018,'TERM 2','FORM 4',12460.00),('4235',2018,'TERM 3','FORM 4',7807.00),('4236',2018,'TERM 1','FORM 4',20268.00),('4236',2018,'TERM 2','FORM 4',12460.00),('4236',2018,'TERM 3','FORM 4',7807.00),('4237',2018,'TERM 1','FORM 4',20268.00),('4237',2018,'TERM 2','FORM 4',12460.00),('4237',2018,'TERM 3','FORM 4',7807.00),('4238',2018,'TERM 1','FORM 4',20268.00),('4238',2018,'TERM 2','FORM 4',12460.00),('4238',2018,'TERM 3','FORM 4',7807.00),('4240',2018,'TERM 1','FORM 4',20268.00),('4240',2018,'TERM 2','FORM 4',12460.00),('4240',2018,'TERM 3','FORM 4',7807.00),('4241',2018,'TERM 1','FORM 4',20268.00),('4241',2018,'TERM 2','FORM 4',12460.00),('4241',2018,'TERM 3','FORM 4',7807.00),('4245',2018,'TERM 1','FORM 4',20268.00),('4245',2018,'TERM 2','FORM 4',12460.00),('4245',2018,'TERM 3','FORM 4',7807.00),('4247',2018,'TERM 1','FORM 4',20268.00),('4247',2018,'TERM 2','FORM 4',12460.00),('4247',2018,'TERM 3','FORM 4',7807.00),('4248',2018,'TERM 1','FORM 4',20268.00),('4248',2018,'TERM 2','FORM 4',12460.00),('4248',2018,'TERM 3','FORM 4',7807.00),('4249',2018,'TERM 1','FORM 4',20268.00),('4249',2018,'TERM 2','FORM 4',12460.00),('4249',2018,'TERM 3','FORM 4',7807.00),('4251',2018,'TERM 1','FORM 4',20268.00),('4251',2018,'TERM 2','FORM 4',12460.00),('4251',2018,'TERM 3','FORM 4',7807.00),('4252',2018,'TERM 1','FORM 4',20268.00),('4252',2018,'TERM 2','FORM 4',12460.00),('4252',2018,'TERM 3','FORM 4',7807.00),('4253',2018,'TERM 1','FORM 4',20268.00),('4253',2018,'TERM 2','FORM 4',12460.00),('4253',2018,'TERM 3','FORM 4',7807.00),('4255',2018,'TERM 1','FORM 4',20268.00),('4255',2018,'TERM 2','FORM 4',12460.00),('4255',2018,'TERM 3','FORM 4',7807.00),('4256',2018,'TERM 1','FORM 4',20268.00),('4256',2018,'TERM 2','FORM 4',12460.00),('4256',2018,'TERM 3','FORM 4',7807.00),('4258',2018,'TERM 1','FORM 4',20268.00),('4258',2018,'TERM 2','FORM 4',12460.00),('4258',2018,'TERM 3','FORM 4',7807.00),('4259',2018,'TERM 1','FORM 4',20268.00),('4259',2018,'TERM 2','FORM 4',12460.00),('4259',2018,'TERM 3','FORM 4',7807.00),('4261',2018,'TERM 1','FORM 4',20268.00),('4261',2018,'TERM 2','FORM 4',12460.00),('4261',2018,'TERM 3','FORM 4',7807.00),('4262',2018,'TERM 1','FORM 4',20268.00),('4262',2018,'TERM 2','FORM 4',12460.00),('4262',2018,'TERM 3','FORM 4',7807.00),('4264',2018,'TERM 1','FORM 3',20268.00),('4264',2018,'TERM 2','FORM 3',12460.00),('4264',2018,'TERM 3','FORM 3',7807.00),('4267',2018,'TERM 1','FORM 3',20268.00),('4267',2018,'TERM 2','FORM 3',12460.00),('4267',2018,'TERM 3','FORM 3',7807.00),('4269',2018,'TERM 1','FORM 3',20268.00),('4269',2018,'TERM 2','FORM 3',12460.00),('4269',2018,'TERM 3','FORM 3',7807.00),('4271',2018,'TERM 1','FORM 3',20268.00),('4271',2018,'TERM 2','FORM 3',12460.00),('4271',2018,'TERM 3','FORM 3',7807.00),('4272',2018,'TERM 1','FORM 3',20268.00),('4272',2018,'TERM 2','FORM 3',12460.00),('4272',2018,'TERM 3','FORM 3',7807.00),('4274',2018,'TERM 1','FORM 3',20268.00),('4274',2018,'TERM 2','FORM 3',12460.00),('4274',2018,'TERM 3','FORM 3',7807.00),('4275',2018,'TERM 1','FORM 3',20268.00),('4275',2018,'TERM 2','FORM 3',12460.00),('4275',2018,'TERM 3','FORM 3',7807.00),('4276',2018,'TERM 1','FORM 3',20268.00),('4276',2018,'TERM 2','FORM 3',12460.00),('4276',2018,'TERM 3','FORM 3',7807.00),('4277',2018,'TERM 1','FORM 3',20268.00),('4277',2018,'TERM 2','FORM 3',12460.00),('4277',2018,'TERM 3','FORM 3',7807.00),('4278',2018,'TERM 1','FORM 3',20268.00),('4278',2018,'TERM 2','FORM 3',12460.00),('4278',2018,'TERM 3','FORM 3',7807.00),('4280',2018,'TERM 1','FORM 3',20268.00),('4280',2018,'TERM 2','FORM 3',12460.00),('4280',2018,'TERM 3','FORM 3',7807.00),('4281',2018,'TERM 1','FORM 3',20268.00),('4281',2018,'TERM 2','FORM 3',12460.00),('4281',2018,'TERM 3','FORM 3',7807.00),('4282',2018,'TERM 1','FORM 3',20268.00),('4282',2018,'TERM 2','FORM 3',12460.00),('4282',2018,'TERM 3','FORM 3',7807.00),('4283',2018,'TERM 1','FORM 3',20268.00),('4283',2018,'TERM 2','FORM 3',12460.00),('4283',2018,'TERM 3','FORM 3',7807.00),('4284',2018,'TERM 1','FORM 3',20268.00),('4284',2018,'TERM 2','FORM 3',12460.00),('4284',2018,'TERM 3','FORM 3',7807.00),('4285',2018,'TERM 1','FORM 3',20268.00),('4285',2018,'TERM 2','FORM 3',12460.00),('4285',2018,'TERM 3','FORM 3',7807.00),('4286',2018,'TERM 1','FORM 3',20268.00),('4286',2018,'TERM 2','FORM 3',12460.00),('4286',2018,'TERM 3','FORM 3',7807.00),('4287',2018,'TERM 1','FORM 3',20268.00),('4287',2018,'TERM 2','FORM 3',12460.00),('4287',2018,'TERM 3','FORM 3',7807.00),('4288',2018,'TERM 1','FORM 3',20268.00),('4288',2018,'TERM 2','FORM 3',12460.00),('4288',2018,'TERM 3','FORM 3',7807.00),('4289',2018,'TERM 1','FORM 3',20268.00),('4289',2018,'TERM 2','FORM 3',12460.00),('4289',2018,'TERM 3','FORM 3',7807.00),('4290',2018,'TERM 1','FORM 3',20268.00),('4290',2018,'TERM 2','FORM 3',12460.00),('4290',2018,'TERM 3','FORM 3',7807.00),('4292',2018,'TERM 1','FORM 3',20268.00),('4292',2018,'TERM 2','FORM 3',12460.00),('4292',2018,'TERM 3','FORM 3',7807.00),('4293',2018,'TERM 1','FORM 3',20268.00),('4293',2018,'TERM 2','FORM 3',12460.00),('4293',2018,'TERM 3','FORM 3',7807.00),('4294',2018,'TERM 1','FORM 3',20268.00),('4294',2018,'TERM 2','FORM 3',12460.00),('4294',2018,'TERM 3','FORM 3',7807.00),('4295',2018,'TERM 1','FORM 3',20268.00),('4295',2018,'TERM 2','FORM 3',12460.00),('4295',2018,'TERM 3','FORM 3',7807.00),('4296',2018,'TERM 1','FORM 3',20268.00),('4296',2018,'TERM 2','FORM 3',12460.00),('4296',2018,'TERM 3','FORM 3',7807.00),('4297',2018,'TERM 1','FORM 3',20268.00),('4297',2018,'TERM 2','FORM 3',12460.00),('4297',2018,'TERM 3','FORM 3',7807.00),('4298',2018,'TERM 1','FORM 3',20268.00),('4298',2018,'TERM 2','FORM 3',12460.00),('4298',2018,'TERM 3','FORM 3',7807.00),('4299',2018,'TERM 1','FORM 3',20268.00),('4299',2018,'TERM 2','FORM 3',12460.00),('4299',2018,'TERM 3','FORM 3',7807.00),('4300',2018,'TERM 1','FORM 3',20268.00),('4300',2018,'TERM 2','FORM 3',12460.00),('4300',2018,'TERM 3','FORM 3',7807.00),('4301',2018,'TERM 1','FORM 3',20268.00),('4301',2018,'TERM 2','FORM 3',12460.00),('4301',2018,'TERM 3','FORM 3',7807.00),('4302',2018,'TERM 1','FORM 3',20268.00),('4302',2018,'TERM 2','FORM 3',12460.00),('4302',2018,'TERM 3','FORM 3',7807.00),('4303',2018,'TERM 1','FORM 3',20268.00),('4303',2018,'TERM 2','FORM 3',12460.00),('4303',2018,'TERM 3','FORM 3',7807.00),('4304',2018,'TERM 1','FORM 3',20268.00),('4304',2018,'TERM 2','FORM 3',12460.00),('4304',2018,'TERM 3','FORM 3',7807.00),('4306',2018,'TERM 1','FORM 3',20268.00),('4306',2018,'TERM 2','FORM 3',12460.00),('4306',2018,'TERM 3','FORM 3',7807.00),('4309',2018,'TERM 1','FORM 3',20268.00),('4309',2018,'TERM 2','FORM 3',12460.00),('4309',2018,'TERM 3','FORM 3',7807.00),('4311',2018,'TERM 1','FORM 3',20268.00),('4311',2018,'TERM 2','FORM 3',12460.00),('4311',2018,'TERM 3','FORM 3',7807.00),('4312',2018,'TERM 1','FORM 3',20268.00),('4312',2018,'TERM 2','FORM 3',12460.00),('4312',2018,'TERM 3','FORM 3',7807.00),('4313',2018,'TERM 1','FORM 3',20268.00),('4313',2018,'TERM 2','FORM 3',12460.00),('4313',2018,'TERM 3','FORM 3',7807.00),('4314',2018,'TERM 1','FORM 3',20268.00),('4314',2018,'TERM 2','FORM 3',12460.00),('4314',2018,'TERM 3','FORM 3',7807.00),('4315',2018,'TERM 1','FORM 3',20268.00),('4315',2018,'TERM 2','FORM 3',12460.00),('4315',2018,'TERM 3','FORM 3',7807.00),('4317',2018,'TERM 1','FORM 3',20268.00),('4317',2018,'TERM 2','FORM 3',12460.00),('4317',2018,'TERM 3','FORM 3',7807.00),('4318',2018,'TERM 1','FORM 3',20268.00),('4318',2018,'TERM 2','FORM 3',12460.00),('4318',2018,'TERM 3','FORM 3',7807.00),('4319',2018,'TERM 1','FORM 3',20268.00),('4319',2018,'TERM 2','FORM 3',12460.00),('4319',2018,'TERM 3','FORM 3',7807.00),('4320',2018,'TERM 1','FORM 3',20268.00),('4320',2018,'TERM 2','FORM 3',12460.00),('4320',2018,'TERM 3','FORM 3',7807.00),('4321',2018,'TERM 1','FORM 3',20268.00),('4321',2018,'TERM 2','FORM 3',12460.00),('4321',2018,'TERM 3','FORM 3',7807.00),('4322',2018,'TERM 1','FORM 3',20268.00),('4322',2018,'TERM 2','FORM 3',12460.00),('4322',2018,'TERM 3','FORM 3',7807.00),('4323',2018,'TERM 1','FORM 3',20268.00),('4323',2018,'TERM 2','FORM 3',12460.00),('4323',2018,'TERM 3','FORM 3',7807.00),('4324',2018,'TERM 1','FORM 3',20268.00),('4324',2018,'TERM 2','FORM 3',12460.00),('4324',2018,'TERM 3','FORM 3',7807.00),('4326',2018,'TERM 1','FORM 3',20268.00),('4326',2018,'TERM 2','FORM 3',12460.00),('4326',2018,'TERM 3','FORM 3',7807.00),('4327',2018,'TERM 1','FORM 3',20268.00),('4327',2018,'TERM 2','FORM 3',12460.00),('4327',2018,'TERM 3','FORM 3',7807.00),('4328',2018,'TERM 1','FORM 3',20268.00),('4328',2018,'TERM 2','FORM 3',12460.00),('4328',2018,'TERM 3','FORM 3',7807.00),('4329',2018,'TERM 1','FORM 3',20268.00),('4329',2018,'TERM 2','FORM 3',12460.00),('4329',2018,'TERM 3','FORM 3',7807.00),('4330',2018,'TERM 1','FORM 3',20268.00),('4330',2018,'TERM 2','FORM 3',12460.00),('4330',2018,'TERM 3','FORM 3',7807.00),('4332',2018,'TERM 1','FORM 3',20268.00),('4332',2018,'TERM 2','FORM 3',12460.00),('4332',2018,'TERM 3','FORM 3',7807.00),('4333',2018,'TERM 1','FORM 3',20268.00),('4333',2018,'TERM 2','FORM 3',12460.00),('4333',2018,'TERM 3','FORM 3',7807.00),('4334',2018,'TERM 1','FORM 3',20268.00),('4334',2018,'TERM 2','FORM 3',12460.00),('4334',2018,'TERM 3','FORM 3',7807.00),('4335',2018,'TERM 1','FORM 3',20268.00),('4335',2018,'TERM 2','FORM 3',12460.00),('4335',2018,'TERM 3','FORM 3',7807.00),('4336',2018,'TERM 1','FORM 3',20268.00),('4336',2018,'TERM 2','FORM 3',12460.00),('4336',2018,'TERM 3','FORM 3',7807.00),('4337',2018,'TERM 1','FORM 3',20268.00),('4337',2018,'TERM 2','FORM 3',12460.00),('4337',2018,'TERM 3','FORM 3',7807.00),('4338',2018,'TERM 1','FORM 3',20268.00),('4338',2018,'TERM 2','FORM 3',12460.00),('4338',2018,'TERM 3','FORM 3',7807.00),('4339',2018,'TERM 1','FORM 3',20268.00),('4339',2018,'TERM 2','FORM 3',12460.00),('4339',2018,'TERM 3','FORM 3',7807.00),('4340',2018,'TERM 1','FORM 3',20268.00),('4340',2018,'TERM 2','FORM 3',12460.00),('4340',2018,'TERM 3','FORM 3',7807.00),('4341',2018,'TERM 1','FORM 3',20268.00),('4341',2018,'TERM 2','FORM 3',12460.00),('4341',2018,'TERM 3','FORM 3',7807.00),('4342',2018,'TERM 1','FORM 3',20268.00),('4342',2018,'TERM 2','FORM 3',12460.00),('4342',2018,'TERM 3','FORM 3',7807.00),('4343',2018,'TERM 1','FORM 3',20268.00),('4343',2018,'TERM 2','FORM 3',12460.00),('4343',2018,'TERM 3','FORM 3',7807.00),('4345',2018,'TERM 1','FORM 3',20268.00),('4345',2018,'TERM 2','FORM 3',12460.00),('4345',2018,'TERM 3','FORM 3',7807.00),('4346',2018,'TERM 1','FORM 3',20268.00),('4346',2018,'TERM 2','FORM 3',12460.00),('4346',2018,'TERM 3','FORM 3',7807.00),('4347',2018,'TERM 1','FORM 3',20268.00),('4347',2018,'TERM 2','FORM 3',12460.00),('4347',2018,'TERM 3','FORM 3',7807.00),('4348',2018,'TERM 1','FORM 3',20268.00),('4348',2018,'TERM 2','FORM 3',12460.00),('4348',2018,'TERM 3','FORM 3',7807.00),('4351',2018,'TERM 1','FORM 3',20268.00),('4351',2018,'TERM 2','FORM 3',12460.00),('4351',2018,'TERM 3','FORM 3',7807.00),('4352',2018,'TERM 1','FORM 3',20268.00),('4352',2018,'TERM 2','FORM 3',12460.00),('4352',2018,'TERM 3','FORM 3',7807.00),('4353',2018,'TERM 1','FORM 3',20268.00),('4353',2018,'TERM 2','FORM 3',12460.00),('4353',2018,'TERM 3','FORM 3',7807.00),('4356',2018,'TERM 1','FORM 3',20268.00),('4356',2018,'TERM 2','FORM 3',12460.00),('4356',2018,'TERM 3','FORM 3',7807.00),('4358',2018,'TERM 1','FORM 3',20268.00),('4358',2018,'TERM 2','FORM 3',12460.00),('4358',2018,'TERM 3','FORM 3',7807.00),('4359',2018,'TERM 1','FORM 3',20268.00),('4359',2018,'TERM 2','FORM 3',12460.00),('4359',2018,'TERM 3','FORM 3',7807.00),('4360',2018,'TERM 1','FORM 3',20268.00),('4360',2018,'TERM 2','FORM 3',12460.00),('4360',2018,'TERM 3','FORM 3',7807.00),('4361',2018,'TERM 1','FORM 3',20268.00),('4361',2018,'TERM 2','FORM 3',12460.00),('4361',2018,'TERM 3','FORM 3',7807.00),('4362',2018,'TERM 1','FORM 3',20268.00),('4362',2018,'TERM 2','FORM 3',12460.00),('4362',2018,'TERM 3','FORM 3',7807.00),('4363',2018,'TERM 1','FORM 3',20268.00),('4363',2018,'TERM 2','FORM 3',12460.00),('4363',2018,'TERM 3','FORM 3',7807.00),('4365',2018,'TERM 1','FORM 3',20268.00),('4365',2018,'TERM 2','FORM 3',12460.00),('4365',2018,'TERM 3','FORM 3',7807.00),('4366',2018,'TERM 1','FORM 3',20268.00),('4366',2018,'TERM 2','FORM 3',12460.00),('4366',2018,'TERM 3','FORM 3',7807.00),('4368',2018,'TERM 1','FORM 3',20268.00),('4368',2018,'TERM 2','FORM 3',12460.00),('4368',2018,'TERM 3','FORM 3',7807.00),('4370',2018,'TERM 1','FORM 3',20268.00),('4370',2018,'TERM 2','FORM 3',12460.00),('4370',2018,'TERM 3','FORM 3',7807.00),('4371',2018,'TERM 1','FORM 4',20268.00),('4371',2018,'TERM 2','FORM 4',12460.00),('4371',2018,'TERM 3','FORM 4',7807.00),('4372',2018,'TERM 1','FORM 4',20268.00),('4372',2018,'TERM 2','FORM 4',12460.00),('4372',2018,'TERM 3','FORM 4',7807.00),('4373',2018,'TERM 1','FORM 3',20268.00),('4373',2018,'TERM 2','FORM 3',12460.00),('4373',2018,'TERM 3','FORM 3',7807.00),('4374',2018,'TERM 1','FORM 3',20268.00),('4374',2018,'TERM 2','FORM 3',12460.00),('4374',2018,'TERM 3','FORM 3',7807.00),('4375',2018,'TERM 1','FORM 3',20268.00),('4375',2018,'TERM 2','FORM 3',12460.00),('4375',2018,'TERM 3','FORM 3',7807.00),('4377',2018,'TERM 1','FORM 3',20268.00),('4377',2018,'TERM 2','FORM 3',12460.00),('4377',2018,'TERM 3','FORM 3',7807.00),('4378',2018,'TERM 1','FORM 2',20268.00),('4378',2018,'TERM 2','FORM 2',12460.00),('4378',2018,'TERM 3','FORM 2',7807.00),('4379',2018,'TERM 1','FORM 2',20268.00),('4379',2018,'TERM 2','FORM 2',12460.00),('4379',2018,'TERM 3','FORM 2',7807.00),('4380',2018,'TERM 1','FORM 2',20268.00),('4380',2018,'TERM 2','FORM 2',12460.00),('4380',2018,'TERM 3','FORM 2',7807.00),('4381',2018,'TERM 1','FORM 2',20268.00),('4381',2018,'TERM 2','FORM 2',12460.00),('4381',2018,'TERM 3','FORM 2',7807.00),('4382',2018,'TERM 1','FORM 2',20268.00),('4382',2018,'TERM 2','FORM 2',12460.00),('4382',2018,'TERM 3','FORM 2',7807.00),('4383',2018,'TERM 1','FORM 2',20268.00),('4383',2018,'TERM 2','FORM 2',12460.00),('4383',2018,'TERM 3','FORM 2',7807.00),('4384',2018,'TERM 1','FORM 2',20268.00),('4384',2018,'TERM 2','FORM 2',12460.00),('4384',2018,'TERM 3','FORM 2',7807.00),('4385',2018,'TERM 1','FORM 2',20268.00),('4385',2018,'TERM 2','FORM 2',12460.00),('4385',2018,'TERM 3','FORM 2',7807.00),('4386',2018,'TERM 1','FORM 2',20268.00),('4386',2018,'TERM 2','FORM 2',12460.00),('4386',2018,'TERM 3','FORM 2',7807.00),('4387',2018,'TERM 1','FORM 2',20268.00),('4387',2018,'TERM 2','FORM 2',12460.00),('4387',2018,'TERM 3','FORM 2',7807.00),('4388',2018,'TERM 1','FORM 2',20268.00),('4388',2018,'TERM 2','FORM 2',12460.00),('4388',2018,'TERM 3','FORM 2',7807.00),('4389',2018,'TERM 1','FORM 2',20268.00),('4389',2018,'TERM 2','FORM 2',12460.00),('4389',2018,'TERM 3','FORM 2',7807.00),('4390',2018,'TERM 1','FORM 2',20268.00),('4390',2018,'TERM 2','FORM 2',12460.00),('4390',2018,'TERM 3','FORM 2',7807.00),('4391',2018,'TERM 1','FORM 2',20268.00),('4391',2018,'TERM 2','FORM 2',12460.00),('4391',2018,'TERM 3','FORM 2',7807.00),('4392',2018,'TERM 1','FORM 2',20268.00),('4392',2018,'TERM 2','FORM 2',12460.00),('4392',2018,'TERM 3','FORM 2',7807.00),('4394',2018,'TERM 1','FORM 2',20268.00),('4394',2018,'TERM 2','FORM 2',12460.00),('4394',2018,'TERM 3','FORM 2',7807.00),('4395',2018,'TERM 1','FORM 2',20268.00),('4395',2018,'TERM 2','FORM 2',12460.00),('4395',2018,'TERM 3','FORM 2',7807.00),('4396',2018,'TERM 1','FORM 2',20268.00),('4396',2018,'TERM 2','FORM 2',12460.00),('4396',2018,'TERM 3','FORM 2',7807.00),('4397',2018,'TERM 1','FORM 2',20268.00),('4397',2018,'TERM 2','FORM 2',12460.00),('4397',2018,'TERM 3','FORM 2',7807.00),('4398',2018,'TERM 1','FORM 2',20268.00),('4398',2018,'TERM 2','FORM 2',12460.00),('4398',2018,'TERM 3','FORM 2',7807.00),('4399',2018,'TERM 1','FORM 2',20268.00),('4399',2018,'TERM 2','FORM 2',12460.00),('4399',2018,'TERM 3','FORM 2',7807.00),('4400',2018,'TERM 1','FORM 2',20268.00),('4400',2018,'TERM 2','FORM 2',12460.00),('4400',2018,'TERM 3','FORM 2',7807.00),('4401',2018,'TERM 1','FORM 2',20268.00),('4401',2018,'TERM 2','FORM 2',12460.00),('4401',2018,'TERM 3','FORM 2',7807.00),('4402',2018,'TERM 1','FORM 2',20268.00),('4402',2018,'TERM 2','FORM 2',12460.00),('4402',2018,'TERM 3','FORM 2',7807.00),('4403',2018,'TERM 1','FORM 2',20268.00),('4403',2018,'TERM 2','FORM 2',12460.00),('4403',2018,'TERM 3','FORM 2',7807.00),('4404',2018,'TERM 1','FORM 2',20268.00),('4404',2018,'TERM 2','FORM 2',12460.00),('4404',2018,'TERM 3','FORM 2',7807.00),('4405',2018,'TERM 1','FORM 2',20268.00),('4405',2018,'TERM 2','FORM 2',12460.00),('4405',2018,'TERM 3','FORM 2',7807.00),('4406',2018,'TERM 1','FORM 2',20268.00),('4406',2018,'TERM 2','FORM 2',12460.00),('4406',2018,'TERM 3','FORM 2',7807.00),('4407',2018,'TERM 1','FORM 2',20268.00),('4407',2018,'TERM 2','FORM 2',12460.00),('4407',2018,'TERM 3','FORM 2',7807.00),('4408',2018,'TERM 1','FORM 2',20268.00),('4408',2018,'TERM 2','FORM 2',12460.00),('4408',2018,'TERM 3','FORM 2',7807.00),('4409',2018,'TERM 1','FORM 2',20268.00),('4409',2018,'TERM 2','FORM 2',12460.00),('4409',2018,'TERM 3','FORM 2',7807.00),('4410',2018,'TERM 1','FORM 2',20268.00),('4410',2018,'TERM 2','FORM 2',12460.00),('4410',2018,'TERM 3','FORM 2',7807.00),('4411',2018,'TERM 1','FORM 2',20268.00),('4411',2018,'TERM 2','FORM 2',12460.00),('4411',2018,'TERM 3','FORM 2',7807.00),('4412',2018,'TERM 1','FORM 2',20268.00),('4412',2018,'TERM 2','FORM 2',12460.00),('4412',2018,'TERM 3','FORM 2',7807.00),('4413',2018,'TERM 1','FORM 2',20268.00),('4413',2018,'TERM 2','FORM 2',12460.00),('4413',2018,'TERM 3','FORM 2',7807.00),('4414',2018,'TERM 1','FORM 2',20268.00),('4414',2018,'TERM 2','FORM 2',12460.00),('4414',2018,'TERM 3','FORM 2',7807.00),('4415',2018,'TERM 1','FORM 2',20268.00),('4415',2018,'TERM 2','FORM 2',12460.00),('4415',2018,'TERM 3','FORM 2',7807.00),('4416',2018,'TERM 1','FORM 2',20268.00),('4416',2018,'TERM 2','FORM 2',12460.00),('4416',2018,'TERM 3','FORM 2',7807.00),('4417',2018,'TERM 1','FORM 2',20268.00),('4417',2018,'TERM 2','FORM 2',12460.00),('4417',2018,'TERM 3','FORM 2',7807.00),('4418',2018,'TERM 1','FORM 2',20268.00),('4418',2018,'TERM 2','FORM 2',12460.00),('4418',2018,'TERM 3','FORM 2',7807.00),('4420',2018,'TERM 1','FORM 2',20268.00),('4420',2018,'TERM 2','FORM 2',12460.00),('4420',2018,'TERM 3','FORM 2',7807.00),('4421',2018,'TERM 1','FORM 2',20268.00),('4421',2018,'TERM 2','FORM 2',12460.00),('4421',2018,'TERM 3','FORM 2',7807.00),('4422',2018,'TERM 1','FORM 2',20268.00),('4422',2018,'TERM 2','FORM 2',12460.00),('4422',2018,'TERM 3','FORM 2',7807.00),('4423',2018,'TERM 1','FORM 2',20268.00),('4423',2018,'TERM 2','FORM 2',12460.00),('4423',2018,'TERM 3','FORM 2',7807.00),('4424',2018,'TERM 1','FORM 2',20268.00),('4424',2018,'TERM 2','FORM 2',12460.00),('4424',2018,'TERM 3','FORM 2',7807.00),('4425',2018,'TERM 1','FORM 2',20268.00),('4425',2018,'TERM 2','FORM 2',12460.00),('4425',2018,'TERM 3','FORM 2',7807.00),('4426',2018,'TERM 1','FORM 2',20268.00),('4426',2018,'TERM 2','FORM 2',12460.00),('4426',2018,'TERM 3','FORM 2',7807.00),('4427',2018,'TERM 1','FORM 2',20268.00),('4427',2018,'TERM 2','FORM 2',12460.00),('4427',2018,'TERM 3','FORM 2',7807.00),('4428',2018,'TERM 1','FORM 2',20268.00),('4428',2018,'TERM 2','FORM 2',12460.00),('4428',2018,'TERM 3','FORM 2',7807.00),('4429',2018,'TERM 1','FORM 2',20268.00),('4429',2018,'TERM 2','FORM 2',12460.00),('4429',2018,'TERM 3','FORM 2',7807.00),('4430',2018,'TERM 1','FORM 2',20268.00),('4430',2018,'TERM 2','FORM 2',12460.00),('4430',2018,'TERM 3','FORM 2',7807.00),('4431',2018,'TERM 1','FORM 2',20268.00),('4431',2018,'TERM 2','FORM 2',12460.00),('4431',2018,'TERM 3','FORM 2',7807.00),('4433',2018,'TERM 1','FORM 2',20268.00),('4433',2018,'TERM 2','FORM 2',12460.00),('4433',2018,'TERM 3','FORM 2',7807.00),('4434',2018,'TERM 1','FORM 2',20268.00),('4434',2018,'TERM 2','FORM 2',12460.00),('4434',2018,'TERM 3','FORM 2',7807.00),('4435',2018,'TERM 1','FORM 2',20268.00),('4435',2018,'TERM 2','FORM 2',12460.00),('4435',2018,'TERM 3','FORM 2',7807.00),('4436',2018,'TERM 1','FORM 2',20268.00),('4436',2018,'TERM 2','FORM 2',12460.00),('4436',2018,'TERM 3','FORM 2',7807.00),('4438',2018,'TERM 1','FORM 2',20268.00),('4438',2018,'TERM 2','FORM 2',12460.00),('4438',2018,'TERM 3','FORM 2',7807.00),('4439',2018,'TERM 1','FORM 2',20268.00),('4439',2018,'TERM 2','FORM 2',12460.00),('4439',2018,'TERM 3','FORM 2',7807.00),('4440',2018,'TERM 1','FORM 2',20268.00),('4440',2018,'TERM 2','FORM 2',12460.00),('4440',2018,'TERM 3','FORM 2',7807.00),('4441',2018,'TERM 1','FORM 2',20268.00),('4441',2018,'TERM 2','FORM 2',12460.00),('4441',2018,'TERM 3','FORM 2',7807.00),('4442',2018,'TERM 1','FORM 2',20268.00),('4442',2018,'TERM 2','FORM 2',12460.00),('4442',2018,'TERM 3','FORM 2',7807.00),('4443',2018,'TERM 1','FORM 2',20268.00),('4443',2018,'TERM 2','FORM 2',12460.00),('4443',2018,'TERM 3','FORM 2',7807.00),('4444',2018,'TERM 1','FORM 2',20268.00),('4444',2018,'TERM 2','FORM 2',12460.00),('4444',2018,'TERM 3','FORM 2',7807.00),('4446',2018,'TERM 1','FORM 2',20268.00),('4446',2018,'TERM 2','FORM 2',12460.00),('4446',2018,'TERM 3','FORM 2',7807.00),('4447',2018,'TERM 1','FORM 2',20268.00),('4447',2018,'TERM 2','FORM 2',12460.00),('4447',2018,'TERM 3','FORM 2',7807.00),('4448',2018,'TERM 1','FORM 2',20268.00),('4448',2018,'TERM 2','FORM 2',12460.00),('4448',2018,'TERM 3','FORM 2',7807.00),('4449',2018,'TERM 1','FORM 2',20268.00),('4449',2018,'TERM 2','FORM 2',12460.00),('4449',2018,'TERM 3','FORM 2',7807.00),('4450',2018,'TERM 1','FORM 2',20268.00),('4450',2018,'TERM 2','FORM 2',12460.00),('4450',2018,'TERM 3','FORM 2',7807.00),('4451',2018,'TERM 1','FORM 2',20268.00),('4451',2018,'TERM 2','FORM 2',12460.00),('4451',2018,'TERM 3','FORM 2',7807.00),('4452',2018,'TERM 1','FORM 2',20268.00),('4452',2018,'TERM 2','FORM 2',12460.00),('4452',2018,'TERM 3','FORM 2',7807.00),('4453',2018,'TERM 1','FORM 2',20268.00),('4453',2018,'TERM 2','FORM 2',12460.00),('4453',2018,'TERM 3','FORM 2',7807.00),('4454',2018,'TERM 1','FORM 2',20268.00),('4454',2018,'TERM 2','FORM 2',12460.00),('4454',2018,'TERM 3','FORM 2',7807.00),('4455',2018,'TERM 1','FORM 2',20268.00),('4455',2018,'TERM 2','FORM 2',12460.00),('4455',2018,'TERM 3','FORM 2',7807.00),('4456',2018,'TERM 1','FORM 2',20268.00),('4456',2018,'TERM 2','FORM 2',12460.00),('4456',2018,'TERM 3','FORM 2',7807.00),('4457',2018,'TERM 1','FORM 2',20268.00),('4457',2018,'TERM 2','FORM 2',12460.00),('4457',2018,'TERM 3','FORM 2',7807.00),('4458',2018,'TERM 1','FORM 2',20268.00),('4458',2018,'TERM 2','FORM 2',12460.00),('4458',2018,'TERM 3','FORM 2',7807.00),('4459',2018,'TERM 1','FORM 2',20268.00),('4459',2018,'TERM 2','FORM 2',12460.00),('4459',2018,'TERM 3','FORM 2',7807.00),('4460',2018,'TERM 1','FORM 2',20268.00),('4460',2018,'TERM 2','FORM 2',12460.00),('4460',2018,'TERM 3','FORM 2',7807.00),('4461',2018,'TERM 1','FORM 2',20268.00),('4461',2018,'TERM 2','FORM 2',12460.00),('4461',2018,'TERM 3','FORM 2',7807.00),('4463',2018,'TERM 1','FORM 2',20268.00),('4463',2018,'TERM 2','FORM 2',12460.00),('4463',2018,'TERM 3','FORM 2',7807.00),('4464',2018,'TERM 1','FORM 2',20268.00),('4464',2018,'TERM 2','FORM 2',12460.00),('4464',2018,'TERM 3','FORM 2',7807.00),('4465',2018,'TERM 1','FORM 2',20268.00),('4465',2018,'TERM 2','FORM 2',12460.00),('4465',2018,'TERM 3','FORM 2',7807.00),('4466',2018,'TERM 1','FORM 2',20268.00),('4466',2018,'TERM 2','FORM 2',12460.00),('4466',2018,'TERM 3','FORM 2',7807.00),('4467',2018,'TERM 1','FORM 2',20268.00),('4467',2018,'TERM 2','FORM 2',12460.00),('4467',2018,'TERM 3','FORM 2',7807.00),('4468',2018,'TERM 1','FORM 2',20268.00),('4468',2018,'TERM 2','FORM 2',12460.00),('4468',2018,'TERM 3','FORM 2',7807.00),('4469',2018,'TERM 1','FORM 2',20268.00),('4469',2018,'TERM 2','FORM 2',12460.00),('4469',2018,'TERM 3','FORM 2',7807.00),('4470',2018,'TERM 1','FORM 2',20268.00),('4470',2018,'TERM 2','FORM 2',12460.00),('4470',2018,'TERM 3','FORM 2',7807.00),('4471',2018,'TERM 1','FORM 2',20268.00),('4471',2018,'TERM 2','FORM 2',12460.00),('4471',2018,'TERM 3','FORM 2',7807.00),('4472',2018,'TERM 1','FORM 2',20268.00),('4472',2018,'TERM 2','FORM 2',12460.00),('4472',2018,'TERM 3','FORM 2',7807.00),('4473',2018,'TERM 1','FORM 2',20268.00),('4473',2018,'TERM 2','FORM 2',12460.00),('4473',2018,'TERM 3','FORM 2',7807.00),('4475',2018,'TERM 1','FORM 2',20268.00),('4475',2018,'TERM 2','FORM 2',12460.00),('4475',2018,'TERM 3','FORM 2',7807.00),('4476',2018,'TERM 1','FORM 2',20268.00),('4476',2018,'TERM 2','FORM 2',12460.00),('4476',2018,'TERM 3','FORM 2',7807.00),('4477',2018,'TERM 1','FORM 2',20268.00),('4477',2018,'TERM 2','FORM 2',12460.00),('4477',2018,'TERM 3','FORM 2',7807.00),('4478',2018,'TERM 1','FORM 2',20268.00),('4478',2018,'TERM 2','FORM 2',12460.00),('4478',2018,'TERM 3','FORM 2',7807.00),('4479',2018,'TERM 1','FORM 2',20268.00),('4479',2018,'TERM 2','FORM 2',12460.00),('4479',2018,'TERM 3','FORM 2',7807.00),('4480',2018,'TERM 1','FORM 2',20268.00),('4480',2018,'TERM 2','FORM 2',12460.00),('4480',2018,'TERM 3','FORM 2',7807.00),('4482',2018,'TERM 1','FORM 2',20268.00),('4482',2018,'TERM 2','FORM 2',12460.00),('4482',2018,'TERM 3','FORM 2',7807.00),('4483',2018,'TERM 1','FORM 2',20268.00),('4483',2018,'TERM 2','FORM 2',12460.00),('4483',2018,'TERM 3','FORM 2',7807.00),('4484',2018,'TERM 1','FORM 2',20268.00),('4484',2018,'TERM 2','FORM 2',12460.00),('4484',2018,'TERM 3','FORM 2',7807.00),('4485',2018,'TERM 1','FORM 2',20268.00),('4485',2018,'TERM 2','FORM 2',12460.00),('4485',2018,'TERM 3','FORM 2',7807.00),('4486',2018,'TERM 1','FORM 2',20268.00),('4486',2018,'TERM 2','FORM 2',12460.00),('4486',2018,'TERM 3','FORM 2',7807.00),('4487',2018,'TERM 1','FORM 2',20268.00),('4487',2018,'TERM 2','FORM 2',12460.00),('4487',2018,'TERM 3','FORM 2',7807.00),('4488',2018,'TERM 1','FORM 2',20268.00),('4488',2018,'TERM 2','FORM 2',12460.00),('4488',2018,'TERM 3','FORM 2',7807.00),('4489',2018,'TERM 1','FORM 2',20268.00),('4489',2018,'TERM 2','FORM 2',12460.00),('4489',2018,'TERM 3','FORM 2',7807.00),('4490',2018,'TERM 1','FORM 2',20268.00),('4490',2018,'TERM 2','FORM 2',12460.00),('4490',2018,'TERM 3','FORM 2',7807.00),('4491',2018,'TERM 1','FORM 2',20268.00),('4491',2018,'TERM 2','FORM 2',12460.00),('4491',2018,'TERM 3','FORM 2',7807.00),('4492',2018,'TERM 1','FORM 2',20268.00),('4492',2018,'TERM 2','FORM 2',12460.00),('4492',2018,'TERM 3','FORM 2',7807.00),('4493',2018,'TERM 1','FORM 2',20268.00),('4493',2018,'TERM 2','FORM 2',12460.00),('4493',2018,'TERM 3','FORM 2',7807.00),('4494',2018,'TERM 1','FORM 2',20268.00),('4494',2018,'TERM 2','FORM 2',12460.00),('4494',2018,'TERM 3','FORM 2',7807.00),('4495',2018,'TERM 1','FORM 2',20268.00),('4495',2018,'TERM 2','FORM 2',12460.00),('4495',2018,'TERM 3','FORM 2',7807.00),('4497',2018,'TERM 1','FORM 2',20268.00),('4497',2018,'TERM 2','FORM 2',12460.00),('4497',2018,'TERM 3','FORM 2',7807.00),('4498',2018,'TERM 1','FORM 2',20268.00),('4498',2018,'TERM 2','FORM 2',12460.00),('4498',2018,'TERM 3','FORM 2',7807.00),('4499',2018,'TERM 1','FORM 2',20268.00),('4499',2018,'TERM 2','FORM 2',12460.00),('4499',2018,'TERM 3','FORM 2',7807.00),('4500',2018,'TERM 1','FORM 2',20268.00),('4500',2018,'TERM 2','FORM 2',12460.00),('4500',2018,'TERM 3','FORM 2',7807.00),('4501',2018,'TERM 1','FORM 2',20268.00),('4501',2018,'TERM 2','FORM 2',12460.00),('4501',2018,'TERM 3','FORM 2',7807.00),('4503',2018,'TERM 1','FORM 2',20268.00),('4503',2018,'TERM 2','FORM 2',12460.00),('4503',2018,'TERM 3','FORM 2',7807.00),('4504',2018,'TERM 1','FORM 2',20268.00),('4504',2018,'TERM 2','FORM 2',12460.00),('4504',2018,'TERM 3','FORM 2',7807.00),('4505',2018,'TERM 1','FORM 2',20268.00),('4505',2018,'TERM 2','FORM 2',12460.00),('4505',2018,'TERM 3','FORM 2',7807.00),('4506',2018,'TERM 1','FORM 2',20268.00),('4506',2018,'TERM 2','FORM 2',12460.00),('4506',2018,'TERM 3','FORM 2',7807.00),('4507',2018,'TERM 1','FORM 4',20268.00),('4507',2018,'TERM 2','FORM 4',12460.00),('4507',2018,'TERM 3','FORM 4',7807.00),('4508',2018,'TERM 1','FORM 2',20268.00),('4508',2018,'TERM 2','FORM 2',12460.00),('4508',2018,'TERM 3','FORM 2',7807.00),('4509',2018,'TERM 1','FORM 1',20268.00),('4509',2018,'TERM 2','FORM 1',12460.00),('4509',2018,'TERM 3','FORM 1',7807.00),('4510',2018,'TERM 1','FORM 1',20268.00),('4510',2018,'TERM 2','FORM 1',12460.00),('4510',2018,'TERM 3','FORM 1',7807.00),('4511',2018,'TERM 1','FORM 1',20268.00),('4511',2018,'TERM 2','FORM 1',12460.00),('4511',2018,'TERM 3','FORM 1',7807.00),('4512',2018,'TERM 1','FORM 1',20268.00),('4512',2018,'TERM 2','FORM 1',12460.00),('4512',2018,'TERM 3','FORM 1',7807.00),('4513',2018,'TERM 1','FORM 1',20268.00),('4513',2018,'TERM 2','FORM 1',12460.00),('4513',2018,'TERM 3','FORM 1',7807.00),('4514',2018,'TERM 1','FORM 1',20268.00),('4514',2018,'TERM 2','FORM 1',12460.00),('4514',2018,'TERM 3','FORM 1',7807.00),('4515',2018,'TERM 1','FORM 1',20268.00),('4515',2018,'TERM 2','FORM 1',12460.00),('4515',2018,'TERM 3','FORM 1',7807.00),('4516',2018,'TERM 1','FORM 1',20268.00),('4516',2018,'TERM 2','FORM 1',12460.00),('4516',2018,'TERM 3','FORM 1',7807.00),('4517',2018,'TERM 1','FORM 1',20268.00),('4517',2018,'TERM 2','FORM 1',12460.00),('4517',2018,'TERM 3','FORM 1',7807.00),('4518',2018,'TERM 1','FORM 1',20268.00),('4518',2018,'TERM 2','FORM 1',12460.00),('4518',2018,'TERM 3','FORM 1',7807.00),('4519',2018,'TERM 1','FORM 1',20268.00),('4519',2018,'TERM 2','FORM 1',12460.00),('4519',2018,'TERM 3','FORM 1',7807.00),('4520',2018,'TERM 1','FORM 1',20268.00),('4520',2018,'TERM 2','FORM 1',12460.00),('4520',2018,'TERM 3','FORM 1',7807.00),('4521',2018,'TERM 1','FORM 1',20268.00),('4521',2018,'TERM 2','FORM 1',12460.00),('4521',2018,'TERM 3','FORM 1',7807.00),('4522',2018,'TERM 1','FORM 1',20268.00),('4522',2018,'TERM 2','FORM 1',12460.00),('4522',2018,'TERM 3','FORM 1',7807.00),('4523',2018,'TERM 1','FORM 1',20268.00),('4523',2018,'TERM 2','FORM 1',12460.00),('4523',2018,'TERM 3','FORM 1',7807.00),('4524',2018,'TERM 1','FORM 1',20268.00),('4524',2018,'TERM 2','FORM 1',12460.00),('4524',2018,'TERM 3','FORM 1',7807.00),('4525',2018,'TERM 1','FORM 1',20268.00),('4525',2018,'TERM 2','FORM 1',12460.00),('4525',2018,'TERM 3','FORM 1',7807.00),('4526',2018,'TERM 1','FORM 1',20268.00),('4526',2018,'TERM 2','FORM 1',12460.00),('4526',2018,'TERM 3','FORM 1',7807.00),('4527',2018,'TERM 1','FORM 1',20268.00),('4527',2018,'TERM 2','FORM 1',12460.00),('4527',2018,'TERM 3','FORM 1',7807.00),('4528',2018,'TERM 1','FORM 1',20268.00),('4528',2018,'TERM 2','FORM 1',12460.00),('4528',2018,'TERM 3','FORM 1',7807.00),('4529',2018,'TERM 1','FORM 1',20268.00),('4529',2018,'TERM 2','FORM 1',12460.00),('4529',2018,'TERM 3','FORM 1',7807.00),('4530',2018,'TERM 1','FORM 1',20268.00),('4530',2018,'TERM 2','FORM 1',12460.00),('4530',2018,'TERM 3','FORM 1',7807.00),('4531',2018,'TERM 1','FORM 1',20268.00),('4531',2018,'TERM 2','FORM 1',12460.00),('4531',2018,'TERM 3','FORM 1',7807.00),('4532',2018,'TERM 1','FORM 1',20268.00),('4532',2018,'TERM 2','FORM 1',12460.00),('4532',2018,'TERM 3','FORM 1',7807.00),('4533',2018,'TERM 1','FORM 1',20268.00),('4533',2018,'TERM 2','FORM 1',12460.00),('4533',2018,'TERM 3','FORM 1',7807.00),('4534',2018,'TERM 1','FORM 1',20268.00),('4534',2018,'TERM 2','FORM 1',12460.00),('4534',2018,'TERM 3','FORM 1',7807.00),('4535',2018,'TERM 1','FORM 1',20268.00),('4535',2018,'TERM 2','FORM 1',12460.00),('4535',2018,'TERM 3','FORM 1',7807.00),('4536',2018,'TERM 1','FORM 1',20268.00),('4536',2018,'TERM 2','FORM 1',12460.00),('4536',2018,'TERM 3','FORM 1',7807.00),('4537',2018,'TERM 1','FORM 1',20268.00),('4537',2018,'TERM 2','FORM 1',12460.00),('4537',2018,'TERM 3','FORM 1',7807.00),('4538',2018,'TERM 1','FORM 1',20268.00),('4538',2018,'TERM 2','FORM 1',12460.00),('4538',2018,'TERM 3','FORM 1',7807.00),('4539',2018,'TERM 1','FORM 1',20268.00),('4539',2018,'TERM 2','FORM 1',12460.00),('4539',2018,'TERM 3','FORM 1',7807.00),('4540',2018,'TERM 1','FORM 1',20268.00),('4540',2018,'TERM 2','FORM 1',12460.00),('4540',2018,'TERM 3','FORM 1',7807.00),('4541',2018,'TERM 1','FORM 1',20268.00),('4541',2018,'TERM 2','FORM 1',12460.00),('4541',2018,'TERM 3','FORM 1',7807.00),('4542',2018,'TERM 1','FORM 1',20268.00),('4542',2018,'TERM 2','FORM 1',12460.00),('4542',2018,'TERM 3','FORM 1',7807.00),('4543',2018,'TERM 1','FORM 1',20268.00),('4543',2018,'TERM 2','FORM 1',12460.00),('4543',2018,'TERM 3','FORM 1',7807.00),('4544',2018,'TERM 1','FORM 1',20268.00),('4544',2018,'TERM 2','FORM 1',12460.00),('4544',2018,'TERM 3','FORM 1',7807.00),('4545',2018,'TERM 1','FORM 1',20268.00),('4545',2018,'TERM 2','FORM 1',12460.00),('4545',2018,'TERM 3','FORM 1',7807.00),('4546',2018,'TERM 1','FORM 1',20268.00),('4546',2018,'TERM 2','FORM 1',12460.00),('4546',2018,'TERM 3','FORM 1',7807.00),('4547',2018,'TERM 1','FORM 1',20268.00),('4547',2018,'TERM 2','FORM 1',12460.00),('4547',2018,'TERM 3','FORM 1',7807.00),('4548',2018,'TERM 1','FORM 1',20268.00),('4548',2018,'TERM 2','FORM 1',12460.00),('4548',2018,'TERM 3','FORM 1',7807.00),('4549',2018,'TERM 1','FORM 1',20268.00),('4549',2018,'TERM 2','FORM 1',12460.00),('4549',2018,'TERM 3','FORM 1',7807.00),('4550',2018,'TERM 1','FORM 1',20268.00),('4550',2018,'TERM 2','FORM 1',12460.00),('4550',2018,'TERM 3','FORM 1',7807.00),('4551',2018,'TERM 1','FORM 1',20268.00),('4551',2018,'TERM 2','FORM 1',12460.00),('4551',2018,'TERM 3','FORM 1',7807.00),('4552',2018,'TERM 1','FORM 1',20268.00),('4552',2018,'TERM 2','FORM 1',12460.00),('4552',2018,'TERM 3','FORM 1',7807.00),('4553',2018,'TERM 1','FORM 1',20268.00),('4553',2018,'TERM 2','FORM 1',12460.00),('4553',2018,'TERM 3','FORM 1',7807.00),('4554',2018,'TERM 1','FORM 1',20268.00),('4554',2018,'TERM 2','FORM 1',12460.00),('4554',2018,'TERM 3','FORM 1',7807.00),('4555',2018,'TERM 1','FORM 1',20268.00),('4555',2018,'TERM 2','FORM 1',12460.00),('4555',2018,'TERM 3','FORM 1',7807.00),('4556',2018,'TERM 1','FORM 1',20268.00),('4556',2018,'TERM 2','FORM 1',12460.00),('4556',2018,'TERM 3','FORM 1',7807.00),('4557',2018,'TERM 1','FORM 1',20268.00),('4557',2018,'TERM 2','FORM 1',12460.00),('4557',2018,'TERM 3','FORM 1',7807.00),('4558',2018,'TERM 1','FORM 1',20268.00),('4558',2018,'TERM 2','FORM 1',12460.00),('4558',2018,'TERM 3','FORM 1',7807.00),('4559',2018,'TERM 1','FORM 1',20268.00),('4559',2018,'TERM 2','FORM 1',12460.00),('4559',2018,'TERM 3','FORM 1',7807.00),('4560',2018,'TERM 1','FORM 1',20268.00),('4560',2018,'TERM 2','FORM 1',12460.00),('4560',2018,'TERM 3','FORM 1',7807.00),('4561',2018,'TERM 1','FORM 1',20268.00),('4561',2018,'TERM 2','FORM 1',12460.00),('4561',2018,'TERM 3','FORM 1',7807.00),('4562',2018,'TERM 1','FORM 1',20268.00),('4562',2018,'TERM 2','FORM 1',12460.00),('4562',2018,'TERM 3','FORM 1',7807.00),('4563',2018,'TERM 1','FORM 1',20268.00),('4563',2018,'TERM 2','FORM 1',12460.00),('4563',2018,'TERM 3','FORM 1',7807.00),('4564',2018,'TERM 1','FORM 1',20268.00),('4564',2018,'TERM 2','FORM 1',12460.00),('4564',2018,'TERM 3','FORM 1',7807.00),('4565',2018,'TERM 1','FORM 1',20268.00),('4565',2018,'TERM 2','FORM 1',12460.00),('4565',2018,'TERM 3','FORM 1',7807.00),('4566',2018,'TERM 1','FORM 1',20268.00),('4566',2018,'TERM 2','FORM 1',12460.00),('4566',2018,'TERM 3','FORM 1',7807.00),('4567',2018,'TERM 1','FORM 1',20268.00),('4567',2018,'TERM 2','FORM 1',12460.00),('4567',2018,'TERM 3','FORM 1',7807.00),('4568',2018,'TERM 1','FORM 1',20268.00),('4568',2018,'TERM 2','FORM 1',12460.00),('4568',2018,'TERM 3','FORM 1',7807.00),('4569',2018,'TERM 1','FORM 1',20268.00),('4569',2018,'TERM 2','FORM 1',12460.00),('4569',2018,'TERM 3','FORM 1',7807.00),('4570',2018,'TERM 1','FORM 1',20268.00),('4570',2018,'TERM 2','FORM 1',12460.00),('4570',2018,'TERM 3','FORM 1',7807.00),('4571',2018,'TERM 1','FORM 1',20268.00),('4571',2018,'TERM 2','FORM 1',12460.00),('4571',2018,'TERM 3','FORM 1',7807.00),('4572',2018,'TERM 1','FORM 1',20268.00),('4572',2018,'TERM 2','FORM 1',12460.00),('4572',2018,'TERM 3','FORM 1',7807.00),('4573',2018,'TERM 1','FORM 1',20268.00),('4573',2018,'TERM 2','FORM 1',12460.00),('4573',2018,'TERM 3','FORM 1',7807.00),('4574',2018,'TERM 1','FORM 1',20268.00),('4574',2018,'TERM 2','FORM 1',12460.00),('4574',2018,'TERM 3','FORM 1',7807.00),('4575',2018,'TERM 1','FORM 1',20268.00),('4575',2018,'TERM 2','FORM 1',12460.00),('4575',2018,'TERM 3','FORM 1',7807.00),('4576',2018,'TERM 1','FORM 1',20268.00),('4576',2018,'TERM 2','FORM 1',12460.00),('4576',2018,'TERM 3','FORM 1',7807.00),('4577',2018,'TERM 1','FORM 1',20268.00),('4577',2018,'TERM 2','FORM 1',12460.00),('4577',2018,'TERM 3','FORM 1',7807.00),('4578',2018,'TERM 1','FORM 1',20268.00),('4578',2018,'TERM 2','FORM 1',12460.00),('4578',2018,'TERM 3','FORM 1',7807.00),('4579',2018,'TERM 1','FORM 1',20268.00),('4579',2018,'TERM 2','FORM 1',12460.00),('4579',2018,'TERM 3','FORM 1',7807.00),('4580',2018,'TERM 1','FORM 1',20268.00),('4580',2018,'TERM 2','FORM 1',12460.00),('4580',2018,'TERM 3','FORM 1',7807.00),('4581',2018,'TERM 1','FORM 1',20268.00),('4581',2018,'TERM 2','FORM 1',12460.00),('4581',2018,'TERM 3','FORM 1',7807.00),('4582',2018,'TERM 1','FORM 1',20268.00),('4582',2018,'TERM 2','FORM 1',12460.00),('4582',2018,'TERM 3','FORM 1',7807.00),('4583',2018,'TERM 1','FORM 1',20268.00),('4583',2018,'TERM 2','FORM 1',12460.00),('4583',2018,'TERM 3','FORM 1',7807.00),('4584',2018,'TERM 1','FORM 1',20268.00),('4584',2018,'TERM 2','FORM 1',12460.00),('4584',2018,'TERM 3','FORM 1',7807.00),('4585',2018,'TERM 1','FORM 1',20268.00),('4585',2018,'TERM 2','FORM 1',12460.00),('4585',2018,'TERM 3','FORM 1',7807.00),('4586',2018,'TERM 1','FORM 1',20268.00),('4586',2018,'TERM 2','FORM 1',12460.00),('4586',2018,'TERM 3','FORM 1',7807.00),('4587',2018,'TERM 1','FORM 1',20268.00),('4587',2018,'TERM 2','FORM 1',12460.00),('4587',2018,'TERM 3','FORM 1',7807.00),('4588',2018,'TERM 1','FORM 1',20268.00),('4588',2018,'TERM 2','FORM 1',12460.00),('4588',2018,'TERM 3','FORM 1',7807.00),('4589',2018,'TERM 1','FORM 1',20268.00),('4589',2018,'TERM 2','FORM 1',12460.00),('4589',2018,'TERM 3','FORM 1',7807.00),('4590',2018,'TERM 1','FORM 1',20268.00),('4590',2018,'TERM 2','FORM 1',12460.00),('4590',2018,'TERM 3','FORM 1',7807.00),('4591',2018,'TERM 1','FORM 1',20268.00),('4591',2018,'TERM 2','FORM 1',12460.00),('4591',2018,'TERM 3','FORM 1',7807.00),('4592',2018,'TERM 1','FORM 1',20268.00),('4592',2018,'TERM 2','FORM 1',12460.00),('4592',2018,'TERM 3','FORM 1',7807.00),('4593',2018,'TERM 1','FORM 1',20268.00),('4593',2018,'TERM 2','FORM 1',12460.00),('4593',2018,'TERM 3','FORM 1',7807.00),('4594',2018,'TERM 1','FORM 1',20268.00),('4594',2018,'TERM 2','FORM 1',12460.00),('4594',2018,'TERM 3','FORM 1',7807.00),('4595',2018,'TERM 1','FORM 1',20268.00),('4595',2018,'TERM 2','FORM 1',12460.00),('4595',2018,'TERM 3','FORM 1',7807.00),('4596',2018,'TERM 1','FORM 1',20268.00),('4596',2018,'TERM 2','FORM 1',12460.00),('4596',2018,'TERM 3','FORM 1',7807.00),('4597',2018,'TERM 1','FORM 1',20268.00),('4597',2018,'TERM 2','FORM 1',12460.00),('4597',2018,'TERM 3','FORM 1',7807.00),('4598',2018,'TERM 1','FORM 1',20268.00),('4598',2018,'TERM 2','FORM 1',12460.00),('4598',2018,'TERM 3','FORM 1',7807.00),('4599',2018,'TERM 1','FORM 1',20268.00),('4599',2018,'TERM 2','FORM 1',12460.00),('4599',2018,'TERM 3','FORM 1',7807.00),('4600',2018,'TERM 1','FORM 1',20268.00),('4600',2018,'TERM 2','FORM 1',12460.00),('4600',2018,'TERM 3','FORM 1',7807.00),('4601',2018,'TERM 1','FORM 1',20268.00),('4601',2018,'TERM 2','FORM 1',12460.00),('4601',2018,'TERM 3','FORM 1',7807.00),('4602',2018,'TERM 1','FORM 1',20268.00),('4602',2018,'TERM 2','FORM 1',12460.00),('4602',2018,'TERM 3','FORM 1',7807.00),('4603',2018,'TERM 1','FORM 1',20268.00),('4603',2018,'TERM 2','FORM 1',12460.00),('4603',2018,'TERM 3','FORM 1',7807.00),('4604',2018,'TERM 1','FORM 1',20268.00),('4604',2018,'TERM 2','FORM 1',12460.00),('4604',2018,'TERM 3','FORM 1',7807.00),('4605',2018,'TERM 1','FORM 1',20268.00),('4605',2018,'TERM 2','FORM 1',12460.00),('4605',2018,'TERM 3','FORM 1',7807.00),('4606',2018,'TERM 1','FORM 1',20268.00),('4606',2018,'TERM 2','FORM 1',12460.00),('4606',2018,'TERM 3','FORM 1',7807.00),('4607',2018,'TERM 1','FORM 1',20268.00),('4607',2018,'TERM 2','FORM 1',12460.00),('4607',2018,'TERM 3','FORM 1',7807.00),('4608',2018,'TERM 1','FORM 1',20268.00),('4608',2018,'TERM 2','FORM 1',12460.00),('4608',2018,'TERM 3','FORM 1',7807.00),('4609',2018,'TERM 1','FORM 1',20268.00),('4609',2018,'TERM 2','FORM 1',12460.00),('4609',2018,'TERM 3','FORM 1',7807.00),('4610',2018,'TERM 1','FORM 1',20268.00),('4610',2018,'TERM 2','FORM 1',12460.00),('4610',2018,'TERM 3','FORM 1',7807.00),('4611',2018,'TERM 1','FORM 1',20268.00),('4611',2018,'TERM 2','FORM 1',12460.00),('4611',2018,'TERM 3','FORM 1',7807.00),('4612',2018,'TERM 1','FORM 1',20268.00),('4612',2018,'TERM 2','FORM 1',12460.00),('4612',2018,'TERM 3','FORM 1',7807.00),('4613',2018,'TERM 1','FORM 1',20268.00),('4613',2018,'TERM 2','FORM 1',12460.00),('4613',2018,'TERM 3','FORM 1',7807.00),('4614',2018,'TERM 1','FORM 1',20268.00),('4614',2018,'TERM 2','FORM 1',12460.00),('4614',2018,'TERM 3','FORM 1',7807.00),('4615',2018,'TERM 1','FORM 1',20268.00),('4615',2018,'TERM 2','FORM 1',12460.00),('4615',2018,'TERM 3','FORM 1',7807.00),('4616',2018,'TERM 1','FORM 1',20268.00),('4616',2018,'TERM 2','FORM 1',12460.00),('4616',2018,'TERM 3','FORM 1',7807.00),('4617',2018,'TERM 1','FORM 1',20268.00),('4617',2018,'TERM 2','FORM 1',12460.00),('4617',2018,'TERM 3','FORM 1',7807.00),('4618',2018,'TERM 1','FORM 1',20268.00),('4618',2018,'TERM 2','FORM 1',12460.00),('4618',2018,'TERM 3','FORM 1',7807.00),('4619',2018,'TERM 1','FORM 1',20268.00),('4619',2018,'TERM 2','FORM 1',12460.00),('4619',2018,'TERM 3','FORM 1',7807.00),('4620',2018,'TERM 1','FORM 1',20268.00),('4620',2018,'TERM 2','FORM 1',12460.00),('4620',2018,'TERM 3','FORM 1',7807.00),('4621',2018,'TERM 1','FORM 1',20268.00),('4621',2018,'TERM 2','FORM 1',12460.00),('4621',2018,'TERM 3','FORM 1',7807.00),('4622',2018,'TERM 1','FORM 3',20268.00),('4622',2018,'TERM 2','FORM 3',12460.00),('4622',2018,'TERM 3','FORM 3',7807.00),('4623',2018,'TERM 1','FORM 1',20268.00),('4623',2018,'TERM 2','FORM 1',12460.00),('4623',2018,'TERM 3','FORM 1',7807.00),('4624',2018,'TERM 1','FORM 1',20268.00),('4624',2018,'TERM 2','FORM 1',12460.00),('4624',2018,'TERM 3','FORM 1',7807.00),('4625',2018,'TERM 1','FORM 1',20268.00),('4625',2018,'TERM 2','FORM 1',12460.00),('4625',2018,'TERM 3','FORM 1',7807.00),('4626',2018,'TERM 1','FORM 1',20268.00),('4626',2018,'TERM 2','FORM 1',12460.00),('4626',2018,'TERM 3','FORM 1',7807.00),('4627',2018,'TERM 1','FORM 1',20268.00),('4627',2018,'TERM 2','FORM 1',12460.00),('4627',2018,'TERM 3','FORM 1',7807.00),('4628',2018,'TERM 1','FORM 1',20268.00),('4628',2018,'TERM 2','FORM 1',12460.00),('4628',2018,'TERM 3','FORM 1',7807.00),('4629',2018,'TERM 1','FORM 4',20268.00),('4629',2018,'TERM 2','FORM 4',12460.00),('4629',2018,'TERM 3','FORM 4',7807.00),('4630',2018,'TERM 1','FORM 1',20268.00),('4630',2018,'TERM 2','FORM 1',12460.00),('4630',2018,'TERM 3','FORM 1',7807.00),('4631',2018,'TERM 1','FORM 1',20268.00),('4631',2018,'TERM 2','FORM 1',12460.00),('4631',2018,'TERM 3','FORM 1',7807.00),('4632',2018,'TERM 1','FORM 1',20268.00),('4632',2018,'TERM 2','FORM 1',12460.00),('4632',2018,'TERM 3','FORM 1',7807.00),('4633',2018,'TERM 1','FORM 1',20268.00),('4633',2018,'TERM 2','FORM 1',12460.00),('4633',2018,'TERM 3','FORM 1',7807.00),('4634',2018,'TERM 1','FORM 4',20268.00),('4634',2018,'TERM 2','FORM 4',12460.00),('4634',2018,'TERM 3','FORM 4',7807.00),('4635',2018,'TERM 1','FORM 1',20268.00),('4635',2018,'TERM 2','FORM 1',12460.00),('4635',2018,'TERM 3','FORM 1',7807.00),('4636',2018,'TERM 1','FORM 1',20268.00),('4636',2018,'TERM 2','FORM 1',12460.00),('4636',2018,'TERM 3','FORM 1',7807.00),('4637',2018,'TERM 1','FORM 1',20268.00),('4637',2018,'TERM 2','FORM 1',12460.00),('4637',2018,'TERM 3','FORM 1',7807.00),('4638',2018,'TERM 1','FORM 1',20268.00),('4638',2018,'TERM 2','FORM 1',12460.00),('4638',2018,'TERM 3','FORM 1',7807.00),('4639',2018,'TERM 1','FORM 1',20268.00),('4639',2018,'TERM 2','FORM 1',12460.00),('4639',2018,'TERM 3','FORM 1',7807.00),('4641',2018,'TERM 1','FORM 1',20268.00),('4641',2018,'TERM 2','FORM 1',12460.00),('4641',2018,'TERM 3','FORM 1',7807.00),('4642',2018,'TERM 1','FORM 1',20268.00),('4642',2018,'TERM 2','FORM 1',12460.00),('4642',2018,'TERM 3','FORM 1',7807.00),('4643',2018,'TERM 1','FORM 1',20268.00),('4643',2018,'TERM 2','FORM 1',12460.00),('4643',2018,'TERM 3','FORM 1',7807.00),('4644',2018,'TERM 1','FORM 1',20268.00),('4644',2018,'TERM 2','FORM 1',12460.00),('4644',2018,'TERM 3','FORM 1',7807.00),('4645',2018,'TERM 1','FORM 1',20268.00),('4645',2018,'TERM 2','FORM 1',12460.00),('4645',2018,'TERM 3','FORM 1',7807.00),('4648',2018,'TERM 1','FORM 1',20268.00),('4648',2018,'TERM 2','FORM 1',12460.00),('4648',2018,'TERM 3','FORM 1',7807.00),('4649',2018,'TERM 1','FORM 2',20268.00),('4649',2018,'TERM 2','FORM 2',12460.00),('4649',2018,'TERM 3','FORM 2',7807.00);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `finance_student_invoices` ENABLE KEYS */;
+
+--
+-- Table structure for table `finance_tuitionvoteheads`
+--
+
+DROP TABLE IF EXISTS `finance_tuitionvoteheads`;
+CREATE TABLE `finance_tuitionvoteheads` (
+  `fiscal_year` int(4) NOT NULL default '0',
+  `term` varchar(100) NOT NULL default '',
+  `votehead` varchar(100) NOT NULL default '',
+  `code` varchar(100) NOT NULL default '',
+  PRIMARY KEY  (`fiscal_year`,`term`,`votehead`,`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `finance_tuitionvoteheads`
+--
+
+
+/*!40000 ALTER TABLE `finance_tuitionvoteheads` DISABLE KEYS */;
+LOCK TABLES `finance_tuitionvoteheads` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `finance_tuitionvoteheads` ENABLE KEYS */;
+
+--
+-- Table structure for table `finance_voteheads`
+--
+
+DROP TABLE IF EXISTS `finance_voteheads`;
+CREATE TABLE `finance_voteheads` (
+  `fiscal_year` int(4) NOT NULL,
+  `term` varchar(100) NOT NULL,
+  `votehead` varchar(100) NOT NULL,
+  `code` varchar(100) NOT NULL,
+  PRIMARY KEY  (`fiscal_year`,`term`,`votehead`,`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `finance_voteheads`
+--
+
+
+/*!40000 ALTER TABLE `finance_voteheads` DISABLE KEYS */;
+LOCK TABLES `finance_voteheads` WRITE;
+INSERT INTO `finance_voteheads` VALUES (2018,'TERM 1','ACTIVITY','6'),(2018,'TERM 1','ADMIN_COST','4'),(2018,'TERM 1','BES','1'),(2018,'TERM 1','CAUTION','8'),(2018,'TERM 1','EWC','5'),(2018,'TERM 1','LT&T','3'),(2018,'TERM 1','PE','7'),(2018,'TERM 1','RMI','2'),(2018,'TERM 2','ACTIVITY','6'),(2018,'TERM 2','ADMIN_COST','4'),(2018,'TERM 2','BES','1'),(2018,'TERM 2','EWC','5'),(2018,'TERM 2','LT&T','3'),(2018,'TERM 2','PE','7'),(2018,'TERM 2','RMI','2'),(2018,'TERM 3','ACTIVITY','6'),(2018,'TERM 3','ADMIN_COST','4'),(2018,'TERM 3','BES','1'),(2018,'TERM 3','EWC','5'),(2018,'TERM 3','LT&T','3'),(2018,'TERM 3','PE','7'),(2018,'TERM 3','RMI','2');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `finance_voteheads` ENABLE KEYS */;
+
+--
+-- Table structure for table `img`
+--
+
+DROP TABLE IF EXISTS `img`;
+CREATE TABLE `img` (
+  `id` int(10) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `pass` varchar(10) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `img`
+--
+
+
+/*!40000 ALTER TABLE `img` DISABLE KEYS */;
+LOCK TABLES `img` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `img` ENABLE KEYS */;
+
+--
+-- Table structure for table `initials`
+--
+
+DROP TABLE IF EXISTS `initials`;
+CREATE TABLE `initials` (
+  `fullname` varchar(100) NOT NULL,
+  `form` varchar(100) NOT NULL,
+  `stream` varchar(100) NOT NULL,
+  `subject` varchar(100) NOT NULL,
+  `initials` varchar(100) NOT NULL,
+  PRIMARY KEY  (`fullname`,`form`,`stream`,`subject`,`initials`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `initials`
+--
+
+
+/*!40000 ALTER TABLE `initials` DISABLE KEYS */;
+LOCK TABLES `initials` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `initials` ENABLE KEYS */;
+
+--
+-- Table structure for table `issued_books`
+--
+
+DROP TABLE IF EXISTS `issued_books`;
+CREATE TABLE `issued_books` (
+  `bookid` int(100) NOT NULL,
+  `bookno` varchar(100) NOT NULL,
+  `userid` varchar(100) NOT NULL,
+  `dateissued` varchar(100) NOT NULL,
+  `datedue` varchar(100) NOT NULL,
+  `issuer` varchar(100) NOT NULL,
+  `comments` text NOT NULL,
+  PRIMARY KEY  (`bookid`,`bookno`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `issued_books`
+--
+
+
+/*!40000 ALTER TABLE `issued_books` DISABLE KEYS */;
+LOCK TABLES `issued_books` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `issued_books` ENABLE KEYS */;
+
+--
+-- Table structure for table `kcse_final_analysis`
+--
+
+DROP TABLE IF EXISTS `kcse_final_analysis`;
+CREATE TABLE `kcse_final_analysis` (
+  `adm` int(10) NOT NULL,
+  `indexnumber` int(10) NOT NULL,
+  `names` varchar(40) NOT NULL,
+  `english` varchar(10) NOT NULL,
+  `kiswahili` varchar(10) NOT NULL,
+  `mathematics` varchar(10) NOT NULL,
+  `biology` varchar(10) NOT NULL,
+  `chemistry` varchar(10) NOT NULL,
+  `physics` varchar(10) NOT NULL,
+  `history` varchar(10) NOT NULL,
+  `geography` varchar(10) NOT NULL,
+  `cre` varchar(10) NOT NULL,
+  `agriculture` varchar(10) NOT NULL,
+  `businesStudies` varchar(10) NOT NULL,
+  `points` varchar(10) NOT NULL,
+  `tgrade` varchar(10) NOT NULL,
+  `averagepoints` double NOT NULL,
+  `year_finished` int(100) NOT NULL,
+  PRIMARY KEY  (`adm`,`year_finished`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kcse_final_analysis`
+--
+
+
+/*!40000 ALTER TABLE `kcse_final_analysis` DISABLE KEYS */;
+LOCK TABLES `kcse_final_analysis` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `kcse_final_analysis` ENABLE KEYS */;
+
+--
+-- Table structure for table `kcseanalysis`
+--
+
+DROP TABLE IF EXISTS `kcseanalysis`;
+CREATE TABLE `kcseanalysis` (
+  `admno` int(100) NOT NULL,
+  `index_numbers` int(100) NOT NULL,
+  `year_finished` int(100) NOT NULL,
+  PRIMARY KEY  (`admno`,`index_numbers`,`year_finished`),
+  KEY `admon` (`admno`,`year_finished`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kcseanalysis`
+--
+
+
+/*!40000 ALTER TABLE `kcseanalysis` DISABLE KEYS */;
+LOCK TABLES `kcseanalysis` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `kcseanalysis` ENABLE KEYS */;
+
+--
+-- Table structure for table `kcsemarks`
+--
+
+DROP TABLE IF EXISTS `kcsemarks`;
+CREATE TABLE `kcsemarks` (
+  `index_numbers` int(10) NOT NULL,
+  `english` varchar(100) NOT NULL,
+  `kiswahili` varchar(100) NOT NULL,
+  `math` varchar(100) NOT NULL,
+  `biology` varchar(100) NOT NULL,
+  `chemistry` varchar(100) NOT NULL,
+  `physics` varchar(100) NOT NULL,
+  `history` varchar(100) NOT NULL,
+  `geography` varchar(100) NOT NULL,
+  `cre` varchar(100) NOT NULL,
+  `agriculture` varchar(100) NOT NULL,
+  `bstudies` varchar(100) NOT NULL,
+  `total_points` int(100) NOT NULL,
+  `mean_grade` varchar(100) NOT NULL,
+  `year_finished` int(5) NOT NULL,
+  PRIMARY KEY  (`index_numbers`,`year_finished`),
+  KEY `admon` (`year_finished`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kcsemarks`
+--
+
+
+/*!40000 ALTER TABLE `kcsemarks` DISABLE KEYS */;
+LOCK TABLES `kcsemarks` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `kcsemarks` ENABLE KEYS */;
+
+--
+-- Table structure for table `lib_lost_books`
+--
+
+DROP TABLE IF EXISTS `lib_lost_books`;
+CREATE TABLE `lib_lost_books` (
+  `bookid` int(100) NOT NULL,
+  `bookno` varchar(100) NOT NULL,
+  `userid` varchar(100) NOT NULL,
+  `date_ref` varchar(100) NOT NULL,
+  `issuer_ref` varchar(100) NOT NULL,
+  `comments` text NOT NULL,
+  PRIMARY KEY  (`bookid`,`bookno`,`userid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `lib_lost_books`
+--
+
+
+/*!40000 ALTER TABLE `lib_lost_books` DISABLE KEYS */;
+LOCK TABLES `lib_lost_books` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `lib_lost_books` ENABLE KEYS */;
+
+--
+-- Table structure for table `markscats`
+--
+
+DROP TABLE IF EXISTS `markscats`;
+CREATE TABLE `markscats` (
+  `admno` int(10) NOT NULL,
+  `english` int(10) NOT NULL,
+  `kiswahili` int(10) NOT NULL,
+  `math` int(10) NOT NULL,
+  `biology` int(10) NOT NULL,
+  `chemistry` int(10) NOT NULL,
+  `physics` int(10) NOT NULL,
+  `history` int(10) NOT NULL,
+  `geography` int(10) NOT NULL,
+  `cre` int(10) NOT NULL,
+  `agriculture` int(10) NOT NULL,
+  `bstudies` int(10) NOT NULL,
+  `french` int(10) NOT NULL,
+  `computer` int(10) NOT NULL,
+  `home` int(10) NOT NULL,
+  `year` int(5) NOT NULL,
+  `term` int(5) NOT NULL,
+  `form` int(5) NOT NULL,
+  `cat` int(5) NOT NULL,
+  PRIMARY KEY  (`admno`,`year`,`term`,`form`,`cat`),
+  KEY `admon` (`admno`,`year`,`term`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `markscats`
+--
+
+
+/*!40000 ALTER TABLE `markscats` DISABLE KEYS */;
+LOCK TABLES `markscats` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `markscats` ENABLE KEYS */;
+
+--
+-- Table structure for table `marksemams`
+--
+
+DROP TABLE IF EXISTS `marksemams`;
+CREATE TABLE `marksemams` (
+  `admno` int(10) NOT NULL,
+  `english` int(10) NOT NULL,
+  `kiswahili` int(10) NOT NULL,
+  `math` int(10) NOT NULL,
+  `biology` int(10) NOT NULL,
+  `chemistry` int(10) NOT NULL,
+  `physics` int(10) NOT NULL,
+  `history` int(10) NOT NULL,
+  `geography` int(10) NOT NULL,
+  `cre` int(10) NOT NULL,
+  `agriculture` int(10) NOT NULL,
+  `bstudies` int(10) NOT NULL,
+  `french` int(10) NOT NULL,
+  `computer` int(10) NOT NULL,
+  `home` int(10) NOT NULL,
+  `year` int(5) NOT NULL,
+  `term` int(3) NOT NULL,
+  `form` int(2) NOT NULL,
+  PRIMARY KEY  (`admno`,`year`,`term`,`form`),
+  KEY `admon` (`admno`,`year`,`term`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `marksemams`
+--
+
+
+/*!40000 ALTER TABLE `marksemams` DISABLE KEYS */;
+LOCK TABLES `marksemams` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `marksemams` ENABLE KEYS */;
+
+--
+-- Table structure for table `messages_settings`
+--
+
+DROP TABLE IF EXISTS `messages_settings`;
+CREATE TABLE `messages_settings` (
+  `api_url` varchar(255) NOT NULL,
+  `ekey` varchar(255) NOT NULL,
+  `senderid` varchar(255) NOT NULL,
+  `passwrd` varchar(255) NOT NULL,
+  `notify1` int(15) default NULL,
+  `notify2` int(15) default NULL,
+  PRIMARY KEY  (`api_url`,`ekey`,`senderid`,`passwrd`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `messages_settings`
+--
+
+
+/*!40000 ALTER TABLE `messages_settings` DISABLE KEYS */;
+LOCK TABLES `messages_settings` WRITE;
+INSERT INTO `messages_settings` VALUES ('http://api.sms.bambika.co.ke:8555/?','-','-','-',0,0);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `messages_settings` ENABLE KEYS */;
+
+--
+-- Table structure for table `mockexams`
+--
+
+DROP TABLE IF EXISTS `mockexams`;
+CREATE TABLE `mockexams` (
+  `admno` int(10) NOT NULL,
+  `english1` int(10) NOT NULL,
+  `english2` int(10) NOT NULL,
+  `english3` int(10) NOT NULL,
+  `kiswahili1` int(10) NOT NULL,
+  `kiswahili2` int(10) NOT NULL,
+  `kiswahili3` int(10) NOT NULL,
+  `math1` int(10) NOT NULL,
+  `math2` int(10) NOT NULL,
+  `math3` int(10) NOT NULL,
+  `biology1` int(10) NOT NULL,
+  `biology2` int(10) NOT NULL,
+  `biology3` int(10) NOT NULL,
+  `chemistry1` int(10) NOT NULL,
+  `chemistry2` int(10) NOT NULL,
+  `chemistry3` int(10) NOT NULL,
+  `physics1` int(10) NOT NULL,
+  `physics2` int(10) NOT NULL,
+  `physics3` int(10) NOT NULL,
+  `history1` int(10) NOT NULL,
+  `history2` int(10) NOT NULL,
+  `history3` int(10) NOT NULL,
+  `geography1` int(10) NOT NULL,
+  `geography2` int(10) NOT NULL,
+  `geography3` int(10) NOT NULL,
+  `cre1` int(10) NOT NULL,
+  `cre2` int(10) NOT NULL,
+  `cre3` int(10) NOT NULL,
+  `agriculture1` int(10) NOT NULL,
+  `agriculture2` int(10) NOT NULL,
+  `agriculture3` int(10) NOT NULL,
+  `bstudies1` int(10) NOT NULL,
+  `bstudies2` int(10) NOT NULL,
+  `bstudies3` int(10) NOT NULL,
+  `french1` int(10) NOT NULL,
+  `french2` int(10) NOT NULL,
+  `french3` int(10) NOT NULL,
+  `computer1` int(10) NOT NULL,
+  `computer2` int(10) NOT NULL,
+  `computer3` int(10) NOT NULL,
+  `home1` int(10) NOT NULL,
+  `home2` int(10) NOT NULL,
+  `home3` int(10) NOT NULL,
+  `year` int(5) NOT NULL,
+  `term` int(3) NOT NULL,
+  `form` int(2) NOT NULL,
+  `stream` varchar(100) NOT NULL,
+  PRIMARY KEY  (`admno`,`year`,`term`,`form`),
+  KEY `admon` (`admno`,`year`,`term`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mockexams`
+--
+
+
+/*!40000 ALTER TABLE `mockexams` DISABLE KEYS */;
+LOCK TABLES `mockexams` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `mockexams` ENABLE KEYS */;
+
+--
+-- Table structure for table `mockpositions`
+--
+
+DROP TABLE IF EXISTS `mockpositions`;
+CREATE TABLE `mockpositions` (
+  `admno` int(10) NOT NULL,
+  `english` int(10) NOT NULL,
+  `kiswahili` int(10) NOT NULL,
+  `math` int(10) NOT NULL,
+  `biology` int(10) NOT NULL,
+  `chemistry` int(10) NOT NULL,
+  `physics` int(10) NOT NULL,
+  `history` int(10) NOT NULL,
+  `geography` int(10) NOT NULL,
+  `cre` int(10) NOT NULL,
+  `agriculture` int(10) NOT NULL,
+  `bstudies` int(10) NOT NULL,
+  `french` int(10) NOT NULL,
+  `computer` int(10) NOT NULL,
+  `home` int(10) NOT NULL,
+  `year` int(5) NOT NULL,
+  `term` int(3) NOT NULL,
+  `form` int(2) NOT NULL,
+  `position` int(10) NOT NULL,
+  `kcpe` int(10) NOT NULL,
+  `positionclass` int(10) NOT NULL,
+  `stream` varchar(10) NOT NULL,
+  PRIMARY KEY  (`admno`,`year`,`term`,`form`),
+  KEY `admon` (`admno`,`year`,`term`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mockpositions`
+--
+
+
+/*!40000 ALTER TABLE `mockpositions` DISABLE KEYS */;
+LOCK TABLES `mockpositions` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `mockpositions` ENABLE KEYS */;
+
+--
+-- Table structure for table `mocks`
+--
+
+DROP TABLE IF EXISTS `mocks`;
+CREATE TABLE `mocks` (
+  `subject` varchar(100) NOT NULL,
+  `p1` int(20) NOT NULL,
+  `p2` int(20) NOT NULL,
+  `p3` int(20) NOT NULL,
+  `total` int(20) NOT NULL,
+  `form` int(3) NOT NULL,
+  `term` int(3) NOT NULL,
+  `year` int(10) NOT NULL,
+  `states` varchar(100) NOT NULL,
+  PRIMARY KEY  (`subject`,`form`,`term`,`year`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mocks`
+--
+
+
+/*!40000 ALTER TABLE `mocks` DISABLE KEYS */;
+LOCK TABLES `mocks` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `mocks` ENABLE KEYS */;
+
+--
+-- Table structure for table `numbers`
+--
+
+DROP TABLE IF EXISTS `numbers`;
+CREATE TABLE `numbers` (
+  `parentname` varchar(100) NOT NULL default '',
+  `id` varchar(100) NOT NULL default '',
+  `tele` int(15) NOT NULL,
+  `admno` int(10) NOT NULL,
+  PRIMARY KEY  (`admno`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `numbers`
+--
+
+
+/*!40000 ALTER TABLE `numbers` DISABLE KEYS */;
+LOCK TABLES `numbers` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `numbers` ENABLE KEYS */;
+
+--
+-- Table structure for table `othercashexpenses`
+--
+
+DROP TABLE IF EXISTS `othercashexpenses`;
+CREATE TABLE `othercashexpenses` (
+  `no` int(100) NOT NULL,
+  `payof` varchar(100) NOT NULL,
+  `dateofpay` varchar(20) NOT NULL,
+  `amount` double NOT NULL,
+  `votehead` varchar(100) NOT NULL,
+  `year` varchar(100) NOT NULL,
+  `payee` varchar(100) NOT NULL,
+  PRIMARY KEY  (`no`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `othercashexpenses`
+--
+
+
+/*!40000 ALTER TABLE `othercashexpenses` DISABLE KEYS */;
+LOCK TABLES `othercashexpenses` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `othercashexpenses` ENABLE KEYS */;
+
+--
+-- Table structure for table `parentdetails`
+--
+
+DROP TABLE IF EXISTS `parentdetails`;
+CREATE TABLE `parentdetails` (
+  `no` int(100) NOT NULL auto_increment,
+  `admno` int(100) NOT NULL,
+  `fname` varchar(20) NOT NULL,
+  `lname` varchar(20) NOT NULL,
+  `sname` varchar(20) NOT NULL,
+  `idpass` varchar(20) NOT NULL,
+  `address` varchar(20) NOT NULL,
+  `telephone` int(100) NOT NULL,
+  PRIMARY KEY  (`no`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `parentdetails`
+--
+
+
+/*!40000 ALTER TABLE `parentdetails` DISABLE KEYS */;
+LOCK TABLES `parentdetails` WRITE;
+INSERT INTO `parentdetails` VALUES (1,4509,'SAMUEL','-','NJOROGE','','',720961696),(2,4512,'','','','','',0),(3,4514,'','','','','',0),(4,4517,'','','','','',0),(5,4519,'','','','','',0),(6,4521,'','','','','',0),(7,4526,'','','','','',0),(8,4532,'','','','','',0),(9,4535,'','','','','',0),(10,4538,'','','','','',0),(11,4546,'','','','','',0),(12,4547,'','','','','',0),(13,4552,'','','','','',0),(14,4553,'','','','','',0),(15,4555,'','','','','',0),(16,4557,'','','','','',0),(17,4558,'','','','','',0),(18,4561,'','','','','',0),(19,4564,'','','','','',0),(20,4567,'','','','','',0),(21,4572,'','','','','',0),(22,4573,'','','','','',0),(23,4574,'','','','','',0),(24,4577,'','','','','',0),(25,4581,'','','','','',0),(26,4583,'','','','','',0),(27,4584,'','','','','',0),(28,4593,'','','','','',0),(29,4594,'','','','','',0),(30,4596,'','','','','',0),(31,4599,'','','','','',0),(32,4600,'','','','','',0),(33,4606,'','','','','',0),(34,4609,'','','','','',0),(35,4611,'','','','','',0),(36,4615,'','','','','',0),(37,4617,'','','','','',0),(38,4619,'','','','','',0),(39,4621,'','','','','',0),(40,4635,'','','','','',0),(41,4641,'','','','','',0),(42,4642,'','','','','',0),(43,4645,'','','','','',0),(44,4648,'','','','','',0),(45,4510,'','','','','',0),(46,4515,'','','','','',0),(47,4518,'','','','','',0),(48,4522,'','','','','',0),(49,4523,'','','','','',0),(50,4524,'','','','','',0),(51,4527,'','','','','',0),(52,4529,'','','','','',0),(53,4530,'','','','','',0),(54,4534,'','','','','',0),(55,4536,'','','','','',0),(56,4539,'','','','','',0),(57,4542,'','','','','',0),(58,4544,'','','','','',0),(59,4548,'','','','','',0),(60,4550,'','','','','',0),(61,4556,'','','','','',0),(62,4559,'','','','','',0),(63,4562,'','','','','',0),(64,4565,'','','','','',0),(65,4568,'','','','','',0),(66,4569,'','','','','',0),(67,4575,'','','','','',0),(68,4578,'','','','','',0),(69,4580,'','','','','',0),(70,4585,'','','','','',0),(71,4586,'','','','','',0),(72,4588,'','','','','',0),(73,4589,'','','','','',0),(74,4591,'','','','','',0),(75,4597,'','','','','',0),(76,4602,'','','','','',0),(77,4604,'','','','','',0),(78,4607,'','','','','',0),(79,4610,'','','','','',0),(80,4614,'','','','','',0),(81,4618,'','','','','',0),(82,4620,'','','','','',0),(83,4623,'','','','','',0),(84,4624,'','','','','',0),(85,4626,'','','','','',0),(86,4628,'','','','','',0),(87,4631,'','','','','',0),(88,4633,'','','','','',0),(89,4637,'','','','','',0),(90,4511,'','','','','',0),(91,4513,'','','','','',0),(92,4516,'','','','','',0),(93,4520,'','','','','',0),(94,4525,'','','','','',0),(95,4528,'','','','','',0),(96,4531,'','','','','',0),(97,4533,'','','','','',0),(98,4537,'','','','','',0),(99,4540,'','','','','',0),(100,4541,'','','','','',0),(101,4543,'','','','','',0),(102,4545,'','','','','',0),(103,4549,'','','','','',0),(104,4551,'','','','','',0),(105,4554,'','','','','',0),(106,4560,'','','','','',0),(107,4563,'','','','','',0),(108,4566,'','','','','',0),(109,4570,'','','','','',0),(110,4571,'','','','','',0),(111,4576,'','','','','',0),(112,4579,'','','','','',0),(113,4582,'','','','','',0),(114,4587,'','','','','',0),(115,4590,'','','','','',0),(116,4592,'','','','','',0),(117,4595,'','','','','',0),(118,4598,'','','','','',0),(119,4601,'','','','','',0),(120,4603,'','','','','',0),(121,4605,'','','','','',0),(122,4608,'','','','','',0),(123,4612,'','','','','',0),(124,4613,'','','','','',0),(125,4616,'','','','','',0),(126,4625,'','','','','',0),(127,4627,'','','','','',0),(128,4630,'','','','','',0),(129,4632,'','','','','',0),(130,4636,'','','','','',0),(131,4638,'','','','','',0),(132,4639,'','','','','',0),(133,4643,'','','','','',0),(134,4644,'','','','','',0),(135,4378,'','','','','',0),(136,4382,'','','','','',0),(137,4383,'','','','','',0),(138,4385,'','','','','',0),(139,4386,'','','','','',0),(140,4388,'','','','','',0),(141,4389,'','','','','',0),(142,4390,'','','','','',0),(143,4392,'','','','','',0),(144,4394,'','','','','',0),(145,4395,'','','','','',0),(146,4397,'','','','','',0),(147,4399,'','','','','',0),(148,4401,'','','','','',0),(149,4405,'','','','','',0),(150,4407,'','','','','',0),(151,4409,'','','','','',0),(152,4411,'','','','','',0),(153,4415,'','','','','',0),(154,4416,'','','','','',0),(155,4425,'','','','','',0),(156,4427,'','','','','',0),(157,4428,'','','','','',0),(158,4431,'','','','','',0),(159,4433,'','','','','',0),(160,4436,'','','','','',0),(161,4439,'','','','','',0),(162,4440,'','','','','',0),(163,4442,'','','','','',0),(164,4448,'','','','','',0),(165,4451,'','','','','',0),(166,4452,'','','','','',0),(167,4454,'','','','','',0),(168,4456,'','','','','',0),(169,4458,'','','','','',0),(170,4459,'','','','','',0),(171,4463,'','','','','',0),(172,4469,'','','','','',0),(173,4471,'','','','','',0),(174,4472,'','','','','',0),(175,4475,'','','','','',0),(176,4380,'','','','','',0),(177,4381,'','','','','',0),(178,4384,'','','','','',0),(179,4387,'','','','','',0),(180,4400,'','','','','',0),(181,4402,'','','','','',0),(182,4403,'','','','','',0),(183,4404,'','','','','',0),(184,4410,'','','','','',0),(185,4412,'','','','','',0),(186,4413,'','','','','',0),(187,4414,'','','','','',0),(188,4417,'','','','','',0),(189,4421,'','','','','',0),(190,4426,'','','','','',0),(191,4429,'','','','','',0),(192,4430,'','','','','',0),(193,4434,'','','','','',0),(194,4435,'','','','','',0),(195,4438,'','','','','',0),(196,4443,'','','','','',0),(197,4444,'','','','','',0),(198,4447,'','','','','',0),(199,4449,'','','','','',0),(200,4450,'','','','','',0),(201,4455,'','','','','',0),(202,4457,'','','','','',0),(203,4461,'','','','','',0),(204,4464,'','','','','',0),(205,4468,'','','','','',0),(206,4473,'','','','','',0),(207,4476,'','','','','',0),(208,4477,'','','','','',0),(209,4478,'','','','','',0),(210,4479,'','','','','',0),(211,4480,'','','','','',0),(212,4482,'','','','','',0),(213,4483,'','','','','',0),(214,4484,'','','','','',0),(215,4485,'','','','','',0),(216,4379,'','','','','',0),(217,4391,'','','','','',0),(218,4396,'','','','','',0),(219,4398,'','','','','',0),(220,4406,'','','','','',0),(221,4408,'','','','','',0),(222,4418,'','','','','',0),(223,4420,'','','','','',0),(224,4422,'','','','','',0),(225,4423,'','','','','',0),(226,4424,'','','','','',0),(227,4441,'','','','','',0),(228,4446,'','','','','',0),(229,4453,'','','','','',0),(230,4460,'','','','','',0),(231,4465,'','','','','',0),(232,4466,'','','','','',0),(233,4467,'','','','','',0),(234,4470,'','','','','',0),(235,4486,'','','','','',0),(236,4487,'','','','','',0),(237,4488,'','','','','',0),(238,4489,'','','','','',0),(239,4490,'','','','','',0),(240,4491,'','','','','',0),(241,4492,'','','','','',0),(242,4493,'','','','','',0),(243,4494,'','','','','',0),(244,4495,'','','','','',0),(245,4497,'','','','','',0),(246,4498,'','','','','',0),(247,4499,'','','','','',0),(248,4500,'','','','','',0),(249,4501,'','','','','',0),(250,4503,'','','','','',0),(251,4504,'','','','','',0),(252,4505,'','','','','',0),(253,4506,'','','','','',0),(254,4508,'','','','','',0),(255,4649,'','','','','',0),(256,4264,'','','','','',0),(257,4269,'','','','','',0),(258,4271,'','','','','',0),(260,4278,'','','','','',0),(261,4280,'','','','','',0),(262,4284,'','','','','',0),(263,4285,'','','','','',0),(264,4287,'','','','','',0),(265,4292,'','','','','',0),(266,4293,'','','','','',0),(267,4294,'','','','','',0),(268,4295,'','','','','',0),(269,4296,'','','','','',0),(270,4297,'','','','','',0),(271,4298,'','','','','',0),(272,4304,'','','','','',0),(273,4309,'','','','','',0),(274,4311,'','','','','',0),(275,4315,'','','','','',0),(276,4317,'','','','','',0),(277,4321,'','','','','',0),(278,4322,'','','','','',0),(279,4323,'','','','','',0),(280,4326,'','','','','',0),(281,4328,'','','','','',0),(282,4329,'','','','','',0),(283,4332,'','','','','',0),(284,4333,'','','','','',0),(285,4334,'','','','','',0),(286,4337,'','','','','',0),(287,4338,'','','','','',0),(288,4342,'','','','','',0),(289,4343,'','','','','',0),(290,4345,'','','','','',0),(291,4347,'','','','','',0),(292,4351,'','','','','',0),(293,4353,'','','','','',0),(294,4359,'','','','','',0),(295,4362,'','','','','',0),(296,4363,'','','','','',0),(297,4368,'','','','','',0),(298,4375,'','','','','',0),(299,4377,'','','','','',0),(300,4622,'','','','','',0),(302,4267,'','','','','',0),(303,4272,'','','','','',0),(304,4274,'','','','','',0),(305,4275,'','','','','',0),(306,4276,'','','','','',0),(307,4277,'','','','','',0),(308,4281,'','','','','',0),(309,4282,'','','','','',0),(310,4283,'','','','','',0),(311,4286,'','','','','',0),(312,4288,'','','','','',0),(313,4289,'','','','','',0),(314,4290,'','','','','',0),(315,4299,'','','','','',0),(316,4300,'','','','','',0),(317,4301,'','','','','',0),(318,4302,'','','','','',0),(319,4303,'','','','','',0),(320,4306,'','','','','',0),(321,4312,'','','','','',0),(322,4313,'','','','','',0),(323,4314,'','','','','',0),(324,4318,'','','','','',0),(325,4319,'','','','','',0),(326,4320,'','','','','',0),(327,4324,'','','','','',0),(328,4327,'','','','','',0),(329,4330,'','','','','',0),(330,4335,'','','','','',0),(331,4336,'','','','','',0),(332,4339,'','','','','',0),(333,4340,'','','','','',0),(334,4341,'','','','','',0),(335,4346,'','','','','',0),(336,4348,'','','','','',0),(337,4352,'','','','','',0),(338,4356,'','','','','',0),(339,4358,'','','','','',0),(340,4360,'','','','','',0),(341,4361,'','','','','',0),(342,4365,'','','','','',0),(343,4366,'','','','','',0),(344,4370,'','','','','',0),(345,4374,'','','','','',0),(346,4141,'','','','','',0),(347,4142,'','','','','',0),(348,4143,'','','','','',0),(349,4144,'','','','','',0),(350,4146,'','','','','',0),(351,4148,'','','','','',0),(352,4154,'','','','','',0),(353,4158,'','','','','',0),(354,4160,'','','','','',0),(355,4162,'','','','','',0),(356,4164,'','','','','',0),(357,4167,'','','','','',0),(358,4171,'','','','','',0),(359,4173,'','','','','',0),(360,4179,'','','','','',0),(361,4182,'','','','','',0),(362,4187,'','','','','',0),(363,4188,'','','','','',0),(364,4193,'','','','','',0),(365,4195,'','','','','',0),(366,4203,'','','','','',0),(368,4208,'','','','','',0),(369,4209,'','','','','',0),(370,4212,'','','','','',0),(371,4216,'','','','','',0),(372,4228,'','','','','',0),(373,4229,'','','','','',0),(374,4231,'','','','','',0),(375,4237,'','','','','',0),(376,4241,'','','','','',0),(377,4252,'','','','','',0),(378,4255,'','','','','',0),(379,4258,'','','','','',0),(380,4259,'','','','','',0),(381,4262,'','','','','',0),(382,4372,'','','','','',0),(383,4371,'','','','','',0),(384,4634,'','','','','',0),(386,4134,'GABRIEL','-','KAMAU','','',0),(387,4139,'','','','','',0),(388,4140,'','','','','',0),(389,4149,'','','','','',0),(390,4152,'','','','','',0),(391,4155,'','','','','',0),(392,4157,'','','','','',0),(393,4159,'','','','','',0),(394,4172,'','','','','',0),(395,4175,'','','','','',0),(396,4176,'','','','','',0),(397,4180,'','','','','',0),(398,4183,'','','','','',0),(399,4186,'','','','','',0),(400,4190,'','','','','',0),(401,4194,'','','','','',0),(402,4199,'','','','','',0),(403,4200,'','','','','',0),(404,4202,'','','','','',0),(405,4204,'','','','','',0),(406,4207,'','','','','',0),(407,4210,'','','','','',0),(408,4213,'','','','','',0),(409,4218,'','','','','',0),(410,4221,'','','','','',0),(411,4223,'','','','','',0),(412,4224,'','','','','',0),(413,4226,'','','','','',0),(464,4230,'','','','','',0),(415,4232,'','','','','',0),(416,4233,'','','','','',0),(417,4234,'','','','','',0),(418,4235,'','','','','',0),(419,4236,'','','','','',0),(420,4238,'','','','','',0),(421,4247,'','','','','',0),(422,4249,'','','','','',0),(423,4253,'','','','','',0),(424,4629,'','','','','',0),(425,4136,'','','','','',0),(426,4137,'','','','','',0),(427,4145,'','','','','',0),(428,4150,'','','','','',0),(429,4151,'','','','','',0),(430,4153,'','','','','',0),(431,4161,'','','','','',0),(432,4163,'','','','','',0),(433,4165,'','','','','',0),(434,4166,'','','','','',0),(435,4168,'','','','','',0),(436,4170,'','','','','',0),(437,4174,'','','','','',0),(438,4177,'','','','','',0),(439,4181,'','','','','',0),(440,4184,'','','','','',0),(441,4189,'','','','','',0),(442,4191,'','','','','',0),(443,4196,'','','','','',0),(444,4197,'','','','','',0),(445,4198,'','','','','',0),(446,4206,'','','','','',0),(447,4211,'','','','','',0),(448,4214,'','','','','',0),(449,4215,'','','','','',0),(450,4220,'','','','','',0),(451,4222,'','','','','',0),(452,4225,'','','','','',0),(463,4373,'','','','','',0),(454,4240,'','','','','',0),(455,4245,'','','','','',0),(456,4248,'','','','','',0),(457,4251,'','','','','',0),(458,4256,'','','','','',0),(459,4261,'','','','','',0),(462,4205,'','','','','',0),(461,4507,'','','','','',0),(465,975476,'ELIZABETH','NJOROGE','W','-','-',723772699),(466,110542,'ANN','KAMAU','N.','-','-',723772699),(467,110542,'JANE','WAIRIMU','N.','-','-',723772699),(468,45320,'AGNES','NJERI','WAIRIMU','-','-',723772699),(469,20030,'JULIA','KAMAU','NJERI','-','',723772699);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `parentdetails` ENABLE KEYS */;
+
+--
+-- Table structure for table `pocket_money`
+--
+
+DROP TABLE IF EXISTS `pocket_money`;
+CREATE TABLE `pocket_money` (
+  `admno` varchar(100) NOT NULL,
+  `bal` float(18,2) default '0.00',
+  PRIMARY KEY  (`admno`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pocket_money`
+--
+
+
+/*!40000 ALTER TABLE `pocket_money` DISABLE KEYS */;
+LOCK TABLES `pocket_money` WRITE;
+INSERT INTO `pocket_money` VALUES ('4324',2800.00),('4413',250.00),('4554',600.00);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `pocket_money` ENABLE KEYS */;
+
+--
+-- Table structure for table `pocket_money_transactions`
+--
+
+DROP TABLE IF EXISTS `pocket_money_transactions`;
+CREATE TABLE `pocket_money_transactions` (
+  `ref` int(100) NOT NULL auto_increment,
+  `admno` varchar(100) NOT NULL,
+  `transaction` varchar(100) NOT NULL,
+  `t_date` varchar(100) NOT NULL,
+  `deposit_amount` float(18,2) NOT NULL,
+  `withdraw_amount` float(18,2) NOT NULL,
+  PRIMARY KEY  (`ref`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pocket_money_transactions`
+--
+
+
+/*!40000 ALTER TABLE `pocket_money_transactions` DISABLE KEYS */;
+LOCK TABLES `pocket_money_transactions` WRITE;
+INSERT INTO `pocket_money_transactions` VALUES (1,'4554','Deposit','2017-11-24',600.00,0.00),(2,'4554','Withdraw','2017-11-24',0.00,50.00),(3,'4554','Deposit','2017-11-24',50.00,0.00),(4,'4324','Deposit','2017-11-24',2800.00,0.00),(5,'4413','Deposit','2017-11-24',250.00,0.00),(6,'4324','Withdraw','2017-11-24',0.00,300.00),(7,'4324','Deposit','2017-11-24',300.00,0.00),(8,'4324','Withdraw','2017-12-06',0.00,100.00),(9,'4324','Deposit','2017-12-06',100.00,0.00);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `pocket_money_transactions` ENABLE KEYS */;
+
+--
+-- Table structure for table `positionby`
+--
+
+DROP TABLE IF EXISTS `positionby`;
+CREATE TABLE `positionby` (
+  `marks` int(1) NOT NULL,
+  `point` int(1) NOT NULL,
+  PRIMARY KEY  (`marks`,`point`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `positionby`
+--
+
+
+/*!40000 ALTER TABLE `positionby` DISABLE KEYS */;
+LOCK TABLES `positionby` WRITE;
+INSERT INTO `positionby` VALUES (1,0);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `positionby` ENABLE KEYS */;
+
+--
+-- Table structure for table `positions`
+--
+
+DROP TABLE IF EXISTS `positions`;
+CREATE TABLE `positions` (
+  `admno` int(10) NOT NULL,
+  `english` int(10) NOT NULL,
+  `kiswahili` int(10) NOT NULL,
+  `math` int(10) NOT NULL,
+  `biology` int(10) NOT NULL,
+  `chemistry` int(10) NOT NULL,
+  `physics` int(10) NOT NULL,
+  `history` int(10) NOT NULL,
+  `geography` int(10) NOT NULL,
+  `cre` int(10) NOT NULL,
+  `agriculture` int(10) NOT NULL,
+  `bstudies` int(10) NOT NULL,
+  `french` int(10) NOT NULL,
+  `computer` int(10) NOT NULL,
+  `home` int(10) NOT NULL,
+  `year` int(5) NOT NULL,
+  `term` int(3) NOT NULL,
+  `form` int(2) NOT NULL,
+  `position` int(10) NOT NULL,
+  `kcpe` int(10) NOT NULL,
+  `stream` varchar(10) NOT NULL,
+  `positionclass` int(10) NOT NULL,
+  PRIMARY KEY  (`admno`,`year`,`term`,`form`),
+  KEY `admon` (`admno`,`year`,`term`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `positions`
+--
+
+
+/*!40000 ALTER TABLE `positions` DISABLE KEYS */;
+LOCK TABLES `positions` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `positions` ENABLE KEYS */;
+
+--
+-- Table structure for table `printedestimate`
+--
+
+DROP TABLE IF EXISTS `printedestimate`;
+CREATE TABLE `printedestimate` (
+  `yr` int(20) NOT NULL,
+  `bes` double NOT NULL,
+  `ses` double NOT NULL,
+  `pe` double NOT NULL,
+  `act` double NOT NULL,
+  `med` double NOT NULL,
+  `ewc` double NOT NULL,
+  `rmi` double NOT NULL,
+  `ltt` double NOT NULL,
+  `con` double NOT NULL,
+  `dev` double NOT NULL,
+  `cau` double NOT NULL,
+  `pocket` double NOT NULL,
+  `mock` double NOT NULL,
+  `uni` double NOT NULL,
+  `lunch` double NOT NULL,
+  PRIMARY KEY  (`yr`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `printedestimate`
+--
+
+
+/*!40000 ALTER TABLE `printedestimate` DISABLE KEYS */;
+LOCK TABLES `printedestimate` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `printedestimate` ENABLE KEYS */;
+
+--
+-- Table structure for table `purchase_orderitems`
+--
+
+DROP TABLE IF EXISTS `purchase_orderitems`;
+CREATE TABLE `purchase_orderitems` (
+  `po_number` varchar(100) NOT NULL,
+  `item` varchar(255) NOT NULL,
+  `qty` int(100) NOT NULL,
+  PRIMARY KEY  (`po_number`,`item`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `purchase_orderitems`
+--
+
+
+/*!40000 ALTER TABLE `purchase_orderitems` DISABLE KEYS */;
+LOCK TABLES `purchase_orderitems` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `purchase_orderitems` ENABLE KEYS */;
+
+--
+-- Table structure for table `purchase_orderitems_received`
+--
+
+DROP TABLE IF EXISTS `purchase_orderitems_received`;
+CREATE TABLE `purchase_orderitems_received` (
+  `id` int(100) NOT NULL auto_increment,
+  `po_number` varchar(100) NOT NULL,
+  `item` varchar(255) NOT NULL,
+  `qty` int(100) NOT NULL,
+  `unit_price` decimal(18,2) NOT NULL default '0.00',
+  `total_price` decimal(18,2) NOT NULL default '0.00',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `purchase_orderitems_received`
+--
+
+
+/*!40000 ALTER TABLE `purchase_orderitems_received` DISABLE KEYS */;
+LOCK TABLES `purchase_orderitems_received` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `purchase_orderitems_received` ENABLE KEYS */;
+
+--
+-- Table structure for table `purchase_orders`
+--
+
+DROP TABLE IF EXISTS `purchase_orders`;
+CREATE TABLE `purchase_orders` (
+  `po_number` varchar(100) NOT NULL,
+  `po_date` varchar(100) NOT NULL,
+  `d_date` varchar(100) NOT NULL,
+  `supplier` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `telephone` int(20) NOT NULL,
+  `po_notes` text NOT NULL,
+  `authorized_by` varchar(250) NOT NULL,
+  `po_status` varchar(20) NOT NULL default 'OPEN',
+  PRIMARY KEY  (`po_number`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `purchase_orders`
+--
+
+
+/*!40000 ALTER TABLE `purchase_orders` DISABLE KEYS */;
+LOCK TABLES `purchase_orders` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `purchase_orders` ENABLE KEYS */;
+
+--
+-- Table structure for table `purchase_orders_received`
+--
+
+DROP TABLE IF EXISTS `purchase_orders_received`;
+CREATE TABLE `purchase_orders_received` (
+  `po_number` varchar(100) NOT NULL,
+  `delivery` varchar(100) NOT NULL,
+  `d_date` varchar(100) NOT NULL,
+  `d_notes` text NOT NULL,
+  `received_by` varchar(100) NOT NULL,
+  PRIMARY KEY  (`po_number`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `purchase_orders_received`
+--
+
+
+/*!40000 ALTER TABLE `purchase_orders_received` DISABLE KEYS */;
+LOCK TABLES `purchase_orders_received` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `purchase_orders_received` ENABLE KEYS */;
+
+--
+-- Table structure for table `received_invoice_items`
+--
+
+DROP TABLE IF EXISTS `received_invoice_items`;
+CREATE TABLE `received_invoice_items` (
+  `invoice_ref` varchar(100) NOT NULL,
+  `qty` int(100) NOT NULL,
+  `item_ref` varchar(255) NOT NULL,
+  `price` float(18,2) NOT NULL,
+  PRIMARY KEY  (`invoice_ref`,`item_ref`,`price`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `received_invoice_items`
+--
+
+
+/*!40000 ALTER TABLE `received_invoice_items` DISABLE KEYS */;
+LOCK TABLES `received_invoice_items` WRITE;
+INSERT INTO `received_invoice_items` VALUES ('0292',1,'RECIEPT PAPERS',3000.00),('0292',1,'epson printer',18500.00),('0292',1,'school m system',70000.00);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `received_invoice_items` ENABLE KEYS */;
+
+--
+-- Table structure for table `received_invoices`
+--
+
+DROP TABLE IF EXISTS `received_invoices`;
+CREATE TABLE `received_invoices` (
+  `invoice_ref` varchar(100) NOT NULL,
+  `received_date` varchar(100) NOT NULL default '',
+  `supplier` varchar(255) NOT NULL default '',
+  `supplier_pin` varchar(255) NOT NULL default '',
+  `address` varchar(255) NOT NULL default '',
+  `telephone` int(20) NOT NULL,
+  `email` varchar(100) NOT NULL default '',
+  `received_by` varchar(250) NOT NULL default '',
+  `invoice_payment_status` varchar(20) NOT NULL default 'OPEN',
+  `item_totals` float(18,2) NOT NULL default '0.00',
+  `items_total_tax` float(18,2) NOT NULL default '0.00',
+  PRIMARY KEY  (`invoice_ref`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `received_invoices`
+--
+
+
+/*!40000 ALTER TABLE `received_invoices` DISABLE KEYS */;
+LOCK TABLES `received_invoices` WRITE;
+INSERT INTO `received_invoices` VALUES ('0292','2017-11-29','CRIMOSKA LTD','-','1990 RUIRU',715694916,'chrimoskasystems@GMAIL.COM','10932104','OPEN',0.00,0.00);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `received_invoices` ENABLE KEYS */;
+
+--
+-- Table structure for table `returned_books`
+--
+
+DROP TABLE IF EXISTS `returned_books`;
+CREATE TABLE `returned_books` (
+  `bookid` varchar(100) NOT NULL default '',
+  `userid` varchar(100) NOT NULL default '',
+  `datereturned` varchar(100) NOT NULL default '',
+  `receivedby` varchar(100) NOT NULL default '',
+  `comments` text NOT NULL,
+  PRIMARY KEY  (`bookid`,`userid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `returned_books`
+--
+
+
+/*!40000 ALTER TABLE `returned_books` DISABLE KEYS */;
+LOCK TABLES `returned_books` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `returned_books` ENABLE KEYS */;
+
+--
+-- Table structure for table `schoolname`
+--
+
+DROP TABLE IF EXISTS `schoolname`;
+CREATE TABLE `schoolname` (
+  `schname` varchar(100) NOT NULL,
+  `box` varchar(100) NOT NULL,
+  `place` varchar(100) NOT NULL,
+  `telphone` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `website` varchar(100) NOT NULL,
+  PRIMARY KEY  (`schname`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `schoolname`
+--
+
+
+/*!40000 ALTER TABLE `schoolname` DISABLE KEYS */;
+LOCK TABLES `schoolname` WRITE;
+INSERT INTO `schoolname` VALUES ('OUR LADY OF FATIMA KIRIKO GIRLS SECONDARY SCHOOL','38-01003 GITUAMBA VIA THIKA','','0796 736 479','olfkirikog@gmail.com','-');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `schoolname` ENABLE KEYS */;
+
+--
+-- Table structure for table `sent_messages`
+--
+
+DROP TABLE IF EXISTS `sent_messages`;
+CREATE TABLE `sent_messages` (
+  `id` int(100) NOT NULL auto_increment,
+  `msg_to` varchar(100) NOT NULL,
+  `message` text NOT NULL,
+  `date_sent` varchar(100) NOT NULL,
+  `sender` varchar(100) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sent_messages`
+--
+
+
+/*!40000 ALTER TABLE `sent_messages` DISABLE KEYS */;
+LOCK TABLES `sent_messages` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `sent_messages` ENABLE KEYS */;
+
+--
+-- Table structure for table `staff`
+--
+
+DROP TABLE IF EXISTS `staff`;
+CREATE TABLE `staff` (
+  `fname` varchar(100) NOT NULL,
+  `mname` varchar(100) NOT NULL,
+  `lname` varchar(100) NOT NULL,
+  `idpass` varchar(100) NOT NULL,
+  `telephone` varchar(100) NOT NULL,
+  `category` varchar(100) NOT NULL,
+  `staffno` varchar(100) NOT NULL,
+  `employement_type` varchar(100) NOT NULL,
+  `kra_pin` varchar(100) NOT NULL,
+  `nssf` varchar(100) default NULL,
+  `nhif` varchar(100) default NULL,
+  `salary` decimal(18,2) default '0.00',
+  `qualification` varchar(100) NOT NULL,
+  `cv` varchar(100) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `imgref` varchar(100) NOT NULL,
+  `passwrd` varchar(100) NOT NULL,
+  `dateJoined` varchar(100) NOT NULL,
+  `dateLeft` varchar(100) NOT NULL,
+  PRIMARY KEY  (`idpass`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `staff`
+--
+
+
+/*!40000 ALTER TABLE `staff` DISABLE KEYS */;
+LOCK TABLES `staff` WRITE;
+INSERT INTO `staff` VALUES ('JOSEPH','KINGORI','IGWANYA','10682683','0724848564','Board Teacher','3','Full-Time','A002505166W',NULL,NULL,'19500.00','TEACHER','','','blur.PNG','10682683','2017-11-29','_'),('DANIEL','KURIA','NGUGI','10932104','0723286601','Accountant','-','Full-Time','-',NULL,NULL,'0.00','ACCOUNTANT','','38 GITUAMBA','blur.PNG','10932104','2017-11-22','_'),('REGINA','NJOKI','WAINOGA','11054704','0723772699','Secretary','-','Full-Time','A0025405261',NULL,NULL,'0.00','-','','38 GITUAMBA THIKA','blur.PNG','11054704','2017-11-10','_'),('SAMSON','MURITU','MWANGI','25136164','0708657681','Board Teacher','5','Full-Time','A005531087T',NULL,NULL,'14800.00','TEACHER','','','blur.PNG','25136164','2017-11-29','_'),('LEWIS ','MUNENE','KARIUKI','25912392','0737469399','Board Teacher','4','Full-Time','A004627645E',NULL,NULL,'14800.00','TEACHER','','','blur.PNG','25912392','2017-11-29','_'),('MERCY ','W','GITHINJI','29673786','0729892246','Board Teacher','6','Full-Time','A006905584O',NULL,NULL,'13600.00','TEACHER','','','blur.PNG','29673786','2017-11-29','_'),('ALICE ','NYAMBURA ','MBURU','32285484','0726005421','Board Teacher','7','Full-Time','A008125306F',NULL,NULL,'13600.00','TEACHER','','','blur.PNG','32285484','2017-11-29','_'),('JOSEPH','MAINA','MWANGI','7466886','0723905528','Non-Teacher','9','Full-Time','A005418047W',NULL,NULL,'11493.00','LAB-TECHICIAN','','','blur.PNG','7466886','2017-11-29','_'),('DEFAULT','SYSTEM','ADMINISTRATOR','admin','715694916','Administrator','admin','-','-',NULL,NULL,'0.00','-','-','-    ','blur.PNG','admin','-','-');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `staff` ENABLE KEYS */;
+
+--
+-- Table structure for table `standards`
+--
+
+DROP TABLE IF EXISTS `standards`;
+CREATE TABLE `standards` (
+  `cat1` int(100) NOT NULL,
+  `cat2` int(100) NOT NULL,
+  `exam` int(100) NOT NULL,
+  `cat1percent` decimal(18,2) NOT NULL,
+  `cat2percent` decimal(18,2) NOT NULL,
+  `exampercent` decimal(18,2) NOT NULL,
+  `year` int(4) NOT NULL,
+  `term` int(1) NOT NULL,
+  `form` int(1) NOT NULL,
+  PRIMARY KEY  (`year`,`term`,`form`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `standards`
+--
+
+
+/*!40000 ALTER TABLE `standards` DISABLE KEYS */;
+LOCK TABLES `standards` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `standards` ENABLE KEYS */;
+
+--
+-- Table structure for table `streams`
+--
+
+DROP TABLE IF EXISTS `streams`;
+CREATE TABLE `streams` (
+  `form` varchar(100) NOT NULL,
+  `stream` varchar(100) NOT NULL,
+  `students` int(100) NOT NULL,
+  `classteacher` varchar(100) NOT NULL,
+  PRIMARY KEY  (`form`,`stream`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `streams`
+--
+
+
+/*!40000 ALTER TABLE `streams` DISABLE KEYS */;
+LOCK TABLES `streams` WRITE;
+INSERT INTO `streams` VALUES ('FORM 1','EAST',0,''),('FORM 1','WEST',0,''),('FORM 1','NORTH',0,''),('FORM 2','EAST',0,''),('FORM 2','NORTH',0,''),('FORM 2','WEST',0,''),('FORM 3','EAST',0,''),('FORM 3','WEST',0,''),('FORM 4','EAST',0,''),('FORM 4','WEST',0,''),('FORM 4','NORTH',0,'');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `streams` ENABLE KEYS */;
+
+--
+-- Table structure for table `studentdetails`
+--
+
+DROP TABLE IF EXISTS `studentdetails`;
+CREATE TABLE `studentdetails` (
+  `admno` int(10) NOT NULL,
+  `fname` varchar(255) NOT NULL,
+  `lname` varchar(255) NOT NULL,
+  `sname` varchar(255) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `dob` varchar(20) NOT NULL,
+  `age` varchar(20) NOT NULL,
+  `religion` varchar(255) NOT NULL,
+  `previouschool` varchar(255) NOT NULL,
+  `marks` int(11) NOT NULL,
+  `picture` varchar(100) NOT NULL,
+  `yrofadmn` int(11) NOT NULL,
+  `form` varchar(10) NOT NULL,
+  `forminto` varchar(100) NOT NULL default '',
+  `category` varchar(100) NOT NULL default '',
+  `house` varchar(100) NOT NULL default '',
+  `grade` varchar(100) NOT NULL default '',
+  `class` varchar(100) NOT NULL default '',
+  `year_finished` int(4) NOT NULL,
+  PRIMARY KEY  (`admno`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `studentdetails`
+--
+
+
+/*!40000 ALTER TABLE `studentdetails` DISABLE KEYS */;
+LOCK TABLES `studentdetails` WRITE;
+INSERT INTO `studentdetails` VALUES (4509,'MARY','NJERI','NJOROGE','Female','21/07/2008','','-','KAHUHO PRIMARY',311,'-',2017,'FORM 1','FORM 1','','','','EAST',0),(4512,'MORINE','WARUINU','MAINA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4514,'AGNES','NJERI','KIRUNGE','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4517,'TABITHA','RUGURU','MUHIA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4519,'VERONICA','MWIKALI','KAMAU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4521,'HILDA','GATHONI','WANJIKU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4526,'TERESIA','WANJIRU','MWANGI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4532,'EUNIE','WAIRIMU','GATEGWA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4535,'KATRINAH','NDUTA','MURIU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4538,'TERESIA','NJERI','KIGURU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4546,'HILDA','WANJA','WANJIKU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4547,'ROSE','MWIKALI','MUNYAO','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4552,'ANN','WANJIRU','NDEGWA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4553,'WILKISTER','AKUMU','ODWOLI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4555,'ALICE','WAMBUI','MUNGAI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4557,'ELIZABETH','ALEYO','ISAIAH','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4558,'MIRIAM','GATHONI','MUNGAI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4561,'LUCY','WAITHIRA','NGUBIA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4564,'MARY','NJOKI','GITU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4567,'JANE','WAIRIMU','GITHINJI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4572,'ESTHER','WAIRIMU','KARANI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4573,'CAROLINE','NYARUAI','NJENGA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4574,'RUTH','NJOKI','NGOTHO','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4577,'JACKLINE','WANJIRA','GICHIA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4581,'SUSAN','WANJIRU','KAMAU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4583,'SHALYNE','NGWIRI','','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4584,'JACINTA','WANJIRU','WAMATU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4593,'LEANNE','WANGECI','MWANGI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4594,'LAMYA','WANJIRU','WANGU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4596,'TERESIA','WANGUI','KARIUKI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4599,'PAULINE','WAMAITHA','MUNDIA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4600,'JOY','WAMBUI','GITAU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4606,'DEBORAH','NYOKABI','NJUGUNA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4609,'HANNAH','WANJIRU','','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4611,'EDEL','WANJIKU','GACHARA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4615,'HELLEN','WANJIRU','MUTUKU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4617,'CAROLINE','WANJIRU','GACHAU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4619,'DIANA','VUGUSA','','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4621,'PAULINE','CHEBET','BARASA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4635,'PAULINE','WANGARI','WANJIRU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4641,'ESTHER','ETEMESI','OMBOYA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4642,'BREDA','NJOKI','NJOROGE','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4645,'CECILIA','WAMBUI','KAMOTHO','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4648,'MARGARET','WAIRIMU','NJOGO','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','EAST',0),(4626,'GLADYS','NJERI','KIORE','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4624,'ATIENO','MELVINE','','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4623,'MONICAH','WAMBUI','GIKARU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4620,'LILIAN','CHEROP','BARASA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4618,'FRIDAH','WANJIRU','NJOROGE','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4614,'PAULINE','MWENYWA','ASENA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4610,'FIDELIS','WANJIKU','MBUGUA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4607,'LAVINNIA','JOY','MUSONYE','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4604,'SHARON','WAGENI','GITAU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4602,'EMILY','WANJIKU','MWANGI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4597,'CHARITY','WAIRIMU','WANJIKU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4591,'','MARY','WAMBUI KARANJA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4589,'DARCEL','WATIRI','WAITHIRA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4588,'ABIGAEL','MUTHONI','MWANGI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4586,'GRACE','WAMBUI','KIHARA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4585,'MRGARET','NJERI','MWAURA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4580,'LUCY','WANJA','NJUGUNA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4578,'IMMACULATE','NJERI','KINYANJUI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4575,'JANET','WAIRIMU','MUTHONI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4569,'ELIZABETH','WAMBUI','KIBURI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4568,'MARY','NYAMBURA','KAMAU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4565,'EMMAH','NJERI','MUHUHUKO','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4562,'SILVIA','MUTHONI','KAGURI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4559,'RUTH','WANJIRU','MUCHERU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4556,'SARAH','MUTHONI','NJAMBI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4550,'ABIGAEL','NYONGESA','MUTHONI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4548,'TERESIA','WANGUI','WAWERU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4544,'MARY','NUNGARI','MUGENDA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4542,'LYDIA','NGINA','MUCHINA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4539,'GLADYS','WANJIKU','NJOROGE','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4536,'ROSALINE','NJERI','NJUGUNA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4534,'CAROLINE','WANJIRU','WANJIRU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4530,'LINET','JUDY','NJERI WANJIRU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4529,'SHEILA','NYAMBURA','KIRUGU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4527,'DAMARIS','MUTHONI','','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4524,'CLEMENTINA','OBADO','MANGENI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4523,'EUNICE','MWIHAKI','GATUA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4522,'SABINA','NYAMBURA','NJOROGE','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4518,'FIDELIS','GATHONI','KIOI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4515,'MARY','NYARUA','KOMO','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4510,'PHOEBE','AOKO','OTIENO','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4628,'GLADYS','NJERI','KINYANJUI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4631,'SUSAN','MUNGARE','MATWETWE','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4633,'STANCY','WANGUI','KIHARA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4637,'CAROLINE','WAMBUI','MWAGO','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','WEST',0),(4511,'ESTHER','WAIRIMU','WANJIRU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4513,'GLORIA','WANJIRU','HUNJA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4516,'LENAH','WANJIRU','NJERU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4520,'JECINTA','WANJIKU','','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4525,'JACINTA','WAMBUI','KIMANI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4528,'VERONICAH','MURUGI','WARIARA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4531,'ESTHER','WARINGA','','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4533,'ANN','NJOKI','WANJERI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4537,'SUSAN','NJERI','NJONGE','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4540,'NANCY','WANJIRU','GICHUKI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4541,'MIRIAM','WANJIKU','WAIRA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4543,'LUCY','NJERI','NJOROGE','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4545,'MARY','WANGUI','NGIGI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4549,'FAITH','NJOKI','MUIGAI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4551,'JOYCE','NJERI','MWANGI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4554,'GRACE','WAMBUI','GICHURU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4560,'CHRISTINE','WAMBUI','KIGO','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4563,'HANNAH','WAMBUI','KIMANI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4566,'MARY','WANJA','KAMAU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4570,'IRENE','WANJIRU','MUTUNGA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4571,'GRACE','WANGARI','MBUGUA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4576,'BRIDGET','WANGARI','KIMATA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4579,'CAROLINE','NJERI','NGUGI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4582,'MARYANN','NDUHI','NJUGUNA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4587,'MARGARET','WANJIRU','KIHARA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4590,'PENINA','WANJIRU','NDUNGU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4592,'RACHEAL','WANJIKU','MUIRURI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4595,'AGNES','WANGARI','KAMAU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4598,'ESTHER','NJOKI','KURIA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4601,'TERESIA','WAIRIMU','NYAMBURA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4603,'EUNICE','WANGUI','IRUNGU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4605,'LEAH','WANJIRU','WACUKA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4608,'LINET','NYAMBURA','WANJIKU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4612,'PURITY','WAMBUI','GICHIA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4613,'TERESIA','WANJIKU','KINUTHIA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4616,'LUCY','WAKONYO','NGIGI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4625,'VIRGINIA','WANJIKU','FUNDI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4627,'EUNICE','WAMBUI','GITAU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4630,'PERPETUA','NYAMBURA','NJOKI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4632,'MARY','WAMBUI','MUKURIA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4636,'MARYLINN','WANGUI','MUNGAI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4638,'JULIA','WANJIKU','NJERI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4639,'CAROLINE','D','WAIRIMU NGUGI','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4643,'CHRISTINE','WAMBUI','THUKU','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4644,'FRIDA','MUTHONI','MERIA','Female','','','','',0,'',2017,'FORM 1','FORM 1','','','','NORTH',0),(4378,'JOAN','WAITHIRA','WANJIRU','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4382,'JOYCE','NYAMBURA','MAREMA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4383,'LUCY','WAMBUI','MUIRURI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4385,'ANN','WANJUGU','MWANGI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4386,'LEAH','NJERI','MBUGUA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4388,'ELIZABETH','NJOKI','NJENGA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4389,'MERCY','NJOKI','MUKORA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4390,'EVALYNE','NYAMBURA','WAMUNYU','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4392,'KEZIAH','NJERI','NGARARI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4394,'LISPER','WANJA','GITAU','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4395,'BEATRICE','WANJIKU','NJERI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4397,'JEDIDA','WANJIRU','WAWERU','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4399,'CYNTHIA','WAGIO','ITUGI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4401,'JANET','WAITHIRA','WANYORO','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4405,'JULIANA','NDANGA','KANJA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4407,'CATHERINE','MUTHONI','WAITHIRA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4409,'BERNICE','NJERI','MWERU','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4411,'AGNES','WANJIRU','MWANGI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4415,'MARY','WANJIKU','MAINA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4416,'HANNAH','WANJIKU','KURIA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4425,'FIDDIES','WAMBUI','KAMAU','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4427,'HILDA','WAMBUI','MUMBURA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4428,'MARY','WANJIKU','MAINA','Female','','','','',0,'-',2016,'FORM 2','FORM 1','','','','EAST',0),(4431,'ESTHER','WAMBUI','WANGARI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4433,'MARY','NYAMBURA','NGUGI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4436,'MARGARET','WANGARI','MIGWI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4439,'JOAN','NYAMBURA','MBUTHIA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4440,'LUCY','WANJIKU','KURIA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4442,'ANGELA','WANJIRU','KAHENYA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4448,'ESTHER','WANJIKU','IRUNGU','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4451,'LORINE','NGUHI','NJERI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4452,'ESTHER','WARIGIA','KIRUGO','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4454,'JOAN','WANJIRU','KIMANI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4456,'LOREEN','WAIRIMU','KARANU','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4458,'MARY','WANJIKU','MACHARIA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4459,'JACINTA','WANJIRU','KAMOTHO','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4463,'JANE','NYAGUTHII','WANJERI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4469,'JANE','MUMBI','WANGUI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4471,'MONICAH','WANGARI','MBURU','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4472,'MARY','WAIRIMU','WANJIRU','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4475,'JULIANA','WANJIRU','KARUGI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','EAST',0),(4380,'DORCAS','NJERI','NJOROGE','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4381,'SHARLEEN','WANJIKU','REGINA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4384,'MONICAH','NYAMBURA','MUTURI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4387,'HANNAH','MENDI','GICHICHIO','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4400,'MERCY','NYAMBURA','NGETHE','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4402,'REBECCA','KUYA','KIMANI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4403,'MAUREEN','WAITHIRA','MWANGI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4404,'CHRISTINE','NYAMBURA','MWAURA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4410,'ANN','WANJIRU','THUITA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4412,'MARY','MUTHONI','MUKWANA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4413,'REBECCA','WANJIKU','MUNGAI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4414,'CELINE','NJERI','MUTHONI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4417,'PHYLLIS','NJERI','MUKURURI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4421,'NANCY','MUMBI','MURIITHI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4426,'ALICE','WAMBU','MAINA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4429,'EVALYNE','NJERI','KAHORO','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4430,'BENADITA','WANJIKU','WAITARA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4434,'EUNICE','WACERA','IRUNGU','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4435,'SARAH','WAIRIMU','MUMBI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4438,'SARAH','NJERI','NYAMBURA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4443,'IRENE','NJERI','WAHITI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4444,'JECINTA','NYAGITITU','','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4447,'JOSPHINE','WANGECI','MAINA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4449,'MARGARET','NYAKIO','KIMANI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4450,'LUCY','NJERI','NGANGA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4455,'DORCAS','WANJIKU','KIMAMA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4457,'LUCY','WANJIRU','MBUGUA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4461,'HOPE','WAIRIMU','MUTURI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4464,'ANN','MWIKALI','MWEU','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4468,'MARYANN','GITHAE','','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4473,'FAITH','WAITHIRA','KIOKO','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4476,'CATHERINE','WAITHIRA','MUHIA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4477,'MERCY','WAITHIRA','GITU','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4478,'LYDIA','NYAMBURA','KARIUKI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4479,'FAITH','WANJIKU','MIRINGU','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4480,'MONICAH','WANJA','KIARIE','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4482,'FAITH','NGINA','NJOROGE','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4483,'PURITY','NJERI','WANJIRU','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4484,'AGNES','WANJIRU','MWANGI','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4485,'ESTHER','WAIRIMU','KABUGA','Female','','','','',0,'',2016,'FORM 2','FORM 1','','','','WEST',0),(4379,'SIPHIRA','WANGECHI','WARUI','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4391,'TERESIA','WANJIRU','KAMAU','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4396,'PAULINE','WAIRIMU','MBUTHIA','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4398,'RACHEAL','WANJIRU','NDUNG’U','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4406,'YVONNE','NJERI','MUIRURI','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4408,'TERESIA','WAMBUI','NJOROGE','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4418,'RUTH','WANJIRU','KANGU','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4420,'SHARON','WANJIKU','NJAU','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4422,'SILVIAH','WANJIRU','KABUGU','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4423,'TERESIA','WANGUI','KARIUKI','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4424,'ROXANA','GLORIANA','MUKAMI','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4441,'TRECY','WAMBUI','MAINA','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4446,'PENINAH','WAMBUI','NGANGA','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4453,'WAMAITHA','MWATHA','','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4460,'STELLA','WANJIKU','','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4465,'ROSE','NJERI','MWANGI','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4466,'TERESIA','NJAHIRA','KIMANI','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4467,'PATIENCE','NJOKI','NJAU','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4470,'VIRGINIA','WANJIKU','NYAMBURA','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4486,'MARY','WANGUI','MWANGI','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4487,'LUCY','NJERI','WANJIRU','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4488,'ISABEL','WAMBUI','CHEGE','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4489,'MARGARET','WAMBUI','WAWERU','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4490,'BRENDA','NJERI','GATHONI','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4491,'SALOME','WANJIKU','WANGARI','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4492,'FARIDA','MUKAMI','NJOKI','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4493,'TERESIA','WANJIRU','MUTHONI','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4494,'MARION','NJERI','LUMWAJI','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4495,'RACHEAL','MUMBI','WANDERI','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4497,'ROSALID','NYAMBURA','NGARI','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4498,'ROSEMARY','NJOKI','ICHUGU','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4499,'SYNTHIA','MUKAMI','MWAURA','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4500,'JACINTA','WANJIKU','WATARI','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4501,'EVA','NYAMBURA','WAIRIMA','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4503,'HANNAH','WATIRI','GATHIMBU','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4504,'HANNAH','WANGARI','NDERITU','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4505,'LINET','WAKONJE','MBARIA','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4506,'CECILIA','WANJIKU','NJOROGE','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4508,'MARY','WAIRIMU','NJERI','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4649,'VEDRO','WAITHIRA','WANJIRU','Female','','','','',0,'',2016,'FORM 2','FORM1','','','','NORTH',0),(4264,'JOAN','WAMBUI','NJIRI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4269,'ELIZABETH','WANGUI','NDUNGU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4271,'MARYANN','NJOKI','NJAGI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4373,'CATHERINE','NYATHIRA','KUNGU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4278,'PURITY','WAIRIMU','MWANGI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4280,'JOSPHINE','WAIRIMU','GITHINJI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4284,'RACHEAL','NJERI','MUKUHA','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4285,'PURITY','WACEKE','GITAU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4287,'FAITH','WANJA','MWANGI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4292,'ESTHER','WANJIKU','NDIRANGU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4293,'CATHERINE','MUTHONI','MAINA','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4294,'TERESIA','MUKUHI','KARANJA','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4295,'MAUREEN','NJERI','MWANGI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4296,'MILLICENT','WANJIRA','KAMAU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4297,'FAITH','WANJIKU','NDUNGU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4298,'HANNAH','WANJA','THUNGU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4304,'JACINTA','NYAMBURA','TITI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4309,'PHYLLIS','WAMBUI','NJOROGE','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4311,'VERONICA','WAMBUI','WANJIKU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4315,'EVALYNE','WANJIRA','KIMANI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4317,'ANN','WANJIRU','MBUTHIA','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4321,'OLIVE','MUTETE','GITHAIGA','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4322,'RUTH','WANJIKU','KAMAU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4323,'PURITY','WANJIKU','NJOROGE','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4326,'GLADYS','NYOKABI','GITAU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4328,'MERCY','WANJIRU','KAMAU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4329,'MONICA','WANJIRU','MUGO','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4332,'EVALYNE','WACERA','MUNIU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4333,'TABITHA','NJOKI','MAINA','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4334,'MONICA','WANYORA','KIMANI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4337,'HANNAH','NJOKI','GITHIU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4338,'MONICAH','MUTHONI','MUNYUA','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4342,'ANN','WAIRIMU','NDUNGU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4343,'EURNAH','NJERI','SOPHIA','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4345,'BEATRICE','WAMBUI','NGANGA','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4347,'MERCY','WANJA','MUCHUGA','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4351,'HANNAH','NJOKI','THOTHO','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4353,'MARGARET','NYAMBURA','MUMBI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4359,'BRIDGET','WAITHIRA','GITAU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4362,'ELIZABETH','WANJA','NUGI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4363,'MARYANN','NJERI','KABATI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4368,'ANGELA','WAIHIGA','GITHAE','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4375,'MAUREEN','WANJIKU','NGUGI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4377,'CATHERINE','NJERI','KARIUKI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4622,'MERCY','NJERI','NDUTA','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','WEST',0),(4205,'IMMACULATE','NJERI','NGUYAI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4267,'PURITY','WAITUHA','CHEGE','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4272,'JOYCE','NJERI','KARIUKI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4274,'FIDELIA','ACHIENG','ONYANGO','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4275,'LILIAN','NJERI','KARIUKI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4276,'TERESIA','NJERI','MUTURI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4277,'MOUREEN','WANGU','NJERI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4281,'LISA','NYAWIRA','WACERA','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4282,'ESTHER','WANGECHI','NGECHU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4283,'ANN','NJERI','WAIRIMU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4286,'PURITY','WAMBUI','NDUNGU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4288,'FLORENCE','NJERI','IRUNGU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4289,'JACKLINE','WAMBUI','KAGURU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4290,'AGNES','WACEKE','KIOMOH','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4299,'BETH','WAMBUI','KIMANI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4300,'RUTH','WANJERI','MWAI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4301,'ANGELA','WAMBUI','KUNGU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4302,'JOAN','NYAMBURA','MUNYUA','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4303,'LUCY','NJERI','THIGA','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4306,'ROSE','NDUTA','WAWERU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4312,'GRACE','NYOKABI','WANJIKU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4313,'IRENE','NUNGARI','GICHARU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4314,'JOAN','WANGARI','KARIUKI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4318,'ESTHER','NJERI','WAMBUI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4319,'TABITHA','NJOKI','MWIGANI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4320,'CATHERINE','NJAMBI','NDUNGU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4324,'LENNAH','NYAKIO','KANGANGI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4327,'ANN','NJERI','KARITA','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4330,'ESTHER','MUTHONI','MUGO','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4335,'ROSEMARY','WANJIKU','MUIRURI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4336,'STELLA','NJERI','GICHICHIO','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4339,'MARGARET','WANGARI','KIGIO','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4340,'SILVIA','SALLY','MUTHONI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4341,'FERISTAS','NDUTA','NJOROGE','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4346,'CAROL','NJOKI','NJOROGE','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4348,'CATHERINE','WANGUI','KAGOMBE','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4352,'IVY','WATHIRA','MIRONGA','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4356,'SUSAN','NYAMBURA','KARIUKI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4358,'JOAN','WANJIRU','WANJIKU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4360,'IRENE','CHEPKIRUI','KIPKOECH','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4361,'SARAH','MUANA','MUSYA','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4365,'VIRGINIA','WANJIRU','KINYANJUI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4366,'LILIAN','MUTHONI','WANGOME','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4370,'RUTH','NYAMBURA','KAMAU','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4374,'LEAH','WANJIKU','KINGORI','Female','','','','',0,'',2015,'FORM 3','FORM1','','','','EAST',0),(4141,'ELIZABETH','MAINA','NJERI','Female','','','','',286,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4142,'LUCY','WAHU','KAHIA','Female','','','','',280,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4143,'MARGARET','MUGURE','KARA','Female','','','','',264,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4144,'ESTHER','MUTHONI','KAARA','Female','','','','',244,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4146,'PRISCILLAH','NYAMBURA','GICHUI','Female','','','','',294,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4148,'SARAH','NJERI','MUTURI','Female','','','','',318,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4154,'NANCY','WANJIRU','NJOKI','Female','','','','',282,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4158,'MARY','WAITHIRA','KAMAU','Female','','','','',297,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4160,'TERESIA','MUTHONI','GACHERU','Female','','','','',262,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4162,'CATHERINE','WAMUTHITHI','NGANGA','Female','','','','',277,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4164,'NELIAS','WANJA','KAMAU','Female','','','','KANYONI ACADEMY',273,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4167,'FAITH','NJERI','MURAGURI','Female','','','','GOLDEN ACADEMY',312,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4171,'MARY','WANJIKU','KANYO','Female','','','','MAGUMU PRIMARY',303,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4173,'MERCY','NJERI','KURIA','Female','','','','MANERA ACADEMY',261,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4179,'REGINA','WAMAITHA','MATU','Female','','','','',293,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4182,'ESTHER','WANJIKU','WAIHIGA','Female','','','','',270,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4187,'MARY','WAMBUI','MUROGO','Female','','','','',276,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4188,'EVELYNE','NJUHI','KAMAU','Female','','','','',280,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4193,'EUNICE','NJOKI','GIKONYO','Female','','','','',329,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4195,'LEAH','WANJIKU','KIMANI','Female','','','','',271,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4203,'DIANAH','WANJIRU','KUNGU','Female','','','','',317,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4208,'IRENE','WANJIRU','KIBUI','Female','','','','',257,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4209,'EDEL','QUIN','NYAKIO NGURE','Female','','','','',267,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4212,'AGNES','WANGARI','NDABI','Female','','','','',280,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4216,'ANN','WAIRIMU','MURIGI','Female','','','','',285,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4228,'JOYCE','WARINGA','GICHERU','Female','','','','',280,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4229,'GLADYS','WANGUI','NJERI','Female','','','','',294,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4231,'MARGARET','WANJIRU','NJUGUNA','Female','','','','',310,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4237,'SUSAN','WANJIRU','NJOROGE','Female','','','','',314,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4241,'LUCY','WAMBUI','KIRANGI','Female','','','','',270,'-',2014,'FORM 4','FORM1','','','','WEST',0),(4252,'LUCY','WAITHIRA','WANJIKU','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','WEST',0),(4255,'GRACE','NJOKI','WAMBUI','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','WEST',0),(4258,'HOTTENSIA','WANJIKU','KURIA','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','WEST',0),(4259,'JANE','NJERI','NJAU','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','WEST',0),(4262,'PURITY','WAIRIMU','MUIRURI','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','WEST',0),(4372,'PHILOMENA','NJERI','KAMAU','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','WEST',0),(4371,'JOAN','NJOKI','GATHUITA','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','WEST',0),(4634,'VIRGINIA','NJERI','NGUGI','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','WEST',0),(4221,'ANGELA','MUGURE','NGUGI','Female','','','','',269,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4218,'FAIZA','WAMBUI','NJERI','Female','','','','',276,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4213,'PAULINE','WAIRIMU','NJOROGE','Female','','','','',250,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4210,'MAUREEN','WANJIRU','KURIA','Female','','','','',266,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4207,'JANE','WAMBUI','NJIHIA','Female','','','','',252,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4204,'RUTH','NYAMBURA','GITAU','Female','','','','',314,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4202,'WINFRED','NJOKI','KANGETHE','Female','','','','',278,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4200,'JESSICA','MUTHONI','MUGURU','Female','','','','',295,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4199,'PAULINE','NDUTA','MUIGAI','Female','','','','',320,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4194,'CATHERINE','WANJIRU','MBURU','Female','','','','',266,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4190,'NAOMI','NJERI','KIRAGU','Female','','','','',288,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4186,'SHARON','MRIGU','NYAGA','Female','','','','',252,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4183,'FELISTAS','WAITHIRA','NJUGUNA','Female','','','','',264,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4180,'ROSELYN','NJOKI','KIHUGU','Female','','','','',258,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4176,'BETH','WANJIRU','MWANGI','Female','','','','',267,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4175,'MERCY','MUTHONI','NDUNGU','Female','','','','',308,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4172,'PURITY','MUTHONI','KIBUNJA','Female','','','','BISHOP MAHIANA ACADEMY',263,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4159,'CAROLINE','NJOKI','MUIRURI','Female','','','','',289,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4157,'MARY','WANJIRU','WAINAINA','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','EAST',0),(4155,'MARGARET','WANGUI','RUTHI','Female','','','','',271,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4152,'MERCY','WANGARI','WANJIRU','Female','','','','',283,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4149,'MAUREEN','NYAMBURA','MUGO','Female','','','','',300,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4140,'ANNET','MUTHONI','NGUGI','Female','','','','',313,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4139,'PRISCILLAH','NYAMBURA','MWANGI','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','EAST',0),(4134,'TERESIAH','NJERE','KAMAU','Female','','','','KAIRI PRIMARY',335,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4223,'EMMAH','MWIHAKI','MEMIA','Female','','','','',255,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4224,'IMMACULATE','NYAMBURA','MAINA','Female','','','','',279,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4226,'APOLINE','MUGURE','GITUYU','Female','','','','',289,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4230,'SALOME','WAMBUI','GITAU','Female','','','','',277,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4232,'MERCY','NJERI','WAMWEA','Female','','','','',318,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4233,'PAULET','WANJIKU','KINYANJUI','Female','','','','',315,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4234,'GLADYS','NDUTA','MUYA','Female','','','','',278,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4235,'VERONICA','NJERI','WANJIRU','Female','','','','',301,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4236,'JACKLINE','WANJIRU','GICHIA','Female','','','','',274,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4238,'MARGARET','RUGURU','MIRINGU','Female','','','','',298,'-',2014,'FORM 4','FORM1','','','','EAST',0),(4247,'WINNIE','MUTHONI','IRUNGU','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','EAST',0),(4249,'ESTHER','WANJA','GACHUNGA','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','EAST',0),(4253,'MARGARET','NYOKABI','BORO','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','EAST',0),(4629,'ESTHER','WANJIKU','WAMBUI','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','EAST',0),(4136,'CHRISTINE','MUMBI','NGANGA','Female','','','','',267,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4137,'MARY','WANJIRU','NGUGI','Female','','','','',270,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4145,'JANE','WANJIKU','KAMAU','Female','','','','',255,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4150,'HELLEN','WAITHIRA','MUNGAI','Female','','','','',266,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4151,'NAOMI','WANGARI','KAMAU','Female','','','','',285,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4153,'JULIA','WANJIRU','MBORO','Female','','','','',314,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4161,'MARY','NJOKI','NGANGA','Female','','','','',295,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4163,'SERAH','NJERI','MUTHONI','Female','','','','',284,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4165,'JENNIFFER','WANJIRU','MANGï¿½EERE','Female','','','','NDERI SACRED HEART ACADEMY',329,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4166,'LINET','ADHIAMBO','OCHIENG','Female','','','','NDERI SACRED HEART ACADEMY',351,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4168,'JANE','MUGURE','WAMBUI','Female','','','','',294,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4170,'MARY','WAMBUI','KARANJA','Female','','','','NGETHU WATER WORKS PRIMARY',319,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4174,'STELLAH','WANJIKU','KAMAU','Female','','','','ST.MARY JUNIOR ACA.',305,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4177,'LYDIA','WANGARI','KAMAU','Female','','','','',278,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4181,'JANET','NJOKI','KARIUKI','Female','','','','',272,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4184,'MARYANN','MWIHAKI','NJERI','Female','','','','',261,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4189,'MAUREEN','MUTHONI','WANJIRU','Female','','','','',263,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4191,'ANASTACIA','WAMORO','NJOROGE','Female','','','','',271,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4196,'TERESIA','WANJIRU','WAIRIMU','Female','','','','',298,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4197,'DIANA','WANJIRA','KABOGO','Female','','','','',297,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4198,'MARGARET','WANJIKU','CHEGE','Female','','','','',278,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4206,'MARY','WANJIKU','KIMANI','Female','','','','',290,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4211,'JULIA','WAMBUI','NJOROGE','Female','','','','',240,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4214,'ELIZABETH','NJAMBI','WAINAINA','Female','','','','',284,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4215,'RACHEAL','GATHONI','MWANGI','Female','','','','',287,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4220,'MARY','WAIRIMU','THUKU','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','NORTH',0),(4222,'HILDER','NJERI','WAIRIMU','Female','','','','',288,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4225,'MAGDALINE','WANGARI','MBUTHIA','Female','','','','',268,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4240,'ROSEMARY','WANJIRU','WANJIKU','Female','','','','',283,'-',2014,'FORM 4','FORM1','','','','NORTH',0),(4245,'PAULINE','KAGENDO','MUREITHI','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','NORTH',0),(4248,'LYDIA','SHIYAYO','MUHIA','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','NORTH',0),(4251,'MARY','WANJIRU','KAHIA','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','NORTH',0),(4256,'MARION','MUTHINI','MUMO','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','NORTH',0),(4261,'CATHERINE','WAIRIMU','GIKANG&A','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','NORTH',0),(4507,'SERAH','NJERI','MWANIKI','Female','','','','',0,'',2014,'FORM 4','FORM1','','','','NORTH',0);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `studentdetails` ENABLE KEYS */;
+
+--
+-- Table structure for table `students_log`
+--
+
+DROP TABLE IF EXISTS `students_log`;
+CREATE TABLE `students_log` (
+  `admno` varchar(200) NOT NULL default '',
+  `year` int(4) NOT NULL default '0',
+  `form` varchar(100) NOT NULL default '',
+  PRIMARY KEY  (`admno`,`year`,`form`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `students_log`
+--
+
+
+/*!40000 ALTER TABLE `students_log` DISABLE KEYS */;
+LOCK TABLES `students_log` WRITE;
+INSERT INTO `students_log` VALUES ('110542',2017,'FORM 1'),('20030',2017,'FORM 1'),('45320',2017,'FORM 2'),('975476',2017,'FORM 1');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `students_log` ENABLE KEYS */;
+
+--
+-- Table structure for table `subjects`
+--
+
+DROP TABLE IF EXISTS `subjects`;
+CREATE TABLE `subjects` (
+  `subject` varchar(100) NOT NULL,
+  PRIMARY KEY  (`subject`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subjects`
+--
+
+
+/*!40000 ALTER TABLE `subjects` DISABLE KEYS */;
+LOCK TABLES `subjects` WRITE;
+INSERT INTO `subjects` VALUES ('kiswahili');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `subjects` ENABLE KEYS */;
+
+--
+-- Table structure for table `subjectsforstudent`
+--
+
+DROP TABLE IF EXISTS `subjectsforstudent`;
+CREATE TABLE `subjectsforstudent` (
+  `admno` varchar(100) NOT NULL,
+  `subjects` int(10) NOT NULL,
+  `Form` varchar(100) NOT NULL,
+  `fname` varchar(100) NOT NULL,
+  `mname` varchar(100) NOT NULL,
+  `lname` varchar(100) NOT NULL,
+  `religion` varchar(100) NOT NULL,
+  `year` int(100) NOT NULL,
+  `term` int(100) NOT NULL,
+  PRIMARY KEY  (`admno`,`Form`,`year`,`term`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subjectsforstudent`
+--
+
+
+/*!40000 ALTER TABLE `subjectsforstudent` DISABLE KEYS */;
+LOCK TABLES `subjectsforstudent` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `subjectsforstudent` ENABLE KEYS */;
+
+--
+-- Table structure for table `suppliers`
+--
+
+DROP TABLE IF EXISTS `suppliers`;
+CREATE TABLE `suppliers` (
+  `supplier` varchar(100) NOT NULL default '',
+  `pin` varchar(100) NOT NULL default '',
+  `address` text NOT NULL,
+  `telephone` int(15) NOT NULL,
+  `email` varchar(100) NOT NULL default '',
+  PRIMARY KEY  (`supplier`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `suppliers`
+--
+
+
+/*!40000 ALTER TABLE `suppliers` DISABLE KEYS */;
+LOCK TABLES `suppliers` WRITE;
+INSERT INTO `suppliers` VALUES ('CRIMOSKA_LTD','-','1990 RUIRU',715694916,'chrimoskasystems@GMAIL.COM');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `suppliers` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbl_hr_krapaye`
+--
+
+DROP TABLE IF EXISTS `tbl_hr_krapaye`;
+CREATE TABLE `tbl_hr_krapaye` (
+  `minv` decimal(18,2) NOT NULL default '0.00',
+  `maxv` decimal(18,2) NOT NULL default '0.00',
+  `tax` decimal(18,2) default '0.00',
+  PRIMARY KEY  (`minv`,`maxv`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_hr_krapaye`
+--
+
+
+/*!40000 ALTER TABLE `tbl_hr_krapaye` DISABLE KEYS */;
+LOCK TABLES `tbl_hr_krapaye` WRITE;
+INSERT INTO `tbl_hr_krapaye` VALUES ('0.00','10164.00','10.00'),('10165.00','19740.00','15.00'),('19741.00','29316.00','20.00'),('29317.00','38892.00','25.00'),('38892.00','100000000.00','30.00');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbl_hr_krapaye` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbl_hr_loans`
+--
+
+DROP TABLE IF EXISTS `tbl_hr_loans`;
+CREATE TABLE `tbl_hr_loans` (
+  `name` varchar(100) NOT NULL,
+  `deduction_amount` decimal(18,2) default '0.00',
+  `applies_to` varchar(100) NOT NULL default '',
+  PRIMARY KEY  (`name`,`applies_to`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_hr_loans`
+--
+
+
+/*!40000 ALTER TABLE `tbl_hr_loans` DISABLE KEYS */;
+LOCK TABLES `tbl_hr_loans` WRITE;
+INSERT INTO `tbl_hr_loans` VALUES ('SACCO','0.00','11054704'),('KINOTES','0.00','All'),('ADVANCE','0.00','All');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbl_hr_loans` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbl_hr_nhif`
+--
+
+DROP TABLE IF EXISTS `tbl_hr_nhif`;
+CREATE TABLE `tbl_hr_nhif` (
+  `minv` decimal(18,2) NOT NULL default '0.00',
+  `maxv` decimal(18,2) NOT NULL default '0.00',
+  `amount` decimal(18,2) default '0.00',
+  `percent` decimal(18,2) default '0.00',
+  PRIMARY KEY  (`minv`,`maxv`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_hr_nhif`
+--
+
+
+/*!40000 ALTER TABLE `tbl_hr_nhif` DISABLE KEYS */;
+LOCK TABLES `tbl_hr_nhif` WRITE;
+INSERT INTO `tbl_hr_nhif` VALUES ('0.00','5999.00','150.00','0.00'),('6000.00','7999.00','300.00','0.00'),('8000.00','11999.00','400.00','0.00'),('12000.00','14999.00','500.00','0.00'),('15000.00','19999.00','600.00','0.00'),('20000.00','24999.00','750.00','0.00'),('25000.00','29999.00','850.00','0.00'),('30000.00','34999.00','900.00','0.00'),('35000.00','39999.00','950.00','0.00'),('40000.00','44999.00','1000.00','0.00'),('45000.00','49999.00','1100.00','0.00'),('50000.00','59999.00','1200.00','0.00'),('60000.00','69999.00','1300.00','0.00'),('70000.00','79999.00','1400.00','0.00'),('80000.00','89999.00','1500.00','0.00'),('90000.00','99999.00','1600.00','0.00'),('100000.00','1000000.00','1700.00','0.00');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbl_hr_nhif` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbl_hr_nhif_old`
+--
+
+DROP TABLE IF EXISTS `tbl_hr_nhif_old`;
+CREATE TABLE `tbl_hr_nhif_old` (
+  `minv` decimal(18,2) NOT NULL default '0.00',
+  `maxv` decimal(18,2) NOT NULL default '0.00',
+  `amount` decimal(18,2) default '0.00',
+  `percent` decimal(18,2) default '0.00',
+  PRIMARY KEY  (`minv`,`maxv`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_hr_nhif_old`
+--
+
+
+/*!40000 ALTER TABLE `tbl_hr_nhif_old` DISABLE KEYS */;
+LOCK TABLES `tbl_hr_nhif_old` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbl_hr_nhif_old` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbl_hr_nssf`
+--
+
+DROP TABLE IF EXISTS `tbl_hr_nssf`;
+CREATE TABLE `tbl_hr_nssf` (
+  `minv` decimal(18,2) NOT NULL default '0.00',
+  `maxv` decimal(18,2) NOT NULL default '0.00',
+  `amount` decimal(18,2) default '0.00',
+  `percent` decimal(18,2) default '0.00',
+  PRIMARY KEY  (`minv`,`maxv`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_hr_nssf`
+--
+
+
+/*!40000 ALTER TABLE `tbl_hr_nssf` DISABLE KEYS */;
+LOCK TABLES `tbl_hr_nssf` WRITE;
+INSERT INTO `tbl_hr_nssf` VALUES ('0.00','6000.00','0.00','6.00'),('6001.00','18000.00','0.00','6.00'),('18001.00','1000000.00','18000.00','6.00');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbl_hr_nssf` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbl_hr_nssf_old`
+--
+
+DROP TABLE IF EXISTS `tbl_hr_nssf_old`;
+CREATE TABLE `tbl_hr_nssf_old` (
+  `minv` decimal(18,2) NOT NULL default '0.00',
+  `maxv` decimal(18,2) NOT NULL default '0.00',
+  `amount` decimal(18,2) default '0.00',
+  `percent` decimal(18,2) default '0.00',
+  PRIMARY KEY  (`minv`,`maxv`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_hr_nssf_old`
+--
+
+
+/*!40000 ALTER TABLE `tbl_hr_nssf_old` DISABLE KEYS */;
+LOCK TABLES `tbl_hr_nssf_old` WRITE;
+INSERT INTO `tbl_hr_nssf_old` VALUES ('1000.00','1000000.00','200.00','0.00');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbl_hr_nssf_old` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbl_hr_payslips`
+--
+
+DROP TABLE IF EXISTS `tbl_hr_payslips`;
+CREATE TABLE `tbl_hr_payslips` (
+  `staff_ref` varchar(100) NOT NULL,
+  `basic` decimal(18,2) default '0.00',
+  `nhif` decimal(18,2) default '0.00',
+  `nssf` decimal(18,2) default '0.00',
+  `paye` decimal(18,2) default '0.00',
+  `netpay` decimal(18,2) default '0.00',
+  `date_ref` varchar(100) default NULL,
+  `month_ref` varchar(100) NOT NULL,
+  `payrollref` varchar(100) NOT NULL,
+  PRIMARY KEY  (`staff_ref`,`month_ref`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_hr_payslips`
+--
+
+
+/*!40000 ALTER TABLE `tbl_hr_payslips` DISABLE KEYS */;
+LOCK TABLES `tbl_hr_payslips` WRITE;
+INSERT INTO `tbl_hr_payslips` VALUES ('10682683','19500.00','750.00','1080.00','1362.75','19232.25','2017-11-29','November 2017','20171129081305'),('11054704','30000.00','900.00','1080.00','2859.30','20160.70','2017-11-22','November 2017','20171122110634'),('25912392','14800.00','600.00','888.00','607.80','10104.20','2017-11-29','November 2017','20171129082152'),('29673786','13600.00','600.00','816.00','438.60','14145.40','2017-11-29','November 2017','20171129094912');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbl_hr_payslips` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbl_hr_payslips_all`
+--
+
+DROP TABLE IF EXISTS `tbl_hr_payslips_all`;
+CREATE TABLE `tbl_hr_payslips_all` (
+  `staff_ref` varchar(100) NOT NULL,
+  `allowance_name` varchar(100) NOT NULL,
+  `allowance` decimal(18,2) default '0.00',
+  `month_ref` varchar(100) NOT NULL,
+  `payrollref` varchar(100) NOT NULL,
+  PRIMARY KEY  (`staff_ref`,`allowance_name`,`month_ref`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_hr_payslips_all`
+--
+
+
+/*!40000 ALTER TABLE `tbl_hr_payslips_all` DISABLE KEYS */;
+LOCK TABLES `tbl_hr_payslips_all` WRITE;
+INSERT INTO `tbl_hr_payslips_all` VALUES ('10682683','HOUSE-ALLOWANCE','2925.00','2017-11-29','20171129081305'),('25912392','HOUSE-ALLOWANCE','2400.00','2017-11-29','20171129082152'),('29673786','HOUSE-ALLOWANCE','2400.00','2017-11-29','20171129094912');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbl_hr_payslips_all` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbl_hr_payslips_ded`
+--
+
+DROP TABLE IF EXISTS `tbl_hr_payslips_ded`;
+CREATE TABLE `tbl_hr_payslips_ded` (
+  `staff_ref` varchar(100) NOT NULL,
+  `deduction_name` varchar(100) NOT NULL,
+  `deduction` decimal(18,2) default '0.00',
+  `month_ref` varchar(100) NOT NULL,
+  `payrollref` varchar(100) NOT NULL,
+  PRIMARY KEY  (`staff_ref`,`deduction_name`,`month_ref`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_hr_payslips_ded`
+--
+
+
+/*!40000 ALTER TABLE `tbl_hr_payslips_ded` DISABLE KEYS */;
+LOCK TABLES `tbl_hr_payslips_ded` WRITE;
+INSERT INTO `tbl_hr_payslips_ded` VALUES ('25912392','ADVANCE','5000.00','2017-11-29','20171129082152');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbl_hr_payslips_ded` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbl_hr_payslips_reliefs`
+--
+
+DROP TABLE IF EXISTS `tbl_hr_payslips_reliefs`;
+CREATE TABLE `tbl_hr_payslips_reliefs` (
+  `staff_ref` varchar(100) NOT NULL default '',
+  `relief_name` varchar(100) NOT NULL default '',
+  `relief` decimal(18,2) default '0.00',
+  `month_ref` varchar(100) NOT NULL default '',
+  `payrollref` varchar(100) default NULL,
+  PRIMARY KEY  (`staff_ref`,`relief_name`,`month_ref`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_hr_payslips_reliefs`
+--
+
+
+/*!40000 ALTER TABLE `tbl_hr_payslips_reliefs` DISABLE KEYS */;
+LOCK TABLES `tbl_hr_payslips_reliefs` WRITE;
+INSERT INTO `tbl_hr_payslips_reliefs` VALUES ('10682683','Personal Tax Relief','1280.00','2017-11-29','20171129081305'),('11054704','Personal Tax Relief','1280.00','2017-11-22','20171122110634'),('25912392','Personal Tax Relief','1280.00','2017-11-29','20171129082152'),('29673786','Personal Tax Relief','1280.00','2017-11-29','20171129094912');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbl_hr_payslips_reliefs` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbl_hr_reliefs`
+--
+
+DROP TABLE IF EXISTS `tbl_hr_reliefs`;
+CREATE TABLE `tbl_hr_reliefs` (
+  `name` varchar(100) NOT NULL,
+  `amount` decimal(18,2) default '0.00',
+  `percent` decimal(18,2) default '0.00',
+  `type` varchar(100) NOT NULL default '',
+  PRIMARY KEY  (`name`,`type`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_hr_reliefs`
+--
+
+
+/*!40000 ALTER TABLE `tbl_hr_reliefs` DISABLE KEYS */;
+LOCK TABLES `tbl_hr_reliefs` WRITE;
+INSERT INTO `tbl_hr_reliefs` VALUES ('Income-Tax-Personal-Relief','1162.00','0.00','');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbl_hr_reliefs` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbl_hrallowances`
+--
+
+DROP TABLE IF EXISTS `tbl_hrallowances`;
+CREATE TABLE `tbl_hrallowances` (
+  `name` varchar(100) NOT NULL,
+  `rate` decimal(18,2) default '0.00',
+  `applies_to` varchar(100) NOT NULL default '',
+  PRIMARY KEY  (`name`,`applies_to`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_hrallowances`
+--
+
+
+/*!40000 ALTER TABLE `tbl_hrallowances` DISABLE KEYS */;
+LOCK TABLES `tbl_hrallowances` WRITE;
+INSERT INTO `tbl_hrallowances` VALUES ('HOUSE-ALLOWANCE','0.00','All');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbl_hrallowances` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbl_hrdeductions`
+--
+
+DROP TABLE IF EXISTS `tbl_hrdeductions`;
+CREATE TABLE `tbl_hrdeductions` (
+  `name` varchar(100) NOT NULL,
+  `rate` decimal(18,2) default '0.00',
+  PRIMARY KEY  (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_hrdeductions`
+--
+
+
+/*!40000 ALTER TABLE `tbl_hrdeductions` DISABLE KEYS */;
+LOCK TABLES `tbl_hrdeductions` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbl_hrdeductions` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbl_invoices`
+--
+
+DROP TABLE IF EXISTS `tbl_invoices`;
+CREATE TABLE `tbl_invoices` (
+  `invoice_no` varchar(100) NOT NULL default '1',
+  `payee_ref` varchar(255) NOT NULL,
+  `amount_due` decimal(18,2) NOT NULL default '0.00',
+  `acc_payable` varchar(100) NOT NULL,
+  `i_status` int(1) NOT NULL default '0' COMMENT '0=unpaid, 1=paid',
+  PRIMARY KEY  (`invoice_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_invoices`
+--
+
+
+/*!40000 ALTER TABLE `tbl_invoices` DISABLE KEYS */;
+LOCK TABLES `tbl_invoices` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbl_invoices` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbl_studentsubjects`
+--
+
+DROP TABLE IF EXISTS `tbl_studentsubjects`;
+CREATE TABLE `tbl_studentsubjects` (
+  `admno` varchar(100) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `form` varchar(100) NOT NULL,
+  `year` int(4) NOT NULL,
+  `term` int(1) NOT NULL,
+  `stream` varchar(100) NOT NULL,
+  PRIMARY KEY  (`admno`,`subject`,`form`,`year`,`term`,`stream`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_studentsubjects`
+--
+
+
+/*!40000 ALTER TABLE `tbl_studentsubjects` DISABLE KEYS */;
+LOCK TABLES `tbl_studentsubjects` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbl_studentsubjects` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbl_terms`
+--
+
+DROP TABLE IF EXISTS `tbl_terms`;
+CREATE TABLE `tbl_terms` (
+  `term` int(1) NOT NULL,
+  `year` int(4) NOT NULL,
+  `begins` varchar(100) NOT NULL,
+  `ends` varchar(100) NOT NULL,
+  PRIMARY KEY  (`term`,`year`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_terms`
+--
+
+
+/*!40000 ALTER TABLE `tbl_terms` DISABLE KEYS */;
+LOCK TABLES `tbl_terms` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbl_terms` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbl_themes`
+--
+
+DROP TABLE IF EXISTS `tbl_themes`;
+CREATE TABLE `tbl_themes` (
+  `theme_name` varchar(100) NOT NULL,
+  `theme_status` int(1) NOT NULL default '0',
+  `css_name` varchar(255) NOT NULL,
+  `css_m` varbinary(255) NOT NULL,
+  PRIMARY KEY  (`theme_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_themes`
+--
+
+
+/*!40000 ALTER TABLE `tbl_themes` DISABLE KEYS */;
+LOCK TABLES `tbl_themes` WRITE;
+INSERT INTO `tbl_themes` VALUES ('Blue',1,'style_blue','styleblue'),('Green',0,'style_green','stylegreen'),('Maroon',0,'style_maroon','stylemaroon'),('Red',0,'style_red','stylered');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbl_themes` ENABLE KEYS */;
+
+--
+-- Table structure for table `tblaudittrail`
+--
+
+DROP TABLE IF EXISTS `tblaudittrail`;
+CREATE TABLE `tblaudittrail` (
+  `id` int(11) NOT NULL auto_increment,
+  `auditDate` datetime NOT NULL,
+  `activity` varchar(200) NOT NULL,
+  `uname` varchar(30) NOT NULL,
+  `ipaddress` varchar(16) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tblaudittrail`
+--
+
+
+/*!40000 ALTER TABLE `tblaudittrail` DISABLE KEYS */;
+LOCK TABLES `tblaudittrail` WRITE;
+INSERT INTO `tblaudittrail` VALUES (1,'2017-11-10 11:30:32','Successful Login','admin','192.168.1.235'),(2,'2017-11-10 11:30:37','View Administrator*s Dashboard','admin','192.168.1.235'),(3,'2017-11-10 11:30:39','View Administrator*s Dashboard','admin','192.168.1.235'),(4,'2017-11-10 11:30:40','View School Setting Page','admin','192.168.1.235'),(5,'2017-11-10 11:32:05','View School Setting Page','admin','192.168.1.235'),(6,'2017-11-10 11:32:13','View Administrator*s Dashboard','admin','192.168.1.235'),(7,'2017-11-10 11:33:36','Viewed student list','admin','192.168.1.235'),(8,'2017-11-10 11:33:36','Viewed student list','admin','192.168.1.235'),(9,'2017-11-10 11:33:39','Viewed Deans Exams Settings page','admin','192.168.1.235'),(10,'2017-11-10 11:33:43','View HR Dashboard','admin','192.168.1.235'),(11,'2017-11-10 11:33:46','Viewed HR Create Payslip page','admin','192.168.1.235'),(12,'2017-11-10 11:34:02','View Finance Dashboard','admin','192.168.1.235'),(13,'2017-11-10 11:34:05','Viewed Finance Record Balances page','admin','192.168.1.235'),(14,'2017-11-10 11:34:06','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(15,'2017-11-10 11:34:14','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(16,'2017-11-10 11:45:50','Viewed student list','admin','192.168.1.235'),(17,'2017-11-10 11:45:50','Viewed student list','admin','192.168.1.235'),(18,'2017-11-10 11:46:39','Viewed student list','admin','192.168.1.235'),(19,'2017-11-10 11:46:40','Viewed student list','admin','192.168.1.235'),(20,'2017-11-10 11:47:18','Viewed Class list','admin','192.168.1.235'),(21,'2017-11-10 11:47:24','View Administrator*s Dashboard','admin','192.168.1.235'),(22,'2017-11-10 11:47:27','Viewed Settings streams page','admin','192.168.1.235'),(23,'2017-11-10 11:47:33','Viewed Settings streams page','admin','192.168.1.235'),(24,'2017-11-10 11:47:35','Viewed Settings streams page','admin','192.168.1.235'),(25,'2017-11-10 11:47:45','Viewed Settings streams page','admin','192.168.1.235'),(26,'2017-11-10 11:47:46','Viewed Settings streams page','admin','192.168.1.235'),(27,'2017-11-10 11:47:51','Viewed Settings streams page','admin','192.168.1.235'),(28,'2017-11-10 11:47:52','Viewed Settings streams page','admin','192.168.1.235'),(29,'2017-11-10 11:48:02','Viewed Settings streams page','admin','192.168.1.235'),(30,'2017-11-10 11:48:03','Viewed Settings streams page','admin','192.168.1.235'),(31,'2017-11-10 11:48:07','Viewed Settings streams page','admin','192.168.1.235'),(32,'2017-11-10 11:48:08','Viewed Settings streams page','admin','192.168.1.235'),(33,'2017-11-10 11:48:11','Viewed Settings streams page','admin','192.168.1.235'),(34,'2017-11-10 11:48:12','Viewed Settings streams page','admin','192.168.1.235'),(35,'2017-11-10 11:48:23','Viewed Settings streams page','admin','192.168.1.235'),(36,'2017-11-10 11:48:24','Viewed Settings streams page','admin','192.168.1.235'),(37,'2017-11-10 11:48:29','Viewed Settings streams page','admin','192.168.1.235'),(38,'2017-11-10 11:48:30','Viewed Settings streams page','admin','192.168.1.235'),(39,'2017-11-10 11:48:51','Viewed Settings streams page','admin','192.168.1.235'),(40,'2017-11-10 11:48:52','Viewed Settings streams page','admin','192.168.1.235'),(41,'2017-11-10 11:49:01','Viewed Settings streams page','admin','192.168.1.235'),(42,'2017-11-10 11:49:02','Viewed Settings streams page','admin','192.168.1.235'),(43,'2017-11-10 11:49:21','Viewed student list','admin','192.168.1.235'),(44,'2017-11-10 11:49:21','Viewed student list','admin','192.168.1.235'),(45,'2017-11-10 11:49:23','Viewed Class list','admin','192.168.1.235'),(46,'2017-11-10 11:49:26','Viewed Class list','admin','192.168.1.235'),(47,'2017-11-10 11:50:10','Viewed Class list','admin','192.168.1.235'),(48,'2017-11-10 11:50:12','Viewed student list','admin','192.168.1.235'),(49,'2017-11-10 11:50:12','Viewed student list','admin','192.168.1.235'),(50,'2017-11-10 11:50:15','Viewed student list','admin','192.168.1.235'),(51,'2017-11-10 11:50:15','Viewed student list','admin','192.168.1.235'),(52,'2017-11-10 11:52:02','Viewed student list','admin','192.168.1.235'),(53,'2017-11-10 11:52:02','Viewed student list','admin','192.168.1.235'),(54,'2017-11-10 11:52:04','Viewed student list','admin','192.168.1.235'),(55,'2017-11-10 11:52:04','Viewed student list','admin','192.168.1.235'),(56,'2017-11-10 11:54:02','Viewed student list','admin','192.168.1.235'),(57,'2017-11-10 11:54:02','Viewed student list','admin','192.168.1.235'),(58,'2017-11-10 11:54:41','Viewed student list','admin','192.168.1.235'),(59,'2017-11-10 11:54:41','Viewed student list','admin','192.168.1.235'),(60,'2017-11-10 11:55:12','Viewed student list','admin','192.168.1.235'),(61,'2017-11-10 11:55:12','Viewed student list','admin','192.168.1.235'),(62,'2017-11-10 11:59:21','Viewed student list','admin','192.168.1.235'),(63,'2017-11-10 11:59:21','Viewed student list','admin','192.168.1.235'),(64,'2017-11-10 12:01:23','Viewed student list','admin','192.168.1.235'),(65,'2017-11-10 12:01:23','Viewed student list','admin','192.168.1.235'),(66,'2017-11-10 12:01:37','Viewed student list','admin','192.168.1.235'),(67,'2017-11-10 12:01:37','Viewed student list','admin','192.168.1.235'),(68,'2017-11-10 12:01:47','Viewed student list','admin','192.168.1.235'),(69,'2017-11-10 12:01:47','Viewed student list','admin','192.168.1.235'),(70,'2017-11-10 12:02:25','Viewed student list','admin','192.168.1.235'),(71,'2017-11-10 12:02:25','Viewed student list','admin','192.168.1.235'),(72,'2017-11-10 12:06:05','Viewed student list','admin','192.168.1.235'),(73,'2017-11-10 12:06:05','Viewed student list','admin','192.168.1.235'),(74,'2017-11-10 12:06:40','Viewed Class list','admin','192.168.1.235'),(75,'2017-11-10 12:06:42','Viewed Class list','admin','192.168.1.235'),(76,'2017-11-10 12:06:51','Viewed Class list','admin','192.168.1.235'),(77,'2017-11-10 12:06:59','Viewed student list','admin','192.168.1.235'),(78,'2017-11-10 12:06:59','Viewed student list','admin','192.168.1.235'),(79,'2017-11-10 12:07:46','Viewed Class list','admin','192.168.1.235'),(80,'2017-11-10 12:07:50','Viewed Class list','admin','192.168.1.235'),(81,'2017-11-10 12:11:26','Viewed Class list','admin','192.168.1.235'),(82,'2017-11-10 12:11:29','Viewed Class list','admin','192.168.1.235'),(83,'2017-11-10 12:13:51','Viewed student list','admin','192.168.1.235'),(84,'2017-11-10 12:13:51','Viewed student list','admin','192.168.1.235'),(85,'2017-11-10 12:21:57','Viewed student list','admin','192.168.1.235'),(86,'2017-11-10 12:21:58','Viewed student list','admin','192.168.1.235'),(87,'2017-11-10 12:26:48','Viewed student list','admin','192.168.1.235'),(88,'2017-11-10 12:26:48','Viewed student list','admin','192.168.1.235'),(89,'2017-11-10 12:27:13','Viewed student list','admin','192.168.1.235'),(90,'2017-11-10 12:27:13','Viewed student list','admin','192.168.1.235'),(91,'2017-11-10 12:27:40','Viewed Class list','admin','192.168.1.235'),(92,'2017-11-10 12:27:42','Viewed Class list','admin','192.168.1.235'),(93,'2017-11-10 12:29:39','Viewed Class list','admin','192.168.1.235'),(94,'2017-11-10 12:29:59','Set Subjects Allocation for  ENGLISH FORM 1 EAST  2017 3','admin','192.168.1.235'),(95,'2017-11-10 12:30:04','Viewed Class list','admin','192.168.1.235'),(96,'2017-11-10 12:30:06','Viewed Class list','admin','192.168.1.235'),(97,'2017-11-10 12:46:48','Successful Login','admin','192.168.1.235'),(98,'2017-11-10 12:46:53','View Administrator*s Dashboard','admin','192.168.1.235'),(99,'2017-11-10 12:47:10','View Administrator*s Dashboard','admin','192.168.1.235'),(100,'2017-11-10 12:47:33','View Finance Dashboard','admin','192.168.1.235'),(101,'2017-11-10 12:47:33','View Finance Dashboard','admin','192.168.1.235'),(102,'2017-11-10 12:48:01','Viewed Votehead Balances page','admin','192.168.1.235'),(103,'2017-11-10 12:48:16','Viewed fees balances','admin','192.168.1.235'),(104,'2017-11-10 12:48:20','Viewed Finance Printed Estimates Setting page','admin','192.168.1.235'),(105,'2017-11-10 12:48:20','Viewed Votehead Balances page','admin','192.168.1.235'),(106,'2017-11-10 12:48:38','Viewed Finance Fiscal Yr Setting page','admin','192.168.1.235'),(107,'2017-11-10 12:48:52','Viewed Finance Fiscal Yr Setting page','admin','192.168.1.235'),(108,'2017-11-10 12:48:54','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(109,'2017-11-10 12:49:32','View Administrator*s Dashboard','admin','192.168.1.235'),(110,'2017-11-10 12:50:26','View HR Dashboard','admin','192.168.1.235'),(111,'2017-11-10 12:50:56','View HR Dashboard','admin','192.168.1.235'),(112,'2017-11-10 12:50:59','View Administrator*s Dashboard','admin','192.168.1.235'),(113,'2017-11-10 12:51:08','Viewed student list','admin','192.168.1.235'),(114,'2017-11-10 12:51:08','Viewed student list','admin','192.168.1.235'),(115,'2017-11-10 12:52:15','Viewed Class list','admin','192.168.1.235'),(116,'2017-11-10 12:52:20','Viewed Class list','admin','192.168.1.235'),(117,'2017-11-10 12:53:13','Viewed Class list','admin','192.168.1.235'),(118,'2017-11-10 12:53:15','Viewed student list','admin','192.168.1.235'),(119,'2017-11-10 12:53:15','Viewed student list','admin','192.168.1.235'),(120,'2017-11-10 12:53:23','View Administrator*s Dashboard','admin','192.168.1.235'),(121,'2017-11-10 12:55:07','Successful Login','admin','192.168.1.235'),(122,'2017-11-10 12:55:12','View Administrator*s Dashboard','admin','192.168.1.235'),(123,'2017-11-10 12:55:31','View Administrator*s Dashboard','admin','192.168.1.235'),(124,'2017-11-10 12:55:37','View School Setting Page','admin','192.168.1.235'),(125,'2017-11-10 12:55:43','View Administrator*s Dashboard','admin','192.168.1.235'),(126,'2017-11-10 12:55:51','View Administrator*s Dashboard','admin','192.168.1.235'),(127,'2017-11-10 12:56:03','View Administrator*s Dashboard','admin','192.168.1.235'),(128,'2017-11-10 12:56:14','View Administrator*s Dashboard','admin','192.168.1.235'),(129,'2017-11-10 12:56:14','View Administrator*s Dashboard','admin','192.168.1.235'),(130,'2017-11-10 12:56:24','Viewed Deans Exams Settings page','admin','192.168.1.235'),(131,'2017-11-10 12:56:25','Viewed Deans Exams Settings page','admin','192.168.1.235'),(132,'2017-11-10 12:56:57','Viewed Deans Exams Settings page','admin','192.168.1.235'),(133,'2017-11-10 12:56:58','Viewed Terms Settings page','admin','192.168.1.235'),(134,'2017-11-10 12:57:26','Viewed Terms Settings page','admin','192.168.1.235'),(135,'2017-11-10 12:57:29','Viewed Exam Status Page','admin','192.168.1.235'),(136,'2017-11-10 12:57:49','Viewed Exam Status Page','admin','192.168.1.235'),(137,'2017-11-10 12:57:56','Viewed Exam Status Page','admin','192.168.1.235'),(138,'2017-11-10 12:58:01','Viewed Terms Settings page','admin','192.168.1.235'),(139,'2017-11-10 12:58:13','Viewed Deans Exams Settings page','admin','192.168.1.235'),(140,'2017-11-10 12:58:37','View Finance Dashboard','admin','192.168.1.235'),(141,'2017-11-10 12:58:37','View Finance Dashboard','admin','192.168.1.235'),(142,'2017-11-10 12:58:44','Viewed Deans Exams Settings page','admin','192.168.1.235'),(143,'2017-11-10 13:07:50','Successful Login','admin','192.168.1.235'),(144,'2017-11-10 13:07:52','View Finance Dashboard','admin','192.168.1.235'),(145,'2017-11-10 13:07:54','Viewed Finance Fiscal Yr Setting page','admin','192.168.1.235'),(146,'2017-11-10 13:07:58','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(147,'2017-11-10 13:08:04','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(148,'2017-11-10 13:08:48','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(149,'2017-11-10 13:08:48','New Votehead Boarding','admin','192.168.1.235'),(150,'2017-11-10 13:08:49','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(151,'2017-11-10 13:09:01','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(152,'2017-11-10 13:09:01','New Votehead PE','admin','192.168.1.235'),(153,'2017-11-10 13:09:02','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(154,'2017-11-10 13:09:10','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(155,'2017-11-10 13:09:11','New Votehead Repair','admin','192.168.1.235'),(156,'2017-11-10 13:09:11','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(157,'2017-11-10 13:09:20','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(158,'2017-11-10 13:09:20','New Votehead EWC','admin','192.168.1.235'),(159,'2017-11-10 13:09:21','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(160,'2017-11-10 13:09:39','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(161,'2017-11-10 13:09:39','New Votehead LTT','admin','192.168.1.235'),(162,'2017-11-10 13:09:40','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(163,'2017-11-10 13:09:54','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(164,'2017-11-10 13:09:54','New Votehead ADMIN','admin','192.168.1.235'),(165,'2017-11-10 13:09:56','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(166,'2017-11-10 13:10:12','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(167,'2017-11-10 13:10:12','New Votehead MEDICAL','admin','192.168.1.235'),(168,'2017-11-10 13:10:13','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(169,'2017-11-10 13:10:27','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(170,'2017-11-10 13:10:27','New Votehead INSURANCE','admin','192.168.1.235'),(171,'2017-11-10 13:10:28','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(172,'2017-11-10 13:10:43','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(173,'2017-11-10 13:10:43','New Votehead ACTIVITIES','admin','192.168.1.235'),(174,'2017-11-10 13:10:44','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(175,'2017-11-10 13:10:53','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(176,'2017-11-10 13:10:55','Viewed Finance Printed Estimates Setting page','admin','192.168.1.235'),(177,'2017-11-10 13:12:41','Viewed Finance Printed Estimates Setting page','admin','192.168.1.235'),(178,'2017-11-10 13:14:03','Viewed Finance Printed Estimates Setting page','admin','192.168.1.235'),(179,'2017-11-10 13:15:21','Viewed Finance Printed Estimates Setting page','admin','192.168.1.235'),(180,'2017-11-10 13:15:23','Viewed Finance Printed Estimates Setting page','admin','192.168.1.235'),(181,'2017-11-10 13:15:23','Viewed Printed Estimates page','admin','192.168.1.235'),(182,'2017-11-10 13:15:29','Viewed Printed Estimates page','admin','192.168.1.235'),(183,'2017-11-10 13:16:44','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(184,'2017-11-10 13:16:54','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(185,'2017-11-10 13:17:53','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(186,'2017-11-10 13:17:54','Viewed Finance Printed Estimates Setting page','admin','192.168.1.235'),(187,'2017-11-10 13:17:56','Viewed Finance Printed Estimates Setting page','admin','192.168.1.235'),(188,'2017-11-10 13:17:56','Viewed Printed Estimates page','admin','192.168.1.235'),(189,'2017-11-10 13:18:03','Viewed Printed Estimates page','admin','192.168.1.235'),(190,'2017-11-10 13:18:39','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(191,'2017-11-10 13:18:40','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(192,'2017-11-10 13:18:51','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(193,'2017-11-10 13:20:43','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(194,'2017-11-10 13:20:45','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(195,'2017-11-10 13:21:20','Viewed Finance Printed Estimates Setting page','admin','192.168.1.235'),(196,'2017-11-10 13:23:52','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(197,'2017-11-10 13:24:08','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(198,'2017-11-10 13:25:23','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(199,'2017-11-10 13:25:28','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(200,'2017-11-10 13:26:30','View Administrator*s Dashboard','admin','192.168.1.235'),(201,'2017-11-10 13:26:56','Successful Login','admin','127.0.0.1'),(202,'2017-11-10 13:26:56','View Administrator*s Dashboard','admin','127.0.0.1'),(203,'2017-11-10 13:30:30','Successful Login','admin','192.168.1.233'),(204,'2017-11-10 13:30:30','View Administrator*s Dashboard','admin','192.168.1.233'),(205,'2017-11-10 13:30:32','View HR Dashboard','admin','192.168.1.233'),(206,'2017-11-10 13:32:38','Added new Staff 11054704','admin','192.168.1.233'),(207,'2017-11-10 13:32:40','Successful Logout','admin','192.168.1.233'),(208,'2017-11-13 08:08:45','View Administrator*s Dashboard','admin','127.0.0.1'),(209,'2017-11-13 08:58:19','Successful Login','admin','127.0.0.1'),(210,'2017-11-13 08:58:19','View Administrator*s Dashboard','admin','127.0.0.1'),(211,'2017-11-13 08:59:04','View Administrator*s Dashboard','admin','127.0.0.1'),(212,'2017-11-13 08:59:12','View Administrator*s Dashboard','admin','127.0.0.1'),(213,'2017-11-13 08:59:16','View School Setting Page','admin','127.0.0.1'),(214,'2017-11-13 08:59:33','Viewed Settings streams page','admin','127.0.0.1'),(215,'2017-11-13 08:59:55','Viewed Settings streams page','admin','127.0.0.1'),(216,'2017-11-13 08:59:58','View school enrollment page','admin','127.0.0.1'),(217,'2017-11-13 09:00:45','Backed up Database','admin','127.0.0.1'),(218,'2017-11-13 09:09:40','View Administrator*s Dashboard','admin','127.0.0.1'),(219,'2017-11-13 09:10:41','View HR Dashboard','admin','127.0.0.1'),(220,'2017-11-14 14:00:06','Successful Login','admin','127.0.0.1'),(221,'2017-11-14 14:00:06','View Administrator*s Dashboard','admin','127.0.0.1'),(222,'2017-11-14 14:00:10','View HR Dashboard','admin','127.0.0.1'),(223,'2017-11-14 14:01:23','Viewed HR Create Payslip page','admin','127.0.0.1'),(224,'2017-11-14 14:01:33','Viewed HR PAYE page','admin','127.0.0.1'),(225,'2017-11-14 14:01:40','Viewed HR Allowances page','admin','127.0.0.1'),(226,'2017-11-14 14:01:45','Viewed Customer Bills report page','admin','127.0.0.1'),(227,'2017-11-14 14:01:45','Viewed HR Master Payslip page','admin','127.0.0.1'),(228,'2017-11-14 14:01:59','Viewed Customer Bills report page','admin','127.0.0.1'),(229,'2017-11-14 14:02:00','Viewed HR Master Payslip page','admin','127.0.0.1'),(230,'2017-11-14 14:02:46','View Administrator*s Dashboard','admin','127.0.0.1'),(231,'2017-11-14 14:03:41','Viewed student list','admin','127.0.0.1'),(232,'2017-11-14 14:03:41','Viewed student list','admin','127.0.0.1'),(233,'2017-11-14 14:04:10','View Administrator*s Dashboard','admin','127.0.0.1'),(234,'2017-11-22 13:41:59','Successful Login','admin','127.0.0.1'),(235,'2017-11-22 13:42:00','View Administrator*s Dashboard','admin','127.0.0.1'),(236,'2017-11-22 13:42:02','View Finance Dashboard','admin','127.0.0.1'),(237,'2017-11-22 13:42:07','Viewed Finance pocket money page','admin','127.0.0.1'),(238,'2017-11-22 13:42:21','Viewed Finance Fiscal Yr Setting page','admin','127.0.0.1'),(239,'2017-11-22 13:42:23','Viewed Parents Cashbook Finance Voteheads Setting page','admin','127.0.0.1'),(240,'2017-11-22 13:53:36','Successful Login','admin','192.168.1.21'),(241,'2017-11-22 13:53:36','View Administrator*s Dashboard','admin','192.168.1.21'),(242,'2017-11-22 13:53:40','View HR Dashboard','admin','192.168.1.21'),(243,'2017-11-22 13:58:54','Added new Staff 10932104','admin','192.168.1.21'),(244,'2017-11-22 13:58:57','Successful Logout','admin','192.168.1.21'),(245,'2017-11-22 13:59:20','Successful Login','10932104','192.168.1.21'),(246,'2017-11-22 13:59:20','View Accountant*s Dashboard','10932104','192.168.1.21'),(247,'2017-11-22 14:00:15','Backed up Database','10932104','192.168.1.21'),(248,'2017-11-22 14:00:19','Backed up Database','10932104','192.168.1.21'),(249,'2017-11-22 14:01:20','Backed up Database','10932104','192.168.1.21'),(250,'2017-11-22 14:01:59','View HR Dashboard','10932104','192.168.1.21'),(251,'2017-11-22 14:02:11','Viewed HR Create Payslip page','10932104','192.168.1.21'),(252,'2017-11-22 14:04:41','Viewed HR PAYE page','10932104','192.168.1.21'),(253,'2017-11-22 14:04:47','Viewed HR Loans  page','10932104','192.168.1.21'),(254,'2017-11-22 14:05:13','Viewed HR Loans  page','10932104','192.168.1.21'),(255,'2017-11-22 14:05:13','Added HR Deductions SACCO','10932104','192.168.1.21'),(256,'2017-11-22 14:05:15','Viewed HR Loans  page','10932104','192.168.1.21'),(257,'2017-11-22 14:05:16','Viewed HR Create Payslip page','10932104','192.168.1.21'),(258,'2017-11-22 14:06:49','Viewed Customer Bills report page','10932104','192.168.1.21'),(259,'2017-11-22 14:06:50','Viewed HR Master Payslip page','10932104','192.168.1.21'),(260,'2017-11-22 14:07:39','View Finance Dashboard','10932104','192.168.1.21'),(261,'2017-11-22 14:07:43','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(262,'2017-11-22 14:08:47','View HR Dashboard','10932104','192.168.1.21'),(263,'2017-11-22 14:08:49','Viewed Customer Bills report page','10932104','192.168.1.21'),(264,'2017-11-22 14:08:49','Viewed HR Master Payslip page','10932104','192.168.1.21'),(265,'2017-11-22 14:09:11','Viewed HR Master Payslip page','10932104','192.168.1.21'),(266,'2017-11-22 14:09:27','Viewed Customer Bills report page','10932104','192.168.1.21'),(267,'2017-11-22 14:09:27','Viewed HR Master Payslip page','10932104','192.168.1.21'),(268,'2017-11-22 14:09:55','Viewed HR PAYE page','10932104','192.168.1.21'),(269,'2017-11-22 14:10:00','Viewed HR NHIF page','10932104','192.168.1.21'),(270,'2017-11-22 14:10:02','Viewed HR NSSF page','10932104','192.168.1.21'),(271,'2017-11-22 14:10:08','Viewed HR Loans  page','10932104','192.168.1.21'),(272,'2017-11-22 14:10:17','Viewed HR Create Payslip page','10932104','192.168.1.21'),(273,'2017-11-22 14:10:28','Viewed HR Create Payslip page','10932104','192.168.1.21'),(274,'2017-11-22 14:10:34','View Finance Dashboard','10932104','192.168.1.21'),(275,'2017-11-22 14:11:39','View Accountant*s Dashboard','10932104','192.168.1.21'),(276,'2017-11-22 14:12:33','View Finance Dashboard','10932104','192.168.1.21'),(277,'2017-11-22 14:13:58','View HR Dashboard','admin','127.0.0.1'),(278,'2017-11-22 14:14:00','Viewed HR Create Payslip page','admin','127.0.0.1'),(279,'2017-11-22 14:14:05','View HR Dashboard','admin','127.0.0.1'),(280,'2017-11-22 14:14:06','View Finance Dashboard','admin','127.0.0.1'),(281,'2017-11-22 14:22:58','Viewed Finance Fiscal Yr Setting page','10932104','192.168.1.21'),(282,'2017-11-22 14:23:07','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(283,'2017-11-22 14:25:22','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(284,'2017-11-22 14:25:22','Added a new Bank Account BARCLAYS BANK','10932104','192.168.1.21'),(285,'2017-11-22 14:25:23','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(286,'2017-11-22 14:27:15','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(287,'2017-11-22 14:27:15','Added a new Bank Account LIPA KARO NA MPESA','10932104','192.168.1.21'),(288,'2017-11-22 14:27:16','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(289,'2017-11-22 14:29:41','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(290,'2017-11-22 14:29:41','Added a new Bank Account KCB DEVELOPMENT ACC','10932104','192.168.1.21'),(291,'2017-11-22 14:29:43','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(292,'2017-11-22 14:31:02','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(293,'2017-11-22 14:31:02','Added a new Bank Account KCB TUTION ACC','10932104','192.168.1.21'),(294,'2017-11-22 14:31:03','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(295,'2017-11-22 14:33:55','View Finance Dashboard','admin','127.0.0.1'),(296,'2017-11-22 14:33:59','Viewed Finance Fiscal Yr Setting page','admin','127.0.0.1'),(297,'2017-11-22 14:34:01','Viewed Finance Voteheads Setting page','admin','127.0.0.1'),(298,'2017-11-22 14:35:57','Viewed Finance Voteheads Setting page','admin','127.0.0.1'),(299,'2017-11-22 14:37:03','Viewed Finance Voteheads Setting page','admin','127.0.0.1'),(300,'2017-11-22 14:37:03','Added a new Bank Account KCB TUITION ACC','admin','127.0.0.1'),(301,'2017-11-22 14:37:05','Viewed Finance Voteheads Setting page','admin','127.0.0.1'),(302,'2017-11-22 14:37:29','Viewed Finance Voteheads Setting page','admin','127.0.0.1'),(303,'2017-11-22 14:38:10','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(304,'2017-11-22 14:38:34','Deleted  Vote head','10932104','192.168.1.21'),(305,'2017-11-22 14:38:37','Viewed Finance Fiscal Yr Setting page','admin','127.0.0.1'),(306,'2017-11-22 14:38:37','Deleted  Vote head','10932104','192.168.1.21'),(307,'2017-11-22 14:38:39','Viewed Parents Cashbook Finance Voteheads Setting page','admin','127.0.0.1'),(308,'2017-11-22 14:38:40','Deleted  Vote head','10932104','192.168.1.21'),(309,'2017-11-22 14:38:42','Viewed Finance Printed Estimates Setting page','admin','127.0.0.1'),(310,'2017-11-22 14:38:43','Deleted  Vote head','10932104','192.168.1.21'),(311,'2017-11-22 14:38:44','Viewed Finance Printed Estimates Setting page','admin','127.0.0.1'),(312,'2017-11-22 14:38:45','Backed up Database','admin','127.0.0.1'),(313,'2017-11-22 14:38:45','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(314,'2017-11-22 14:38:48','Viewed Parents Cashbook Finance Voteheads Setting page','admin','127.0.0.1'),(315,'2017-11-22 14:38:56','Viewed Finance Record Balances page','10932104','192.168.1.21'),(316,'2017-11-22 14:40:45','Viewed Finance Fiscal Yr Setting page','10932104','192.168.1.21'),(317,'2017-11-22 14:40:47','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(318,'2017-11-22 14:40:49','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(319,'2017-11-22 14:41:24','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(320,'2017-11-22 14:41:24','New Votehead BES','10932104','192.168.1.21'),(321,'2017-11-22 14:41:25','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(322,'2017-11-22 14:41:37','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(323,'2017-11-22 14:41:37','New Votehead RMI','10932104','192.168.1.21'),(324,'2017-11-22 14:41:39','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(325,'2017-11-22 14:41:56','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(326,'2017-11-22 14:41:56','New Votehead LT&T','10932104','192.168.1.21'),(327,'2017-11-22 14:41:57','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(328,'2017-11-22 14:42:14','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(329,'2017-11-22 14:42:14','New Votehead ADMIN_COST','10932104','192.168.1.21'),(330,'2017-11-22 14:42:16','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(331,'2017-11-22 14:42:28','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(332,'2017-11-22 14:42:28','New Votehead EWC','10932104','192.168.1.21'),(333,'2017-11-22 14:42:30','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(334,'2017-11-22 14:42:44','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(335,'2017-11-22 14:42:44','New Votehead ACTIVITY','10932104','192.168.1.21'),(336,'2017-11-22 14:42:45','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(337,'2017-11-22 14:42:55','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(338,'2017-11-22 14:42:55','New Votehead PE','10932104','192.168.1.21'),(339,'2017-11-22 14:42:56','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(340,'2017-11-22 14:43:22','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(341,'2017-11-22 14:44:04','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(342,'2017-11-22 14:44:24','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(343,'2017-11-22 14:44:24','New Votehead BES','10932104','192.168.1.21'),(344,'2017-11-22 14:44:25','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(345,'2017-11-22 14:44:37','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(346,'2017-11-22 14:44:37','New Votehead RMI','10932104','192.168.1.21'),(347,'2017-11-22 14:44:38','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(348,'2017-11-22 14:44:57','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(349,'2017-11-22 14:44:57','New Votehead LT&T','10932104','192.168.1.21'),(350,'2017-11-22 14:44:58','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(351,'2017-11-22 14:45:15','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(352,'2017-11-22 14:45:15','New Votehead ADMIN_COST','10932104','192.168.1.21'),(353,'2017-11-22 14:45:16','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(354,'2017-11-22 14:45:27','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(355,'2017-11-22 14:45:27','New Votehead EWC','10932104','192.168.1.21'),(356,'2017-11-22 14:45:28','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(357,'2017-11-22 14:45:40','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(358,'2017-11-22 14:45:40','New Votehead ACTIVITY','10932104','192.168.1.21'),(359,'2017-11-22 14:45:41','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(360,'2017-11-22 14:45:51','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(361,'2017-11-22 14:45:51','New Votehead PE','10932104','192.168.1.21'),(362,'2017-11-22 14:45:53','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(363,'2017-11-22 14:46:07','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(364,'2017-11-22 14:46:07','New Votehead BES','10932104','192.168.1.21'),(365,'2017-11-22 14:46:08','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(366,'2017-11-22 14:46:18','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(367,'2017-11-22 14:46:18','New Votehead RMI','10932104','192.168.1.21'),(368,'2017-11-22 14:46:19','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(369,'2017-11-22 14:46:31','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(370,'2017-11-22 14:46:31','New Votehead LT&T','10932104','192.168.1.21'),(371,'2017-11-22 14:46:32','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(372,'2017-11-22 14:46:42','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(373,'2017-11-22 14:46:42','New Votehead ADMIN_COST','10932104','192.168.1.21'),(374,'2017-11-22 14:46:43','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(375,'2017-11-22 14:46:57','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(376,'2017-11-22 14:46:57','New Votehead EWC','10932104','192.168.1.21'),(377,'2017-11-22 14:46:58','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(378,'2017-11-22 14:47:07','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(379,'2017-11-22 14:47:07','New Votehead ACTIVITY','10932104','192.168.1.21'),(380,'2017-11-22 14:47:09','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(381,'2017-11-22 14:47:20','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(382,'2017-11-22 14:47:20','New Votehead PE','10932104','192.168.1.21'),(383,'2017-11-22 14:47:21','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(384,'2017-11-22 14:47:43','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(385,'2017-11-22 14:47:45','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(386,'2017-11-22 14:48:34','Viewed Finance Fiscal Yr Setting page','10932104','192.168.1.21'),(387,'2017-11-22 14:48:35','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(388,'2017-11-22 14:52:04','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(389,'2017-11-22 14:52:07','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(390,'2017-11-22 14:52:10','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(391,'2017-11-22 14:52:12','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(392,'2017-11-22 14:52:15','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(393,'2017-11-22 14:52:17','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(394,'2017-11-22 14:52:36','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(395,'2017-11-22 14:52:42','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(396,'2017-11-22 14:53:07','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(397,'2017-11-22 14:53:53','Viewed Parents Cashbook Finance Voteheads Setting page','admin','127.0.0.1'),(398,'2017-11-22 14:54:10','Viewed Parents Cashbook Finance Voteheads Setting page','admin','127.0.0.1'),(399,'2017-11-22 14:55:48','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(400,'2017-11-22 14:55:50','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(401,'2017-11-22 14:55:50','Viewed Printed Estimates page','10932104','192.168.1.21'),(402,'2017-11-22 14:55:55','Viewed Printed Estimates page','10932104','192.168.1.21'),(403,'2017-11-22 14:56:05','Viewed Parents Cashbook Finance Voteheads Setting page','admin','127.0.0.1'),(404,'2017-11-22 14:56:06','Viewed Parents Cashbook Finance Voteheads Setting page','admin','127.0.0.1'),(405,'2017-11-22 14:56:16','Viewed Parents Cashbook Finance Voteheads Setting page','admin','127.0.0.1'),(406,'2017-11-22 14:56:19','Viewed Parents Cashbook Finance Voteheads Setting page','admin','127.0.0.1'),(407,'2017-11-22 14:56:22','Viewed Parents Cashbook Finance Voteheads Setting page','admin','127.0.0.1'),(408,'2017-11-22 14:56:36','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(409,'2017-11-22 14:57:26','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(410,'2017-11-22 14:58:20','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(411,'2017-11-22 14:58:45','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(412,'2017-11-22 14:58:54','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(413,'2017-11-22 14:58:56','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(414,'2017-11-22 14:58:56','Viewed Printed Estimates page','10932104','192.168.1.21'),(415,'2017-11-22 14:59:05','Viewed Printed Estimates page','10932104','192.168.1.21'),(416,'2017-11-22 15:00:05','Viewed Finance Fiscal Yr Setting page','10932104','192.168.1.21'),(417,'2017-11-22 15:00:20','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(418,'2017-11-22 15:00:33','Viewed Parents Cashbook Finance Voteheads Setting page','admin','127.0.0.1'),(419,'2017-11-22 15:00:35','Viewed Parents Cashbook Finance Voteheads Setting page','admin','127.0.0.1'),(420,'2017-11-22 15:00:36','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(421,'2017-11-22 15:00:37','Viewed Parents Cashbook Finance Voteheads Setting page','admin','127.0.0.1'),(422,'2017-11-22 15:00:38','Viewed Parents Cashbook Finance Voteheads Setting page','admin','127.0.0.1'),(423,'2017-11-22 15:00:41','Viewed Finance Fiscal Yr Setting page','admin','127.0.0.1'),(424,'2017-11-22 15:00:43','Viewed Finance Voteheads Setting page','admin','127.0.0.1'),(425,'2017-11-22 15:00:45','Viewed Parents Cashbook Finance Voteheads Setting page','admin','127.0.0.1'),(426,'2017-11-22 15:00:48','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(427,'2017-11-22 15:01:17','Viewed Parents Cashbook Finance Voteheads Setting page','admin','127.0.0.1'),(428,'2017-11-22 15:01:18','Viewed Parents Cashbook Finance Voteheads Setting page','admin','127.0.0.1'),(429,'2017-11-22 15:01:21','Viewed Finance Record Balances page','10932104','192.168.1.21'),(430,'2017-11-22 15:01:21','View Administrator*s Dashboard','admin','127.0.0.1'),(431,'2017-11-22 15:01:22','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(432,'2017-11-22 15:01:35','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(433,'2017-11-22 15:01:39','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(434,'2017-11-22 15:01:43','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(435,'2017-11-22 15:02:07','Viewed Finance Fiscal Yr Setting page','10932104','192.168.1.21'),(436,'2017-11-22 15:02:11','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(437,'2017-11-22 15:02:32','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(438,'2017-11-22 15:02:32','New Votehead CAUTION','10932104','192.168.1.21'),(439,'2017-11-22 15:02:33','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(440,'2017-11-22 15:02:36','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(441,'2017-11-22 15:02:44','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(442,'2017-11-22 15:02:44','Viewed Printed Estimates page','10932104','192.168.1.21'),(443,'2017-11-22 15:02:49','Viewed Printed Estimates page','10932104','192.168.1.21'),(444,'2017-11-22 15:03:09','New Votehead Fees CAUTION','10932104','192.168.1.21'),(445,'2017-11-22 15:03:10','Viewed Printed Estimates page','10932104','192.168.1.21'),(446,'2017-11-22 15:03:20','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(447,'2017-11-22 15:03:45','Viewed student list','admin','127.0.0.1'),(448,'2017-11-22 15:03:45','Viewed student list','admin','127.0.0.1'),(449,'2017-11-22 15:03:56','View Administrator*s Dashboard','admin','127.0.0.1'),(450,'2017-11-22 15:06:46','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(451,'2017-11-22 15:07:14','View Administrator*s Dashboard','admin','127.0.0.1'),(452,'2017-11-22 15:07:16','Viewed student list','admin','127.0.0.1'),(453,'2017-11-22 15:07:17','Viewed student list','admin','127.0.0.1'),(454,'2017-11-22 15:07:22','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(455,'2017-11-22 15:07:52','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(456,'2017-11-22 15:07:58','Viewed Finance Fiscal Yr Setting page','10932104','192.168.1.21'),(457,'2017-11-22 15:07:58','Viewed Finance Fiscal Yr Setting page','10932104','192.168.1.21'),(458,'2017-11-22 15:08:03','View Administrator*s Dashboard','admin','127.0.0.1'),(459,'2017-11-22 15:08:07','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(460,'2017-11-22 15:09:29','Successful Login','admin','127.0.0.1'),(461,'2017-11-22 15:09:30','View Administrator*s Dashboard','admin','127.0.0.1'),(462,'2017-11-22 15:09:38','Un-Successful Login','10932104','192.168.1.21'),(463,'2017-11-22 15:09:47','Successful Login','10932104','192.168.1.21'),(464,'2017-11-22 15:09:48','View Accountant*s Dashboard','10932104','192.168.1.21'),(465,'2017-11-22 15:09:50','View Finance Dashboard','10932104','192.168.1.21'),(466,'2017-11-22 15:09:52','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(467,'2017-11-22 15:10:15','View Finance Dashboard','admin','127.0.0.1'),(468,'2017-11-22 15:10:23','Viewed Finance Printed Estimates Setting page','admin','127.0.0.1'),(469,'2017-11-22 15:10:27','Viewed Finance Printed Estimates Setting page','admin','127.0.0.1'),(470,'2017-11-22 15:10:28','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(471,'2017-11-22 15:11:00','Viewed Finance Record Balances page','10932104','192.168.1.21'),(472,'2017-11-22 15:11:01','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(473,'2017-11-22 15:11:16','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(474,'2017-11-22 15:11:39','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(475,'2017-11-22 15:11:43','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(476,'2017-11-22 15:11:46','Viewed Finance Printed Estimates Setting page','admin','127.0.0.1'),(477,'2017-11-22 15:11:46','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(478,'2017-11-22 15:11:47','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(479,'2017-11-22 15:11:51','Viewed Finance Printed Estimates Setting page','admin','127.0.0.1'),(480,'2017-11-22 15:11:52','Viewed Finance Printed Estimates Setting page','admin','127.0.0.1'),(481,'2017-11-22 15:13:28','Viewed Finance Printed Estimates Setting page','admin','127.0.0.1'),(482,'2017-11-22 15:13:29','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(483,'2017-11-22 15:13:38','Viewed Finance Printed Estimates Setting page','admin','127.0.0.1'),(484,'2017-11-22 15:13:41','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(485,'2017-11-22 15:13:53','Viewed Finance Printed Estimates Setting page','admin','127.0.0.1'),(486,'2017-11-22 15:13:55','Viewed Finance Printed Estimates Setting page','admin','127.0.0.1'),(487,'2017-11-22 15:13:56','Viewed Finance Printed Estimates Setting page','admin','127.0.0.1'),(488,'2017-11-22 15:14:41','Viewed Finance Printed Estimates Setting page','admin','127.0.0.1'),(489,'2017-11-22 15:14:56','Viewed Finance Printed Estimates Setting page','admin','127.0.0.1'),(490,'2017-11-22 15:14:58','Viewed Finance Printed Estimates Setting page','admin','127.0.0.1'),(491,'2017-11-22 15:15:51','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(492,'2017-11-22 15:17:27','Viewed Votehead Balances page','10932104','192.168.1.21'),(493,'2017-11-22 15:17:29','Viewed Votehead Balances page','10932104','192.168.1.21'),(494,'2017-11-22 15:17:31','Viewed Votehead Balances page','10932104','192.168.1.21'),(495,'2017-11-22 15:17:33','Viewed Receipt Copy 1','10932104','192.168.1.21'),(496,'2017-11-22 15:37:34','Viewed Votehead Balances page','admin','127.0.0.1'),(497,'2017-11-22 15:37:37','Viewed Votehead Balances page','admin','127.0.0.1'),(498,'2017-11-22 15:37:38','Viewed Votehead Balances page','admin','127.0.0.1'),(499,'2017-11-22 15:37:40','Viewed Receipt Copy 1','admin','127.0.0.1'),(500,'2017-11-22 15:39:30','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(501,'2017-11-22 15:39:50','Viewed Votehead Balances page','10932104','192.168.1.21'),(502,'2017-11-22 15:40:00','Viewed Votehead Balances page','10932104','192.168.1.21'),(503,'2017-11-22 15:40:17','Viewed Votehead Balances page','10932104','192.168.1.21'),(504,'2017-11-22 15:41:10','Viewed Finance pocket money page','10932104','192.168.1.21'),(505,'2017-11-22 15:41:24','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(506,'2017-11-22 15:41:38','Viewed Votehead Balances page','10932104','192.168.1.21'),(507,'2017-11-22 15:42:06','Viewed Votehead Balances page','10932104','192.168.1.21'),(508,'2017-11-22 15:42:11','Viewed Votehead Balances page','10932104','192.168.1.21'),(509,'2017-11-22 15:42:27','Viewed Receipt Copy 1','10932104','192.168.1.21'),(510,'2017-11-22 15:45:10','Viewed Votehead Balances page','admin','127.0.0.1'),(511,'2017-11-22 15:45:12','Viewed fees balances','admin','127.0.0.1'),(512,'2017-11-22 15:45:13','Viewed Finance Printed Estimates Setting page','admin','127.0.0.1'),(513,'2017-11-22 15:45:14','Viewed Votehead Balances page','admin','127.0.0.1'),(514,'2017-11-22 15:45:15','Viewed fees register','admin','127.0.0.1'),(515,'2017-11-22 15:45:17','Viewed fees register','admin','127.0.0.1'),(516,'2017-11-22 15:45:20','Viewed Votehead Balances page','admin','127.0.0.1'),(517,'2017-11-22 15:45:25','Viewed Votehead Balances page','admin','127.0.0.1'),(518,'2017-11-22 15:45:28','Viewed Votehead Balances page','admin','127.0.0.1'),(519,'2017-11-22 15:45:38','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(520,'2017-11-22 15:45:42','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(521,'2017-11-22 15:45:52','Viewed Votehead Balances page','10932104','192.168.1.21'),(522,'2017-11-22 15:45:55','Viewed Votehead Balances page','10932104','192.168.1.21'),(523,'2017-11-22 15:46:01','Viewed Votehead Balances page','10932104','192.168.1.21'),(524,'2017-11-22 15:46:09','Viewed Receipt Copy 1','10932104','192.168.1.21'),(525,'2017-11-22 15:46:29','View Administrator*s Dashboard','admin','127.0.0.1'),(526,'2017-11-22 15:47:01','Viewed fees register','10932104','192.168.1.21'),(527,'2017-11-22 15:47:08','Viewed fees register','10932104','192.168.1.21'),(528,'2017-11-22 15:47:24','Viewed Votehead Balances page','10932104','192.168.1.21'),(529,'2017-11-22 15:47:28','Viewed Votehead Balances page','10932104','192.168.1.21'),(530,'2017-11-22 15:47:54','Viewed fees register','10932104','192.168.1.21'),(531,'2017-11-22 15:48:02','Viewed fees register','10932104','192.168.1.21'),(532,'2017-11-22 15:48:38','Viewed Votehead Balances page','10932104','192.168.1.21'),(533,'2017-11-22 15:48:39','Viewed Votehead Balances page','10932104','192.168.1.21'),(534,'2017-11-22 15:48:41','Viewed Votehead Balances page','10932104','192.168.1.21'),(535,'2017-11-22 15:49:02','Viewed fees register','10932104','192.168.1.21'),(536,'2017-11-22 15:49:14','Viewed fees register','10932104','192.168.1.21'),(537,'2017-11-22 15:49:26','View Administrator*s Dashboard','admin','127.0.0.1'),(538,'2017-11-22 15:49:29','Viewed fees register','10932104','192.168.1.21'),(539,'2017-11-22 15:49:48','View Administrator*s Dashboard','admin','127.0.0.1'),(540,'2017-11-22 15:49:57','Viewed fees register','10932104','192.168.1.21'),(541,'2017-11-22 15:50:09','Viewed fees register','10932104','192.168.1.21'),(542,'2017-11-22 15:50:42','View Administrator*s Dashboard','admin','127.0.0.1'),(543,'2017-11-22 15:51:51','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(544,'2017-11-22 15:51:51','Viewed Votehead Balances page','10932104','192.168.1.21'),(545,'2017-11-22 15:51:56','Viewed Votehead Balances page','10932104','192.168.1.21'),(546,'2017-11-22 15:52:09','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(547,'2017-11-22 15:52:40','Viewed Finance Fiscal Yr Setting page','10932104','192.168.1.21'),(548,'2017-11-22 15:52:42','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(549,'2017-11-22 15:53:17','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(550,'2017-11-22 15:53:18','Added a new Bank Account PETTY CASH','10932104','192.168.1.21'),(551,'2017-11-22 15:53:19','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(552,'2017-11-22 15:53:23','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(553,'2017-11-22 15:53:54','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(554,'2017-11-22 15:53:54','made an expese on LT&T on TYRE CHANGE for  200','10932104','192.168.1.21'),(555,'2017-11-22 15:53:55','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(556,'2017-11-22 15:55:42','Viewed Finance Fiscal Yr Setting page','10932104','192.168.1.21'),(557,'2017-11-22 15:55:45','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(558,'2017-11-22 15:55:49','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(559,'2017-11-22 15:55:54','View Administrator*s Dashboard','admin','127.0.0.1'),(560,'2017-11-22 15:55:59','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(561,'2017-11-22 15:56:40','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(562,'2017-11-22 15:57:01','View Administrator*s Dashboard','admin','127.0.0.1'),(563,'2017-11-22 15:57:03','View Administrator*s Dashboard','admin','127.0.0.1'),(564,'2017-11-22 15:58:05','View school enrollment page','admin','127.0.0.1'),(565,'2017-11-22 15:58:37','View Administrator*s Dashboard','admin','127.0.0.1'),(566,'2017-11-22 15:58:55','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(567,'2017-11-22 16:00:48','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(568,'2017-11-22 16:01:56','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(569,'2017-11-22 16:02:53','Successful Logout','10932104','192.168.1.21'),(570,'2017-11-22 16:03:32','View Administrator*s Dashboard','admin','127.0.0.1'),(571,'2017-11-22 16:04:00','View Administrator*s Dashboard','admin','127.0.0.1'),(572,'2017-11-22 16:04:11','Successful Login','10932104','192.168.1.21'),(573,'2017-11-22 16:04:11','View Accountant*s Dashboard','10932104','192.168.1.21'),(574,'2017-11-22 16:04:42','View Finance Dashboard','10932104','192.168.1.21'),(575,'2017-11-22 16:04:51','View School Setting Page','admin','127.0.0.1'),(576,'2017-11-22 16:04:53','Viewed Settings streams page','admin','127.0.0.1'),(577,'2017-11-22 16:04:54','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(578,'2017-11-22 16:04:55','View school enrollment page','admin','127.0.0.1'),(579,'2017-11-22 16:04:56','Backed up Database','admin','127.0.0.1'),(580,'2017-11-22 16:05:03','View Administrator*s Dashboard','admin','127.0.0.1'),(581,'2017-11-22 16:05:03','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(582,'2017-11-22 16:05:12','Viewed student list','admin','127.0.0.1'),(583,'2017-11-22 16:05:13','Viewed student list','admin','127.0.0.1'),(584,'2017-11-22 16:05:21','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(585,'2017-11-22 16:05:21','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(586,'2017-11-22 16:05:24','View Administrator*s Dashboard','admin','127.0.0.1'),(587,'2017-11-22 16:05:29','Viewed student list','admin','127.0.0.1'),(588,'2017-11-22 16:05:29','Viewed student list','admin','127.0.0.1'),(589,'2017-11-22 16:05:40','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(590,'2017-11-22 16:06:06','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(591,'2017-11-22 16:06:18','Viewed Class list','admin','127.0.0.1'),(592,'2017-11-22 16:06:25','Viewed Class list','admin','127.0.0.1'),(593,'2017-11-22 16:07:20','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(594,'2017-11-22 16:07:49','View Administrator*s Dashboard','admin','127.0.0.1'),(595,'2017-11-22 16:07:54','View Administrator*s Dashboard','admin','127.0.0.1'),(596,'2017-11-22 16:07:56','View School Setting Page','admin','127.0.0.1'),(597,'2017-11-22 16:07:58','Viewed Settings streams page','admin','127.0.0.1'),(598,'2017-11-22 16:07:59','View school enrollment page','admin','127.0.0.1'),(599,'2017-11-22 16:08:43','View Administrator*s Dashboard','admin','127.0.0.1'),(600,'2017-11-22 16:12:39','Backed up Database','admin','127.0.0.1'),(601,'2017-11-22 16:12:41','Backed up Database','admin','127.0.0.1'),(602,'2017-11-23 08:12:57','Successful Login','admin','192.168.1.235'),(603,'2017-11-23 08:12:58','View Administrator*s Dashboard','admin','192.168.1.235'),(604,'2017-11-23 08:13:05','View HR Dashboard','admin','192.168.1.235'),(605,'2017-11-23 08:43:45','Un-Successful Login','daniel','192.168.1.21'),(606,'2017-11-23 08:44:22','Successful Login','10932104','192.168.1.21'),(607,'2017-11-23 08:44:22','View Accountant*s Dashboard','10932104','192.168.1.21'),(608,'2017-11-23 08:45:31','View Finance Dashboard','10932104','192.168.1.21'),(609,'2017-11-23 08:45:47','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(610,'2017-11-23 09:10:48','Un-Successful Login','10210932104','192.168.1.21'),(611,'2017-11-23 09:11:14','Successful Login','10932104','192.168.1.21'),(612,'2017-11-23 09:11:15','View Accountant*s Dashboard','10932104','192.168.1.21'),(613,'2017-11-23 09:11:33','View Finance Dashboard','10932104','192.168.1.21'),(614,'2017-11-23 09:11:52','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(615,'2017-11-23 09:33:44','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(616,'2017-11-23 09:36:25','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(617,'2017-11-23 09:38:10','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(618,'2017-11-23 09:40:31','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(619,'2017-11-23 09:40:46','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(620,'2017-11-23 09:43:31','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(621,'2017-11-23 09:46:52','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(622,'2017-11-23 09:53:29','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(623,'2017-11-23 09:53:57','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(624,'2017-11-23 09:54:06','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(625,'2017-11-23 09:54:06','Viewed Printed Estimates page','10932104','192.168.1.21'),(626,'2017-11-23 09:54:29','Viewed Finance Record Balances page','10932104','192.168.1.21'),(627,'2017-11-23 09:54:32','Viewed Finance Record Balances page','10932104','192.168.1.21'),(628,'2017-11-23 09:54:33','Viewed Finance Record Balances page','10932104','192.168.1.21'),(629,'2017-11-23 09:54:33','Viewed Finance Record Balances page','10932104','192.168.1.21'),(630,'2017-11-23 11:11:00','Successful Login','admin','192.168.1.235'),(631,'2017-11-23 11:11:00','View Administrator*s Dashboard','admin','192.168.1.235'),(632,'2017-11-23 11:11:06','View Finance Dashboard','admin','192.168.1.235'),(633,'2017-11-23 11:11:14','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(634,'2017-11-23 11:11:32','Viewed Finance Printed Estimates Setting page','admin','192.168.1.235'),(635,'2017-11-23 11:11:36','Viewed Finance Printed Estimates Setting page','admin','192.168.1.235'),(636,'2017-11-23 11:11:44','Backed up Database','admin','192.168.1.235'),(637,'2017-11-23 11:11:50','Viewed Finance Record Balances page','admin','192.168.1.235'),(638,'2017-11-23 11:11:55','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(639,'2017-11-23 11:12:02','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(640,'2017-11-23 11:12:27','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(641,'2017-11-23 11:12:33','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(642,'2017-11-23 11:12:49','Viewed Votehead Balances page','admin','192.168.1.235'),(643,'2017-11-24 10:05:15','Un-Successful Login','11054704','127.0.0.1'),(644,'2017-11-24 10:05:54','Successful Login','11054704','127.0.0.1'),(645,'2017-11-24 10:05:54','View Secretary*s Dashboard','11054704','127.0.0.1'),(646,'2017-11-24 10:06:16','Successful Login','10932104','192.168.1.21'),(647,'2017-11-24 10:06:16','View Accountant*s Dashboard','10932104','192.168.1.21'),(648,'2017-11-24 10:07:32','View Finance Dashboard','10932104','192.168.1.21'),(649,'2017-11-24 10:07:35','Viewed Finance Fiscal Yr Setting page','10932104','192.168.1.21'),(650,'2017-11-24 10:07:35','View Secretary*s Dashboard','11054704','127.0.0.1'),(651,'2017-11-24 10:07:38','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(652,'2017-11-24 10:07:41','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(653,'2017-11-24 10:07:42','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(654,'2017-11-24 10:07:42','Viewed Printed Estimates page','10932104','192.168.1.21'),(655,'2017-11-24 10:07:45','View Secretary*s Dashboard','11054704','127.0.0.1'),(656,'2017-11-24 10:07:50','Viewed Printed Estimates page','10932104','192.168.1.21'),(657,'2017-11-24 10:07:56','Viewed Printed Estimates page','10932104','192.168.1.21'),(658,'2017-11-24 10:08:00','View Secretary*s Dashboard','11054704','127.0.0.1'),(659,'2017-11-24 10:08:03','Viewed Printed Estimates page','10932104','192.168.1.21'),(660,'2017-11-24 10:08:10','Viewed Finance Printed Estimates Setting page','10932104','192.168.1.21'),(661,'2017-11-24 10:08:17','View Secretary*s Dashboard','11054704','127.0.0.1'),(662,'2017-11-24 10:08:22','View Secretary*s Dashboard','11054704','127.0.0.1'),(663,'2017-11-24 10:08:27','View Secretary*s Dashboard','11054704','127.0.0.1'),(664,'2017-11-24 10:08:35','Viewed student list','11054704','127.0.0.1'),(665,'2017-11-24 10:08:35','Viewed student list','11054704','127.0.0.1'),(666,'2017-11-24 10:08:40','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(667,'2017-11-24 10:08:42','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(668,'2017-11-24 10:08:56','View Secretary*s Dashboard','11054704','127.0.0.1'),(669,'2017-11-24 10:09:01','Viewed student list','11054704','127.0.0.1'),(670,'2017-11-24 10:09:01','Viewed student list','11054704','127.0.0.1'),(671,'2017-11-24 10:09:17','View Secretary*s Dashboard','11054704','127.0.0.1'),(672,'2017-11-24 10:09:20','Viewed student list','11054704','127.0.0.1'),(673,'2017-11-24 10:09:20','Viewed student list','11054704','127.0.0.1'),(674,'2017-11-24 10:09:52','View Secretary*s Dashboard','11054704','127.0.0.1'),(675,'2017-11-24 10:09:56','Viewed student list','11054704','127.0.0.1'),(676,'2017-11-24 10:09:56','Viewed student list','11054704','127.0.0.1'),(677,'2017-11-24 10:11:09','View Finance Dashboard','10932104','192.168.1.21'),(678,'2017-11-24 10:11:10','View Accountant*s Dashboard','10932104','192.168.1.21'),(679,'2017-11-24 10:11:15','View Finance Dashboard','10932104','192.168.1.21'),(680,'2017-11-24 10:11:21','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(681,'2017-11-24 10:11:43','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(682,'2017-11-24 10:13:19','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(683,'2017-11-24 10:14:30','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(684,'2017-11-24 10:14:34','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(685,'2017-11-24 10:15:01','Edited 4141 Details','11054704','127.0.0.1'),(686,'2017-11-24 10:15:02','Viewed student list','11054704','127.0.0.1'),(687,'2017-11-24 10:15:58','Edited 4141 Details','11054704','127.0.0.1'),(688,'2017-11-24 10:15:59','Viewed student list','11054704','127.0.0.1'),(689,'2017-11-24 10:17:06','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(690,'2017-11-24 10:17:21','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(691,'2017-11-24 10:17:43','Edited 4141 Details','11054704','127.0.0.1'),(692,'2017-11-24 10:17:45','Viewed student list','11054704','127.0.0.1'),(693,'2017-11-24 10:17:57','View Secretary*s Dashboard','11054704','127.0.0.1'),(694,'2017-11-24 10:18:00','Viewed student list','11054704','127.0.0.1'),(695,'2017-11-24 10:18:01','Viewed student list','11054704','127.0.0.1'),(696,'2017-11-24 10:20:02','Edited 4428 Details','11054704','127.0.0.1'),(697,'2017-11-24 10:20:03','Viewed student list','11054704','127.0.0.1'),(698,'2017-11-24 10:20:11','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(699,'2017-11-24 10:20:39','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(700,'2017-11-24 10:20:39','made an expese on LT&T on TYRE CHANGE for  200','10932104','192.168.1.21'),(701,'2017-11-24 10:20:40','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(702,'2017-11-24 10:23:16','View Secretary*s Dashboard','11054704','127.0.0.1'),(703,'2017-11-24 10:23:19','Viewed student list','11054704','127.0.0.1'),(704,'2017-11-24 10:23:19','Viewed student list','11054704','127.0.0.1'),(705,'2017-11-24 10:26:08','Viewed student list','11054704','127.0.0.1'),(706,'2017-11-24 10:26:09','Viewed student list','11054704','127.0.0.1'),(707,'2017-11-24 10:28:24','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(708,'2017-11-24 10:28:26','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(709,'2017-11-24 10:28:53','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(710,'2017-11-24 10:29:00','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(711,'2017-11-24 10:29:12','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(712,'2017-11-24 10:29:22','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(713,'2017-11-24 10:29:25','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(714,'2017-11-24 10:29:26','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(715,'2017-11-24 10:29:34','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(716,'2017-11-24 10:29:36','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(717,'2017-11-24 10:29:38','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(718,'2017-11-24 10:29:46','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(719,'2017-11-24 10:29:54','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(720,'2017-11-24 10:29:59','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(721,'2017-11-24 10:30:02','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(722,'2017-11-24 10:30:08','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(723,'2017-11-24 10:30:10','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(724,'2017-11-24 10:30:32','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(725,'2017-11-24 10:30:32','New Votehead LT&T','10932104','192.168.1.21'),(726,'2017-11-24 10:30:33','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(727,'2017-11-24 10:30:44','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(728,'2017-11-24 10:30:44','New Votehead PE','10932104','192.168.1.21'),(729,'2017-11-24 10:30:45','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(730,'2017-11-24 10:30:57','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(731,'2017-11-24 10:30:57','New Votehead RMI','10932104','192.168.1.21'),(732,'2017-11-24 10:30:58','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(733,'2017-11-24 10:31:08','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(734,'2017-11-24 10:31:09','New Votehead ADMIN COST','10932104','192.168.1.21'),(735,'2017-11-24 10:31:10','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(736,'2017-11-24 10:31:20','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(737,'2017-11-24 10:31:20','New Votehead ACTIVITY','10932104','192.168.1.21'),(738,'2017-11-24 10:31:21','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(739,'2017-11-24 10:31:38','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(740,'2017-11-24 10:31:40','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(741,'2017-11-24 10:31:43','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(742,'2017-11-24 10:32:36','Viewed student list','11054704','127.0.0.1'),(743,'2017-11-24 10:32:36','Viewed student list','11054704','127.0.0.1'),(744,'2017-11-24 10:33:41','Viewed student list','11054704','127.0.0.1'),(745,'2017-11-24 10:33:53','Viewed student list','11054704','127.0.0.1'),(746,'2017-11-24 10:35:04','Viewed Votehead Balances page','10932104','192.168.1.21'),(747,'2017-11-24 10:35:06','Viewed fees balances','10932104','192.168.1.21'),(748,'2017-11-24 10:35:37','Viewed fees balances','10932104','192.168.1.21'),(749,'2017-11-24 10:36:32','Viewed fees balances','10932104','192.168.1.21'),(750,'2017-11-24 10:36:33','Viewed Votehead Balances page','10932104','192.168.1.21'),(751,'2017-11-24 10:36:40','Viewed fees balances','10932104','192.168.1.21'),(752,'2017-11-24 10:37:06','Viewed fees balances','10932104','192.168.1.21'),(753,'2017-11-24 10:37:36','Viewed fees balances','10932104','192.168.1.21'),(754,'2017-11-24 10:38:28','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(755,'2017-11-24 10:42:02','Viewed student list','11054704','127.0.0.1'),(756,'2017-11-24 10:42:03','Viewed student list','11054704','127.0.0.1'),(757,'2017-11-24 10:43:22','Viewed student list','11054704','127.0.0.1'),(758,'2017-11-24 10:44:05','Moved 975476to Stranferred','11054704','127.0.0.1'),(759,'2017-11-24 10:44:20','Viewed student list','11054704','127.0.0.1'),(760,'2017-11-24 10:44:20','Viewed student list','11054704','127.0.0.1'),(761,'2017-11-24 10:44:44','Viewed student list','11054704','127.0.0.1'),(762,'2017-11-24 10:44:48','Viewed student list','11054704','127.0.0.1'),(763,'2017-11-24 10:44:48','Viewed student list','11054704','127.0.0.1'),(764,'2017-11-24 10:44:48','Viewed student list','11054704','127.0.0.1'),(765,'2017-11-24 10:44:48','Viewed student list','11054704','127.0.0.1'),(766,'2017-11-24 10:45:07','Viewed student list','11054704','127.0.0.1'),(767,'2017-11-24 10:45:08','Viewed student list','11054704','127.0.0.1'),(768,'2017-11-24 10:45:35','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(769,'2017-11-24 10:46:08','View Secretary*s Dashboard','11054704','127.0.0.1'),(770,'2017-11-24 10:46:19','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(771,'2017-11-24 10:46:19','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(772,'2017-11-24 10:46:23','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(773,'2017-11-24 10:46:23','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(774,'2017-11-24 10:46:52','Viewed student list','11054704','127.0.0.1'),(775,'2017-11-24 10:46:52','Viewed student list','11054704','127.0.0.1'),(776,'2017-11-24 10:47:26','Viewed student list','11054704','127.0.0.1'),(777,'2017-11-24 10:47:34','Viewed Votehead Balances page','10932104','192.168.1.21'),(778,'2017-11-24 10:47:37','Viewed fees register','10932104','192.168.1.21'),(779,'2017-11-24 10:47:52','Viewed fees register','10932104','192.168.1.21'),(780,'2017-11-24 10:48:14','Viewed fees register','10932104','192.168.1.21'),(781,'2017-11-24 10:49:01','Viewed Votehead Balances page','10932104','192.168.1.21'),(782,'2017-11-24 10:49:18','Viewed Votehead Balances page','10932104','192.168.1.21'),(783,'2017-11-24 10:49:22','Viewed student list','11054704','127.0.0.1'),(784,'2017-11-24 10:49:22','Viewed student list','11054704','127.0.0.1'),(785,'2017-11-24 10:50:51','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(786,'2017-11-24 10:50:57','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(787,'2017-11-24 10:51:10','Restored 975476 From Deletion','11054704','127.0.0.1'),(788,'2017-11-24 10:51:19','Viewed student list','11054704','127.0.0.1'),(789,'2017-11-24 10:51:20','Viewed student list','11054704','127.0.0.1'),(790,'2017-11-24 10:51:48','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(791,'2017-11-24 10:51:56','View Secretary*s Dashboard','11054704','127.0.0.1'),(792,'2017-11-24 10:52:08','Viewed student list','11054704','127.0.0.1'),(793,'2017-11-24 10:52:08','Viewed student list','11054704','127.0.0.1'),(794,'2017-11-24 10:53:23','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(795,'2017-11-24 10:54:20','Moved 975476to Stranferred','11054704','127.0.0.1'),(796,'2017-11-24 10:54:44','deleted 975476to completely','11054704','127.0.0.1'),(797,'2017-11-24 10:54:59','Viewed student list','11054704','127.0.0.1'),(798,'2017-11-24 10:54:59','Viewed student list','11054704','127.0.0.1'),(799,'2017-11-24 10:55:57','Viewed student list','11054704','127.0.0.1'),(800,'2017-11-24 10:57:20','View Secretary*s Dashboard','11054704','127.0.0.1'),(801,'2017-11-24 10:57:47','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(802,'2017-11-24 10:57:49','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(803,'2017-11-24 10:58:08','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(804,'2017-11-24 10:58:29','Viewed student list','11054704','127.0.0.1'),(805,'2017-11-24 10:58:29','Viewed student list','11054704','127.0.0.1'),(806,'2017-11-24 11:02:31','View Secretary*s Dashboard','11054704','127.0.0.1'),(807,'2017-11-24 11:02:42','Viewed student list','11054704','127.0.0.1'),(808,'2017-11-24 11:02:42','Viewed student list','11054704','127.0.0.1'),(809,'2017-11-24 11:03:27','Edited 110542 Details','11054704','127.0.0.1'),(810,'2017-11-24 11:03:28','Viewed student list','11054704','127.0.0.1'),(811,'2017-11-24 11:03:36','View Secretary*s Dashboard','11054704','127.0.0.1'),(812,'2017-11-24 11:03:40','Viewed student list','11054704','127.0.0.1'),(813,'2017-11-24 11:03:40','Viewed student list','11054704','127.0.0.1'),(814,'2017-11-24 11:04:17','Edited 110542 Details','11054704','127.0.0.1'),(815,'2017-11-24 11:04:19','Viewed student list','11054704','127.0.0.1'),(816,'2017-11-24 11:05:18','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(817,'2017-11-24 11:05:28','View Finance Dashboard','10932104','192.168.1.21'),(818,'2017-11-24 11:05:41','Viewed student list','10932104','192.168.1.21'),(819,'2017-11-24 11:05:54','Viewed student list','11054704','127.0.0.1'),(820,'2017-11-24 11:07:00','View Secretary*s Dashboard','11054704','127.0.0.1'),(821,'2017-11-24 11:07:03','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(822,'2017-11-24 11:07:05','Viewed student list','11054704','127.0.0.1'),(823,'2017-11-24 11:07:05','Viewed student list','11054704','127.0.0.1'),(824,'2017-11-24 11:07:13','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(825,'2017-11-24 11:07:16','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(826,'2017-11-24 11:08:22','Viewed student list','11054704','127.0.0.1'),(827,'2017-11-24 11:08:37','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(828,'2017-11-24 11:08:45','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(829,'2017-11-24 11:08:54','View Secretary*s Dashboard','11054704','127.0.0.1'),(830,'2017-11-24 11:09:02','Viewed student list','11054704','127.0.0.1'),(831,'2017-11-24 11:09:02','Viewed student list','11054704','127.0.0.1'),(832,'2017-11-24 11:09:33','Viewed student list','11054704','127.0.0.1'),(833,'2017-11-24 11:09:33','Viewed student list','11054704','127.0.0.1'),(834,'2017-11-24 11:09:33','Viewed student list','11054704','127.0.0.1'),(835,'2017-11-24 11:09:33','Viewed student list','11054704','127.0.0.1'),(836,'2017-11-24 11:09:57','Viewed student list','11054704','127.0.0.1'),(837,'2017-11-24 11:09:57','Viewed student list','11054704','127.0.0.1'),(838,'2017-11-24 11:10:12','Viewed student list','11054704','127.0.0.1'),(839,'2017-11-24 11:10:12','Viewed student list','11054704','127.0.0.1'),(840,'2017-11-24 11:10:26','Viewed student list','11054704','127.0.0.1'),(841,'2017-11-24 11:10:26','Viewed student list','11054704','127.0.0.1'),(842,'2017-11-24 11:11:17','Viewed student list','11054704','127.0.0.1'),(843,'2017-11-24 11:13:19','Moved 110542to Stranferred','11054704','127.0.0.1'),(844,'2017-11-24 11:13:45','deleted 110542to completely','11054704','127.0.0.1'),(845,'2017-11-24 11:13:58','View Secretary*s Dashboard','11054704','127.0.0.1'),(846,'2017-11-24 11:14:10','Viewed student list','11054704','127.0.0.1'),(847,'2017-11-24 11:14:10','Viewed student list','11054704','127.0.0.1'),(848,'2017-11-24 11:17:14','Successful Login','10932104','192.168.1.21'),(849,'2017-11-24 11:17:14','View Accountant*s Dashboard','10932104','192.168.1.21'),(850,'2017-11-24 11:17:16','View Finance Dashboard','10932104','192.168.1.21'),(851,'2017-11-24 11:17:18','Viewed Finance Record Balances page','10932104','192.168.1.21'),(852,'2017-11-24 11:17:32','Viewed student list','11054704','127.0.0.1'),(853,'2017-11-24 11:17:32','Viewed student list','11054704','127.0.0.1'),(854,'2017-11-24 11:18:22','Moved 110542to Stranferred','11054704','127.0.0.1'),(855,'2017-11-24 11:18:37','deleted 110542to completely','11054704','127.0.0.1'),(856,'2017-11-24 11:18:45','Viewed student list','11054704','127.0.0.1'),(857,'2017-11-24 11:18:46','Viewed student list','11054704','127.0.0.1'),(858,'2017-11-24 11:19:22','Viewed student list','11054704','127.0.0.1'),(859,'2017-11-24 11:19:22','Viewed student list','11054704','127.0.0.1'),(860,'2017-11-24 11:19:34','View Secretary*s Dashboard','11054704','127.0.0.1'),(861,'2017-11-24 11:21:24','View Secretary*s Dashboard','11054704','127.0.0.1'),(862,'2017-11-24 11:21:26','View Secretary*s Dashboard','11054704','127.0.0.1'),(863,'2017-11-24 11:21:29','View Secretary*s Dashboard','11054704','127.0.0.1'),(864,'2017-11-24 11:21:32','View Secretary*s Dashboard','11054704','127.0.0.1'),(865,'2017-11-24 11:21:33','View Secretary*s Dashboard','11054704','127.0.0.1'),(866,'2017-11-24 11:21:34','View Secretary*s Dashboard','11054704','127.0.0.1'),(867,'2017-11-24 11:21:36','Backed up Database','11054704','127.0.0.1'),(868,'2017-11-24 11:21:39','View Secretary*s Dashboard','11054704','127.0.0.1'),(869,'2017-11-24 11:21:47','Viewed student list','11054704','127.0.0.1'),(870,'2017-11-24 11:21:47','Viewed student list','11054704','127.0.0.1'),(871,'2017-11-24 11:21:59','Viewed student list','11054704','127.0.0.1'),(872,'2017-11-24 11:21:59','Viewed student list','11054704','127.0.0.1'),(873,'2017-11-24 11:22:12','Viewed Class list','11054704','127.0.0.1'),(874,'2017-11-24 11:22:20','Viewed student list','11054704','127.0.0.1'),(875,'2017-11-24 11:22:20','Viewed student list','11054704','127.0.0.1'),(876,'2017-11-24 11:22:28','Viewed Class list','11054704','127.0.0.1'),(877,'2017-11-24 11:22:29','Viewed Class list','11054704','127.0.0.1'),(878,'2017-11-24 11:22:45','Viewed Class list','11054704','127.0.0.1'),(879,'2017-11-24 11:22:51','View Secretary*s Dashboard','11054704','127.0.0.1'),(880,'2017-11-24 11:22:57','Viewed student list','11054704','127.0.0.1'),(881,'2017-11-24 11:22:57','Viewed student list','11054704','127.0.0.1'),(882,'2017-11-24 11:23:15','Viewed Class list','11054704','127.0.0.1'),(883,'2017-11-24 11:23:28','Viewed Class list','11054704','127.0.0.1'),(884,'2017-11-24 11:23:34','Viewed Finance Record Balances page','10932104','192.168.1.21'),(885,'2017-11-24 11:24:32','Viewed Class list','11054704','127.0.0.1'),(886,'2017-11-24 11:24:36','Viewed Class list','11054704','127.0.0.1'),(887,'2017-11-24 11:25:14','Viewed Class list','11054704','127.0.0.1'),(888,'2017-11-24 11:25:18','Viewed Class list','11054704','127.0.0.1'),(889,'2017-11-24 11:27:13','Viewed Class list','11054704','127.0.0.1'),(890,'2017-11-24 11:27:15','Viewed Class list','11054704','127.0.0.1'),(891,'2017-11-24 11:30:48','Viewed Finance Record Balances page','10932104','192.168.1.21'),(892,'2017-11-24 11:35:39','View Secretary*s Dashboard','11054704','127.0.0.1'),(893,'2017-11-24 11:35:43','Viewed student list','11054704','127.0.0.1'),(894,'2017-11-24 11:35:43','Viewed student list','11054704','127.0.0.1'),(895,'2017-11-24 11:36:31','Viewed Class list','11054704','127.0.0.1'),(896,'2017-11-24 11:36:34','Viewed Class list','11054704','127.0.0.1'),(897,'2017-11-24 11:36:42','Viewed Class list','11054704','127.0.0.1'),(898,'2017-11-24 11:36:45','Viewed Class list','11054704','127.0.0.1'),(899,'2017-11-24 11:36:58','Viewed Class list','11054704','127.0.0.1'),(900,'2017-11-24 11:37:02','Viewed Class list','11054704','127.0.0.1'),(901,'2017-11-24 11:41:51','Viewed Class list','11054704','127.0.0.1'),(902,'2017-11-24 11:42:55','Viewed Class list','11054704','127.0.0.1'),(903,'2017-11-24 11:43:00','Viewed Class list','11054704','127.0.0.1'),(904,'2017-11-24 11:43:02','Viewed Class list','11054704','127.0.0.1'),(905,'2017-11-24 11:43:27','Viewed Class list','11054704','127.0.0.1'),(906,'2017-11-24 11:52:05','Viewed Class list','11054704','127.0.0.1'),(907,'2017-11-24 11:52:07','Viewed Class list','11054704','127.0.0.1'),(908,'2017-11-24 11:53:27','Viewed Class list','11054704','127.0.0.1'),(909,'2017-11-24 11:53:28','Viewed Class list','11054704','127.0.0.1'),(910,'2017-11-24 11:54:02','Viewed Class list','11054704','127.0.0.1'),(911,'2017-11-24 11:54:03','Viewed Class list','11054704','127.0.0.1'),(912,'2017-11-24 11:54:24','Viewed Class list','11054704','127.0.0.1'),(913,'2017-11-24 11:54:25','Viewed Class list','11054704','127.0.0.1'),(914,'2017-11-24 11:55:20','Viewed Class list','11054704','127.0.0.1'),(915,'2017-11-24 11:55:21','Viewed Class list','11054704','127.0.0.1'),(916,'2017-11-24 11:57:44','Viewed Finance pocket money page','10932104','192.168.1.21'),(917,'2017-11-24 11:57:51','Viewed Class list','11054704','127.0.0.1'),(918,'2017-11-24 11:57:52','Viewed Class list','11054704','127.0.0.1'),(919,'2017-11-24 11:59:04','Viewed Finance pocket money page','10932104','192.168.1.21'),(920,'2017-11-24 11:59:22','Viewed Class list','11054704','127.0.0.1'),(921,'2017-11-24 11:59:24','Viewed Class list','11054704','127.0.0.1'),(922,'2017-11-24 11:59:54','Viewed Class list','11054704','127.0.0.1'),(923,'2017-11-24 11:59:55','Viewed Class list','11054704','127.0.0.1'),(924,'2017-11-24 12:02:40','Viewed Finance pocket money page','10932104','192.168.1.21'),(925,'2017-11-24 12:04:21','Viewed Class list','11054704','127.0.0.1'),(926,'2017-11-24 12:04:22','Viewed Class list','11054704','127.0.0.1'),(927,'2017-11-24 12:06:38','Viewed Class list','11054704','127.0.0.1'),(928,'2017-11-24 12:06:40','Viewed Class list','11054704','127.0.0.1'),(929,'2017-11-24 12:10:08','Viewed Class list','11054704','127.0.0.1'),(930,'2017-11-24 12:10:14','Viewed Class list','11054704','127.0.0.1'),(931,'2017-11-24 12:10:17','Viewed Class list','11054704','127.0.0.1'),(932,'2017-11-24 12:10:24','Viewed Class list','11054704','127.0.0.1'),(933,'2017-11-24 12:10:25','Viewed Class list','11054704','127.0.0.1'),(934,'2017-11-24 12:11:21','Viewed Finance pocket money page','10932104','192.168.1.21'),(935,'2017-11-24 12:12:32','Viewed Class list','11054704','127.0.0.1'),(936,'2017-11-24 12:12:34','Viewed Class list','11054704','127.0.0.1'),(937,'2017-11-24 12:14:31','Viewed Class list','11054704','127.0.0.1'),(938,'2017-11-24 12:14:33','Viewed Class list','11054704','127.0.0.1'),(939,'2017-11-24 12:14:43','Viewed Class list','11054704','127.0.0.1'),(940,'2017-11-24 12:15:12','Viewed Class list','11054704','127.0.0.1'),(941,'2017-11-24 12:16:32','Viewed Class list','11054704','127.0.0.1'),(942,'2017-11-24 12:16:38','Viewed Class list','11054704','127.0.0.1'),(943,'2017-11-24 12:18:32','Viewed Class list','11054704','127.0.0.1'),(944,'2017-11-24 12:18:43','Viewed Class list','11054704','127.0.0.1'),(945,'2017-11-24 12:18:48','Viewed Class list','11054704','127.0.0.1'),(946,'2017-11-24 12:19:01','Viewed Class list','11054704','127.0.0.1'),(947,'2017-11-24 12:19:02','Viewed Finance pocket money page','10932104','192.168.1.21'),(948,'2017-11-24 12:19:05','Viewed Class list','11054704','127.0.0.1'),(949,'2017-11-24 12:19:26','Viewed Class list','11054704','127.0.0.1'),(950,'2017-11-24 12:19:31','View Secretary*s Dashboard','11054704','127.0.0.1'),(951,'2017-11-24 12:20:57','Viewed student list','11054704','127.0.0.1'),(952,'2017-11-24 12:20:57','Viewed student list','11054704','127.0.0.1'),(953,'2017-11-24 12:21:22','Viewed student list','11054704','127.0.0.1'),(954,'2017-11-24 12:21:22','Viewed student list','11054704','127.0.0.1'),(955,'2017-11-24 12:21:40','View Secretary*s Dashboard','11054704','127.0.0.1'),(956,'2017-11-24 12:22:04','View Secretary*s Dashboard','11054704','127.0.0.1'),(957,'2017-11-24 12:22:31','Viewed Message Settings page','11054704','127.0.0.1'),(958,'2017-11-24 12:24:17','Viewed Finance pocket money page','10932104','192.168.1.21'),(959,'2017-11-24 12:26:34','Viewed Finance pocket money page','10932104','192.168.1.21'),(960,'2017-11-24 12:29:57','Viewed student list','11054704','127.0.0.1'),(961,'2017-11-24 12:29:57','Viewed student list','11054704','127.0.0.1'),(962,'2017-11-24 12:30:37','Viewed Class list','11054704','127.0.0.1'),(963,'2017-11-24 12:30:41','Viewed Class list','11054704','127.0.0.1'),(964,'2017-11-24 12:31:10','Viewed Class list','11054704','127.0.0.1'),(965,'2017-11-24 12:31:12','Viewed Class list','11054704','127.0.0.1'),(966,'2017-11-24 12:34:08','Viewed Finance pocket money page','10932104','192.168.1.21'),(967,'2017-11-24 12:35:34','Viewed Votehead Balances page','10932104','192.168.1.21'),(968,'2017-11-24 12:36:05','Viewed Votehead Balances page','10932104','192.168.1.21'),(969,'2017-11-24 12:39:57','Viewed student list','11054704','127.0.0.1'),(970,'2017-11-24 12:39:58','Viewed student list','11054704','127.0.0.1'),(971,'2017-11-24 12:42:39','Edited 4509 Details','11054704','127.0.0.1'),(972,'2017-11-24 12:42:40','Viewed student list','11054704','127.0.0.1'),(973,'2017-11-24 12:42:48','Viewed student list','11054704','127.0.0.1'),(974,'2017-11-24 12:42:48','Viewed student list','11054704','127.0.0.1'),(975,'2017-11-24 12:43:34','Viewed student list','11054704','127.0.0.1'),(976,'2017-11-24 12:43:37','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(977,'2017-11-24 12:44:09','Viewed student list','10932104','192.168.1.21'),(978,'2017-11-24 12:44:11','Viewed student list','10932104','192.168.1.21'),(979,'2017-11-24 12:44:12','Viewed student list','10932104','192.168.1.21'),(980,'2017-11-24 12:44:13','Viewed student list','10932104','192.168.1.21'),(981,'2017-11-24 12:44:25','Viewed student list','11054704','127.0.0.1'),(982,'2017-11-24 12:44:25','Viewed student list','11054704','127.0.0.1'),(983,'2017-11-24 12:45:15','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(984,'2017-11-24 12:47:08','Viewed Class list','11054704','127.0.0.1'),(985,'2017-11-24 12:47:20','Viewed Class list','11054704','127.0.0.1'),(986,'2017-11-24 12:47:33','Viewed student list','11054704','127.0.0.1'),(987,'2017-11-24 12:47:33','Viewed student list','11054704','127.0.0.1'),(988,'2017-11-24 12:47:41','Viewed student list','11054704','127.0.0.1'),(989,'2017-11-24 12:48:17','View Secretary*s Dashboard','11054704','127.0.0.1'),(990,'2017-11-24 12:48:47','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(991,'2017-11-24 12:48:54','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(992,'2017-11-24 12:49:29','Viewed student list','11054704','127.0.0.1'),(993,'2017-11-24 12:49:29','Viewed student list','11054704','127.0.0.1'),(994,'2017-11-24 12:50:31','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(995,'2017-11-24 12:51:00','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(996,'2017-11-24 12:53:01','Viewed student list','11054704','127.0.0.1'),(997,'2017-11-24 12:53:02','Viewed student list','11054704','127.0.0.1'),(998,'2017-11-24 12:53:05','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(999,'2017-11-24 12:53:18','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1000,'2017-11-24 12:54:01','Viewed Class list','11054704','127.0.0.1'),(1001,'2017-11-24 12:54:07','Viewed Class list','11054704','127.0.0.1'),(1002,'2017-11-24 12:54:38','Viewed student list','11054704','127.0.0.1'),(1003,'2017-11-24 12:54:38','Viewed student list','11054704','127.0.0.1'),(1004,'2017-11-24 12:54:41','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1005,'2017-11-24 12:54:46','Viewed Class list','11054704','127.0.0.1'),(1006,'2017-11-24 12:54:46','Viewed Class list','11054704','127.0.0.1'),(1007,'2017-11-24 12:54:46','Viewed Class list','11054704','127.0.0.1'),(1008,'2017-11-24 12:54:54','Viewed Class list','11054704','127.0.0.1'),(1009,'2017-11-24 12:55:00','Viewed Class list','11054704','127.0.0.1'),(1010,'2017-11-24 12:55:08','Viewed Class list','11054704','127.0.0.1'),(1011,'2017-11-24 12:55:41','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1012,'2017-11-24 12:56:09','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1013,'2017-11-24 12:56:23','Viewed student list','11054704','127.0.0.1'),(1014,'2017-11-24 12:56:24','Viewed student list','11054704','127.0.0.1'),(1015,'2017-11-24 12:56:32','Viewed student list','11054704','127.0.0.1'),(1016,'2017-11-24 12:56:33','Viewed student list','11054704','127.0.0.1'),(1017,'2017-11-24 12:56:50','Viewed student list','11054704','127.0.0.1'),(1018,'2017-11-24 12:56:50','Viewed student list','11054704','127.0.0.1'),(1019,'2017-11-24 12:56:59','Viewed student list','11054704','127.0.0.1'),(1020,'2017-11-24 12:56:59','Viewed student list','11054704','127.0.0.1'),(1021,'2017-11-24 12:57:02','Successful Login','admin','192.168.1.235'),(1022,'2017-11-24 12:57:03','View Administrator*s Dashboard','admin','192.168.1.235'),(1023,'2017-11-24 12:57:05','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1024,'2017-11-24 12:57:10','View HR Dashboard','admin','192.168.1.235'),(1025,'2017-11-24 12:57:21','Viewed student list','admin','192.168.1.235'),(1026,'2017-11-24 12:57:21','Viewed student list','admin','192.168.1.235'),(1027,'2017-11-24 12:57:36','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1028,'2017-11-24 12:57:43','Viewed Class list','admin','192.168.1.235'),(1029,'2017-11-24 12:57:52','Viewed Class list','admin','192.168.1.235'),(1030,'2017-11-24 12:58:20','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1031,'2017-11-24 12:58:29','View Administrator*s Dashboard','admin','192.168.1.235'),(1032,'2017-11-24 12:58:39','Viewed student list','11054704','127.0.0.1'),(1033,'2017-11-24 12:58:47','View Finance Dashboard','admin','192.168.1.235'),(1034,'2017-11-24 12:59:03','Viewed Finance Fiscal Yr Setting page','admin','192.168.1.235'),(1035,'2017-11-24 12:59:07','Moved 45320to Stranferred','11054704','127.0.0.1'),(1036,'2017-11-24 12:59:08','Viewed Finance Printed Estimates Setting page','admin','192.168.1.235'),(1037,'2017-11-24 12:59:29','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1038,'2017-11-24 12:59:33','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(1039,'2017-11-24 12:59:41','deleted 45320to completely','11054704','127.0.0.1'),(1040,'2017-11-24 12:59:57','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1041,'2017-11-24 13:00:12','Viewed Votehead Balances page','10932104','192.168.1.21'),(1042,'2017-11-24 13:00:26','Viewed Finance Printed Estimates Setting page','admin','192.168.1.235'),(1043,'2017-11-24 13:00:28','Viewed Finance Printed Estimates Setting page','admin','192.168.1.235'),(1044,'2017-11-24 13:00:32','Viewed Finance Record Balances page','admin','192.168.1.235'),(1045,'2017-11-24 13:00:34','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(1046,'2017-11-24 13:00:43','View Administrator*s Dashboard','admin','192.168.1.235'),(1047,'2017-11-24 13:01:02','Viewed Votehead Balances page','10932104','192.168.1.21'),(1048,'2017-11-24 13:01:08','Viewed Votehead Balances page','10932104','192.168.1.21'),(1049,'2017-11-24 13:01:24','Viewed Votehead Balances page','10932104','192.168.1.21'),(1050,'2017-11-24 13:01:59','View Administrator*s Dashboard','admin','192.168.1.235'),(1051,'2017-11-24 13:02:41','View School Setting Page','admin','192.168.1.235'),(1052,'2017-11-24 13:03:00','Viewed Settings streams page','admin','192.168.1.235'),(1053,'2017-11-24 13:03:41','Viewed fees register','10932104','192.168.1.21'),(1054,'2017-11-24 13:03:56','View school enrollment page','admin','192.168.1.235'),(1055,'2017-11-24 13:03:59','Viewed fees register','10932104','192.168.1.21'),(1056,'2017-11-24 13:04:09','Backed up Database','admin','192.168.1.235'),(1057,'2017-11-24 13:05:22','View Administrator*s Dashboard','admin','192.168.1.235'),(1058,'2017-11-24 13:05:25','View HR Dashboard','admin','192.168.1.235'),(1059,'2017-11-24 13:05:28','Viewed fees register','10932104','192.168.1.21'),(1060,'2017-11-24 13:05:44','Viewed HR PAYE page','admin','192.168.1.235'),(1061,'2017-11-24 13:06:04','Viewed HR Allowances page','admin','192.168.1.235'),(1062,'2017-11-24 13:06:07','Viewed Customer Bills report page','admin','192.168.1.235'),(1063,'2017-11-24 13:06:07','Viewed HR Master Payslip page','admin','192.168.1.235'),(1064,'2017-11-24 13:06:19','Viewed Customer Bills report page','admin','192.168.1.235'),(1065,'2017-11-24 13:06:19','Viewed HR Master Payslip page','admin','192.168.1.235'),(1066,'2017-11-24 13:06:26','Viewed Customer Bills report page','admin','192.168.1.235'),(1067,'2017-11-24 13:06:26','Viewed HR Master Payslip page','admin','192.168.1.235'),(1068,'2017-11-24 13:07:26','Successful Login','10932104','192.168.1.21'),(1069,'2017-11-24 13:07:27','View Accountant*s Dashboard','10932104','192.168.1.21'),(1070,'2017-11-24 13:07:32','View Finance Dashboard','10932104','192.168.1.21'),(1071,'2017-11-24 13:07:48','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1072,'2017-11-24 13:08:04','Viewed Votehead Balances page','10932104','192.168.1.21'),(1073,'2017-11-24 13:08:25','Viewed Votehead Balances page','10932104','192.168.1.21'),(1074,'2017-11-24 13:08:36','Viewed Votehead Balances page','10932104','192.168.1.21'),(1075,'2017-11-24 13:10:02','Viewed fees register','10932104','192.168.1.21'),(1076,'2017-11-24 13:10:14','Viewed fees register','10932104','192.168.1.21'),(1077,'2017-11-24 13:11:04','Viewed Class list','11054704','127.0.0.1'),(1078,'2017-11-24 13:11:11','Viewed Class list','11054704','127.0.0.1'),(1079,'2017-11-24 13:11:59','Viewed Class list','11054704','127.0.0.1'),(1080,'2017-11-24 13:12:02','Viewed Class list','11054704','127.0.0.1'),(1081,'2017-11-24 13:12:09','Viewed Class list','11054704','127.0.0.1'),(1082,'2017-11-24 13:12:11','Viewed Class list','11054704','127.0.0.1'),(1083,'2017-11-24 13:12:41','Viewed Class list','11054704','127.0.0.1'),(1084,'2017-11-24 13:12:43','Viewed Class list','11054704','127.0.0.1'),(1085,'2017-11-24 13:13:39','Viewed Class list','11054704','127.0.0.1'),(1086,'2017-11-24 13:13:40','View Secretary*s Dashboard','11054704','127.0.0.1'),(1087,'2017-11-24 13:13:46','Viewed student list','11054704','127.0.0.1'),(1088,'2017-11-24 13:13:46','Viewed student list','11054704','127.0.0.1'),(1089,'2017-11-24 13:14:12','Viewed Class list','11054704','127.0.0.1'),(1090,'2017-11-24 13:14:18','Viewed Class list','11054704','127.0.0.1'),(1091,'2017-11-24 13:19:34','Un-Successful Login','11054704','127.0.0.1'),(1092,'2017-11-24 13:19:41','Successful Login','11054704','127.0.0.1'),(1093,'2017-11-24 13:19:42','View Secretary*s Dashboard','11054704','127.0.0.1'),(1094,'2017-11-24 13:19:48','Viewed student list','11054704','127.0.0.1'),(1095,'2017-11-24 13:19:48','Viewed student list','11054704','127.0.0.1'),(1096,'2017-11-24 13:19:58','Viewed Class list','11054704','127.0.0.1'),(1097,'2017-11-24 13:20:00','Successful Login','admin','192.168.1.235'),(1098,'2017-11-24 13:20:00','Viewed Class list','11054704','127.0.0.1'),(1099,'2017-11-24 13:20:00','View Administrator*s Dashboard','admin','192.168.1.235'),(1100,'2017-11-24 13:20:08','Viewed student list','admin','192.168.1.235'),(1101,'2017-11-24 13:20:08','Viewed student list','admin','192.168.1.235'),(1102,'2017-11-24 13:20:20','Viewed Class list','admin','192.168.1.235'),(1103,'2017-11-24 13:20:29','Viewed student list','admin','192.168.1.235'),(1104,'2017-11-24 13:20:29','Viewed student list','admin','192.168.1.235'),(1105,'2017-11-24 13:20:39','View Administrator*s Dashboard','admin','192.168.1.235'),(1106,'2017-11-24 13:20:45','Viewed Settings streams page','admin','192.168.1.235'),(1107,'2017-11-24 13:21:38','Viewed Settings streams page','admin','192.168.1.235'),(1108,'2017-11-24 13:21:41','Viewed Settings streams page','admin','192.168.1.235'),(1109,'2017-11-24 13:22:09','View Administrator*s Dashboard','admin','192.168.1.235'),(1110,'2017-11-24 13:22:13','View Finance Dashboard','admin','192.168.1.235'),(1111,'2017-11-24 13:22:22','Viewed student list','admin','192.168.1.235'),(1112,'2017-11-24 13:23:37','Viewed Votehead Balances page','admin','192.168.1.235'),(1113,'2017-11-24 13:23:41','View Secretary*s Dashboard','11054704','127.0.0.1'),(1114,'2017-11-24 13:23:44','Viewed student list','11054704','127.0.0.1'),(1115,'2017-11-24 13:23:44','Viewed student list','11054704','127.0.0.1'),(1116,'2017-11-24 13:23:49','Viewed Votehead Balances page','admin','192.168.1.235'),(1117,'2017-11-24 13:23:53','Viewed Class list','11054704','127.0.0.1'),(1118,'2017-11-24 13:23:55','Viewed Class list','11054704','127.0.0.1'),(1119,'2017-11-24 13:23:58','Viewed Votehead Balances page','admin','192.168.1.235'),(1120,'2017-11-24 13:24:16','Viewed student list','11054704','127.0.0.1'),(1121,'2017-11-24 13:24:16','Viewed student list','11054704','127.0.0.1'),(1122,'2017-11-24 13:24:24','Viewed Class list','11054704','127.0.0.1'),(1123,'2017-11-24 13:24:24','Viewed Class list','11054704','127.0.0.1'),(1124,'2017-11-24 13:24:24','Viewed Class list','11054704','127.0.0.1'),(1125,'2017-11-24 13:24:24','Viewed Class list','11054704','127.0.0.1'),(1126,'2017-11-24 13:24:24','Viewed Class list','11054704','127.0.0.1'),(1127,'2017-11-24 13:24:27','Viewed Class list','11054704','127.0.0.1'),(1128,'2017-11-24 13:25:19','Viewed fees register','admin','192.168.1.235'),(1129,'2017-11-24 13:25:46','Viewed fees register','admin','192.168.1.235'),(1130,'2017-11-24 13:26:12','Viewed fees register','admin','192.168.1.235'),(1131,'2017-11-24 13:27:53','Viewed fees register','admin','192.168.1.235'),(1132,'2017-11-24 13:27:59','Viewed Class list','11054704','127.0.0.1'),(1133,'2017-11-24 13:28:00','Viewed Class list','11054704','127.0.0.1'),(1134,'2017-11-24 13:28:02','Viewed Votehead Balances page','admin','192.168.1.235'),(1135,'2017-11-24 13:28:12','Viewed Votehead Balances page','admin','192.168.1.235'),(1136,'2017-11-24 13:28:16','Successful Logout','11054704','127.0.0.1'),(1137,'2017-11-24 13:28:39','Viewed Receipt Copy 7','admin','192.168.1.235'),(1138,'2017-11-24 13:29:39','Viewed Finance pocket money page','admin','192.168.1.235'),(1139,'2017-11-24 13:32:18','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(1140,'2017-11-24 13:32:23','Viewed Finance expenses list page','admin','192.168.1.235'),(1141,'2017-11-24 13:33:06','Successful Login','11054704','127.0.0.1'),(1142,'2017-11-24 13:33:07','View Secretary*s Dashboard','11054704','127.0.0.1'),(1143,'2017-11-24 13:33:26','View Secretary*s Dashboard','11054704','127.0.0.1'),(1144,'2017-11-24 13:33:31','Viewed student list','11054704','127.0.0.1'),(1145,'2017-11-24 13:33:31','Viewed student list','11054704','127.0.0.1'),(1146,'2017-11-24 13:35:56','Viewed Votehead Balances page','10932104','192.168.1.21'),(1147,'2017-11-24 13:35:57','Viewed Votehead Balances page','10932104','192.168.1.21'),(1148,'2017-11-24 13:35:58','Viewed Votehead Balances page','10932104','192.168.1.21'),(1149,'2017-11-24 13:36:01','Viewed Receipt Copy 7','10932104','192.168.1.21'),(1150,'2017-11-24 13:36:34','Successful Login','11054704','127.0.0.1'),(1151,'2017-11-24 13:36:34','View Secretary*s Dashboard','11054704','127.0.0.1'),(1152,'2017-11-24 13:36:35','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.235'),(1153,'2017-11-24 13:36:38','Viewed student list','11054704','127.0.0.1'),(1154,'2017-11-24 13:36:38','Viewed student list','11054704','127.0.0.1'),(1155,'2017-11-24 13:36:52','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(1156,'2017-11-24 13:37:02','Viewed Finance Voteheads Setting page','admin','192.168.1.235'),(1157,'2017-11-24 13:39:22','View Secretary*s Dashboard','11054704','127.0.0.1'),(1158,'2017-11-24 13:39:24','Viewed student list','11054704','127.0.0.1'),(1159,'2017-11-24 13:39:24','Viewed student list','11054704','127.0.0.1'),(1160,'2017-11-24 13:39:24','Successful Login','admin','192.168.1.21'),(1161,'2017-11-24 13:39:25','View Administrator*s Dashboard','admin','192.168.1.21'),(1162,'2017-11-24 13:39:34','View Finance Dashboard','admin','192.168.1.21'),(1163,'2017-11-24 13:39:46','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.21'),(1164,'2017-11-24 13:39:47','Viewed Finance Printed Estimates Setting page','admin','192.168.1.21'),(1165,'2017-11-24 13:39:49','Viewed Finance Printed Estimates Setting page','admin','192.168.1.21'),(1166,'2017-11-24 13:39:51','Backed up Database','admin','192.168.1.21'),(1167,'2017-11-24 13:39:53','Viewed Finance Record Balances page','admin','192.168.1.21'),(1168,'2017-11-24 13:39:55','Viewed Finance Voteheads Setting page','admin','192.168.1.21'),(1169,'2017-11-24 13:40:09','Viewed student list','admin','192.168.1.21'),(1170,'2017-11-24 13:40:36','Viewed Finance Voteheads Setting page','admin','192.168.1.21'),(1171,'2017-11-24 13:40:39','Viewed Finance Voteheads Setting page','admin','192.168.1.21'),(1172,'2017-11-24 13:40:43','Viewed Finance Voteheads Setting page','admin','192.168.1.21'),(1173,'2017-11-24 13:40:51','Viewed Class list','11054704','127.0.0.1'),(1174,'2017-11-24 13:40:57','Viewed Class list','11054704','127.0.0.1'),(1175,'2017-11-24 13:41:36','View Secretary*s Dashboard','11054704','127.0.0.1'),(1176,'2017-11-24 13:41:45','Viewed Finance Fiscal Yr Setting page','admin','192.168.1.21'),(1177,'2017-11-24 13:41:47','Viewed Parents Cashbook Finance Voteheads Setting page','admin','192.168.1.21'),(1178,'2017-11-24 13:42:02','Viewed student list','admin','192.168.1.21'),(1179,'2017-11-24 13:42:10','Viewed Finance Voteheads Setting page','admin','192.168.1.21'),(1180,'2017-11-24 13:42:11','Viewed Finance Voteheads Setting page','admin','192.168.1.21'),(1181,'2017-11-24 13:42:13','Viewed Finance expenses list page','admin','192.168.1.21'),(1182,'2017-11-24 13:42:22','Viewed Finance Voteheads Setting page','admin','192.168.1.21'),(1183,'2017-11-24 13:42:24','Viewed Finance Voteheads Setting page','admin','192.168.1.21'),(1184,'2017-11-24 13:42:26','Viewed Finance Voteheads Setting page','admin','192.168.1.21'),(1185,'2017-11-24 13:42:27','Viewed Finance Voteheads Setting page','admin','192.168.1.21'),(1186,'2017-11-24 13:44:28','Viewed student list','11054704','127.0.0.1'),(1187,'2017-11-24 13:44:28','Viewed student list','11054704','127.0.0.1'),(1188,'2017-11-24 13:48:20','Viewed Class list','11054704','127.0.0.1'),(1189,'2017-11-24 13:48:25','Viewed Class list','11054704','127.0.0.1'),(1190,'2017-11-24 13:49:28','Successful Login','11054704','127.0.0.1'),(1191,'2017-11-24 13:49:28','View Secretary*s Dashboard','11054704','127.0.0.1'),(1192,'2017-11-24 13:49:38','Viewed student list','11054704','127.0.0.1'),(1193,'2017-11-24 13:49:38','Viewed student list','11054704','127.0.0.1'),(1194,'2017-11-24 13:49:49','Viewed Class list','11054704','127.0.0.1'),(1195,'2017-11-24 13:49:49','Viewed Class list','11054704','127.0.0.1'),(1196,'2017-11-24 13:49:54','Viewed Class list','11054704','127.0.0.1'),(1197,'2017-11-24 14:01:44','Viewed Votehead Balances page','admin','192.168.1.21'),(1198,'2017-11-24 14:01:45','Viewed Votehead Balances page','admin','192.168.1.21'),(1199,'2017-11-24 14:01:46','Viewed Votehead Balances page','admin','192.168.1.21'),(1200,'2017-11-24 14:01:48','Viewed Receipt Copy 8','admin','192.168.1.21'),(1201,'2017-11-24 14:01:53','Viewed Votehead Balances page','admin','192.168.1.21'),(1202,'2017-11-24 14:01:56','Viewed Receipt Copy 6','admin','192.168.1.21'),(1203,'2017-11-24 14:02:28','Successful Login','11054704','127.0.0.1'),(1204,'2017-11-24 14:02:29','View Secretary*s Dashboard','11054704','127.0.0.1'),(1205,'2017-11-24 14:02:43','View Finance Dashboard','admin','192.168.1.21'),(1206,'2017-11-24 14:06:23','Successful Logout','admin','192.168.1.235'),(1207,'2017-11-24 14:17:05','Viewed Finance pocket money page','admin','192.168.1.21'),(1208,'2017-11-24 15:58:16','Successful Login','admin','127.0.0.1'),(1209,'2017-11-24 15:58:16','View Administrator*s Dashboard','admin','127.0.0.1'),(1210,'2017-11-24 15:58:26','Viewed student list','admin','127.0.0.1'),(1211,'2017-11-24 15:58:26','Viewed student list','admin','127.0.0.1'),(1212,'2017-11-24 15:58:47','Viewed Class list','admin','127.0.0.1'),(1213,'2017-11-24 15:58:49','Viewed Class list','admin','127.0.0.1'),(1214,'2017-11-24 16:00:45','Viewed Class list','admin','127.0.0.1'),(1215,'2017-11-24 16:00:46','Viewed Class list','admin','127.0.0.1'),(1216,'2017-11-24 16:06:06','View Administrator*s Dashboard','admin','127.0.0.1'),(1217,'2017-11-24 16:07:59','View Administrator*s Dashboard','admin','127.0.0.1'),(1218,'2017-11-24 16:08:04','Viewed Deans Exams Settings page','admin','127.0.0.1'),(1219,'2017-11-24 16:08:08','View HR Dashboard','admin','127.0.0.1'),(1220,'2017-11-27 08:42:36','Successful Login','11054704','127.0.0.1'),(1221,'2017-11-27 08:42:37','View Secretary*s Dashboard','11054704','127.0.0.1'),(1222,'2017-11-27 08:42:42','Viewed student list','11054704','127.0.0.1'),(1223,'2017-11-27 08:42:42','Viewed student list','11054704','127.0.0.1'),(1224,'2017-11-27 08:42:50','View Secretary*s Dashboard','11054704','127.0.0.1'),(1225,'2017-11-27 08:43:04','Viewed student list','11054704','127.0.0.1'),(1226,'2017-11-27 08:43:04','Viewed student list','11054704','127.0.0.1'),(1227,'2017-11-27 08:43:21','Viewed student list','11054704','127.0.0.1'),(1228,'2017-11-27 08:43:21','Viewed student list','11054704','127.0.0.1'),(1229,'2017-11-27 08:43:53','Viewed student list','11054704','127.0.0.1'),(1230,'2017-11-27 08:44:14','Viewed Class list','11054704','127.0.0.1'),(1231,'2017-11-27 08:44:22','Viewed Class list','11054704','127.0.0.1'),(1232,'2017-11-27 08:45:22','Un-Successful Login','1105470411054704','127.0.0.1'),(1233,'2017-11-27 08:49:37','Successful Login','11054704','127.0.0.1'),(1234,'2017-11-27 08:49:37','View Secretary*s Dashboard','11054704','127.0.0.1'),(1235,'2017-11-27 08:49:42','Viewed student list','11054704','127.0.0.1'),(1236,'2017-11-27 08:49:43','Viewed student list','11054704','127.0.0.1'),(1237,'2017-11-27 08:52:01','Successful Login','11054704','127.0.0.1'),(1238,'2017-11-27 08:52:01','View Secretary*s Dashboard','11054704','127.0.0.1'),(1239,'2017-11-27 08:52:04','Viewed student list','11054704','127.0.0.1'),(1240,'2017-11-27 08:52:04','Viewed student list','11054704','127.0.0.1'),(1241,'2017-11-27 08:52:35','Viewed Class list','11054704','127.0.0.1'),(1242,'2017-11-27 08:53:17','Viewed Class list','11054704','127.0.0.1'),(1243,'2017-11-27 14:08:45','Successful Login','11054704','127.0.0.1'),(1244,'2017-11-27 14:08:46','View Secretary*s Dashboard','11054704','127.0.0.1'),(1245,'2017-11-27 14:09:03','View Secretary*s Dashboard','11054704','127.0.0.1'),(1246,'2017-11-27 14:09:07','Viewed student list','11054704','127.0.0.1'),(1247,'2017-11-27 14:09:07','Viewed student list','11054704','127.0.0.1'),(1248,'2017-11-27 14:09:28','Viewed student list','11054704','127.0.0.1'),(1249,'2017-11-27 14:09:28','Viewed student list','11054704','127.0.0.1'),(1250,'2017-11-27 14:10:24','Viewed student list','11054704','127.0.0.1'),(1251,'2017-11-27 14:10:45','Viewed student list','11054704','127.0.0.1'),(1252,'2017-11-27 14:15:01','Un-Successful Login','11054704','127.0.0.1'),(1253,'2017-11-27 14:15:39','Successful Login','11054704','127.0.0.1'),(1254,'2017-11-27 14:15:39','View Secretary*s Dashboard','11054704','127.0.0.1'),(1255,'2017-11-27 14:15:55','Viewed student list','11054704','127.0.0.1'),(1256,'2017-11-27 14:15:55','Viewed student list','11054704','127.0.0.1'),(1257,'2017-11-27 14:16:21','View Secretary*s Dashboard','11054704','127.0.0.1'),(1258,'2017-11-27 14:16:41','Viewed student list','11054704','127.0.0.1'),(1259,'2017-11-27 14:16:41','Viewed student list','11054704','127.0.0.1'),(1260,'2017-11-27 14:17:26','View Secretary*s Dashboard','11054704','127.0.0.1'),(1261,'2017-11-27 14:17:47','Viewed student list','11054704','127.0.0.1'),(1262,'2017-11-27 14:17:47','Viewed student list','11054704','127.0.0.1'),(1263,'2017-11-27 14:17:55','View Secretary*s Dashboard','11054704','127.0.0.1'),(1264,'2017-11-28 15:10:21','Un-Successful Login','1105470411054704','127.0.0.1'),(1265,'2017-11-28 15:11:23','Successful Login','11054704','127.0.0.1'),(1266,'2017-11-28 15:11:23','View Secretary*s Dashboard','11054704','127.0.0.1'),(1267,'2017-11-28 15:11:35','View Secretary*s Dashboard','11054704','127.0.0.1'),(1268,'2017-11-28 15:12:31','View Secretary*s Dashboard','11054704','127.0.0.1'),(1269,'2017-11-28 15:12:34','Viewed student list','11054704','127.0.0.1'),(1270,'2017-11-28 15:12:34','Viewed student list','11054704','127.0.0.1'),(1271,'2017-11-28 15:50:53','Successful Login','10932104','192.168.1.21'),(1272,'2017-11-28 15:50:53','View Accountant*s Dashboard','10932104','192.168.1.21'),(1273,'2017-11-28 15:51:16','View Finance Dashboard','10932104','192.168.1.21'),(1274,'2017-11-28 15:51:29','Viewed Finance pocket money page','10932104','192.168.1.21'),(1275,'2017-11-28 15:51:34','Viewed Finance pocket money page','10932104','192.168.1.21'),(1276,'2017-11-28 15:53:41','Viewed Finance pocket money page','10932104','192.168.1.21'),(1277,'2017-11-28 15:53:56','Viewed student list','10932104','192.168.1.21'),(1278,'2017-11-28 15:56:26','Successful Login','10932104','192.168.1.21'),(1279,'2017-11-28 15:56:26','View Accountant*s Dashboard','10932104','192.168.1.21'),(1280,'2017-11-28 15:56:48','View Finance Dashboard','10932104','192.168.1.21'),(1281,'2017-11-28 15:57:04','Viewed Finance pocket money page','10932104','192.168.1.21'),(1282,'2017-11-28 15:57:43','Viewed student list','10932104','192.168.1.21'),(1283,'2017-11-29 09:43:38','Successful Login','10932104','192.168.1.21'),(1284,'2017-11-29 09:43:38','View Accountant*s Dashboard','10932104','192.168.1.21'),(1285,'2017-11-29 09:44:29','View HR Dashboard','10932104','192.168.1.21'),(1286,'2017-11-29 09:44:49','View HR Dashboard','10932104','192.168.1.21'),(1287,'2017-11-29 09:52:34','Added new Staff 7466886','10932104','192.168.1.21'),(1288,'2017-11-29 09:58:27','Added new Staff 10682683','10932104','192.168.1.21'),(1289,'2017-11-29 10:02:31','Added new Staff 25912392','10932104','192.168.1.21'),(1290,'2017-11-29 10:06:12','Added new Staff 25136164','10932104','192.168.1.21'),(1291,'2017-11-29 10:22:51','Successful Logout','10932104','192.168.1.21'),(1292,'2017-11-29 10:23:42','Successful Login','10932104','192.168.1.21'),(1293,'2017-11-29 10:23:43','View Accountant*s Dashboard','10932104','192.168.1.21'),(1294,'2017-11-29 10:24:25','View Finance Dashboard','10932104','192.168.1.21'),(1295,'2017-11-29 10:24:51','View HR Dashboard','10932104','192.168.1.21'),(1296,'2017-11-29 10:24:51','View HR Dashboard','10932104','192.168.1.21'),(1297,'2017-11-29 10:31:18','Added new Staff 29673786','10932104','192.168.1.21'),(1298,'2017-11-29 10:46:49','Added new Staff 32285484','10932104','192.168.1.21'),(1299,'2017-11-29 10:48:10','Viewed HR Create Payslip page','10932104','192.168.1.21'),(1300,'2017-11-29 10:50:34','Viewed HR Allowances page','10932104','192.168.1.21'),(1301,'2017-11-29 10:51:42','Viewed HR Allowances page','10932104','192.168.1.21'),(1302,'2017-11-29 10:51:42','Added HR Allowance HOUSE-ALLOWANCE','10932104','192.168.1.21'),(1303,'2017-11-29 10:51:45','Viewed HR Allowances page','10932104','192.168.1.21'),(1304,'2017-11-29 10:52:51','Viewed HR PAYE page','10932104','192.168.1.21'),(1305,'2017-11-29 10:53:00','Viewed HR Loans  page','10932104','192.168.1.21'),(1306,'2017-11-29 10:54:02','Viewed HR Loans  page','10932104','192.168.1.21'),(1307,'2017-11-29 10:54:02','Added HR Deductions KINOTES','10932104','192.168.1.21'),(1308,'2017-11-29 10:54:05','Viewed HR Loans  page','10932104','192.168.1.21'),(1309,'2017-11-29 10:54:43','Viewed HR Loans  page','10932104','192.168.1.21'),(1310,'2017-11-29 10:54:43','Added HR Deductions ADVANCE','10932104','192.168.1.21'),(1311,'2017-11-29 10:54:53','Viewed HR Loans  page','10932104','192.168.1.21'),(1312,'2017-11-29 10:54:58','Viewed HR Create Payslip page','10932104','192.168.1.21'),(1313,'2017-11-29 10:55:38','Successful Login','admin','127.0.0.1'),(1314,'2017-11-29 10:55:38','View Administrator*s Dashboard','admin','127.0.0.1'),(1315,'2017-11-29 10:55:41','View HR Dashboard','admin','127.0.0.1'),(1316,'2017-11-29 10:55:43','Viewed HR Create Payslip page','admin','127.0.0.1'),(1317,'2017-11-29 10:58:25','Viewed HR PAYE page','admin','127.0.0.1'),(1318,'2017-11-29 10:58:27','Viewed HR Loans  page','admin','127.0.0.1'),(1319,'2017-11-29 10:59:05','Viewed HR Loans  page','admin','127.0.0.1'),(1320,'2017-11-29 10:59:57','Viewed HR Loans  page','admin','127.0.0.1'),(1321,'2017-11-29 11:00:08','Viewed HR Loans  page','admin','127.0.0.1'),(1322,'2017-11-29 11:00:22','Viewed HR Loans  page','admin','127.0.0.1'),(1323,'2017-11-29 11:01:17','Viewed HR Loans  page','admin','127.0.0.1'),(1324,'2017-11-29 11:03:18','Viewed HR Loans  page','admin','127.0.0.1'),(1325,'2017-11-29 11:03:39','Viewed HR Loans  page','admin','127.0.0.1'),(1326,'2017-11-29 11:03:58','Viewed HR Loans  page','admin','127.0.0.1'),(1327,'2017-11-29 11:04:03','Viewed HR Loans  page','admin','127.0.0.1'),(1328,'2017-11-29 11:04:03','Updated HR other Deductions Settings SAC','admin','127.0.0.1'),(1329,'2017-11-29 11:04:03','Updated HR other Deductions Settings SAC','admin','127.0.0.1'),(1330,'2017-11-29 11:04:03','Updated HR other Deductions Settings SAC','admin','127.0.0.1'),(1331,'2017-11-29 11:04:04','Viewed HR Loans  page','admin','127.0.0.1'),(1332,'2017-11-29 11:04:13','Viewed HR Loans  page','admin','127.0.0.1'),(1333,'2017-11-29 11:04:13','Updated HR other Deductions Settings SACCO','admin','127.0.0.1'),(1334,'2017-11-29 11:04:13','Updated HR other Deductions Settings SACCO','admin','127.0.0.1'),(1335,'2017-11-29 11:04:13','Updated HR other Deductions Settings SACCO','admin','127.0.0.1'),(1336,'2017-11-29 11:04:14','Viewed HR Loans  page','admin','127.0.0.1'),(1337,'2017-11-29 11:05:14','Viewed HR Loans  page','admin','127.0.0.1'),(1338,'2017-11-29 11:05:16','Viewed HR Create Payslip page','admin','127.0.0.1'),(1339,'2017-11-29 11:05:55','Viewed student list','admin','127.0.0.1'),(1340,'2017-11-29 11:05:55','Viewed student list','admin','127.0.0.1'),(1341,'2017-11-29 11:06:05','Viewed Class list','admin','127.0.0.1'),(1342,'2017-11-29 11:06:06','Viewed Class list','admin','127.0.0.1'),(1343,'2017-11-29 11:07:24','Viewed Class list','admin','127.0.0.1'),(1344,'2017-11-29 11:07:39','Viewed Class list','admin','127.0.0.1'),(1345,'2017-11-29 11:08:39','Viewed Class list','admin','127.0.0.1'),(1346,'2017-11-29 11:12:52','View Administrator*s Dashboard','admin','127.0.0.1'),(1347,'2017-11-29 11:13:21','Viewed student list','admin','127.0.0.1'),(1348,'2017-11-29 11:13:21','Viewed student list','admin','127.0.0.1'),(1349,'2017-11-29 11:13:23','Viewed student list','admin','127.0.0.1'),(1350,'2017-11-29 11:13:23','Viewed student list','admin','127.0.0.1'),(1351,'2017-11-29 11:14:54','Edited 4134 Details','admin','127.0.0.1'),(1352,'2017-11-29 11:14:59','Viewed student list','admin','127.0.0.1'),(1353,'2017-11-29 11:15:19','Viewed student list','admin','127.0.0.1'),(1354,'2017-11-29 11:15:19','Viewed student list','admin','127.0.0.1'),(1355,'2017-11-29 11:15:50','Viewed Class list','admin','127.0.0.1'),(1356,'2017-11-29 11:16:00','Viewed Class list','admin','127.0.0.1'),(1357,'2017-11-29 11:17:34','Viewed student list','admin','127.0.0.1'),(1358,'2017-11-29 11:17:34','Viewed student list','admin','127.0.0.1'),(1359,'2017-11-29 11:18:07','Viewed HR Create Payslip page','10932104','192.168.1.21'),(1360,'2017-11-29 11:18:30','Edited 4136 Details','admin','127.0.0.1'),(1361,'2017-11-29 11:18:32','Viewed student list','admin','127.0.0.1'),(1362,'2017-11-29 11:19:59','Viewed HR Create Payslip page','10932104','192.168.1.21'),(1363,'2017-11-29 11:20:21','Viewed Class list','admin','127.0.0.1'),(1364,'2017-11-29 11:20:27','Viewed Class list','admin','127.0.0.1'),(1365,'2017-11-29 11:23:04','Viewed Class list','admin','127.0.0.1'),(1366,'2017-11-29 11:23:11','Viewed Class list','admin','127.0.0.1'),(1367,'2017-11-29 11:23:54','View Administrator*s Dashboard','admin','127.0.0.1'),(1368,'2017-11-29 11:23:59','Viewed student list','admin','127.0.0.1'),(1369,'2017-11-29 11:23:59','Viewed student list','admin','127.0.0.1'),(1370,'2017-11-29 11:24:06','Viewed Class list','admin','127.0.0.1'),(1371,'2017-11-29 11:24:12','Viewed Class list','admin','127.0.0.1'),(1372,'2017-11-29 11:24:55','Viewed Class list','admin','127.0.0.1'),(1373,'2017-11-29 11:24:57','Viewed Class list','admin','127.0.0.1'),(1374,'2017-11-29 11:26:09','Viewed Class list','admin','127.0.0.1'),(1375,'2017-11-29 11:26:11','Viewed Class list','admin','127.0.0.1'),(1376,'2017-11-29 11:27:29','Viewed Customer Bills report page','10932104','192.168.1.21'),(1377,'2017-11-29 11:27:30','Viewed HR Master Payslip page','10932104','192.168.1.21'),(1378,'2017-11-29 11:27:30','Viewed Customer Bills report page','10932104','192.168.1.21'),(1379,'2017-11-29 11:27:30','Viewed Customer Bills report page','10932104','192.168.1.21'),(1380,'2017-11-29 11:27:31','Viewed HR Master Payslip page','10932104','192.168.1.21'),(1381,'2017-11-29 11:28:23','Viewed Customer Bills report page','10932104','192.168.1.21'),(1382,'2017-11-29 11:28:23','Viewed HR Master Payslip page','10932104','192.168.1.21'),(1383,'2017-11-29 11:28:23','Viewed Customer Bills report page','10932104','192.168.1.21'),(1384,'2017-11-29 11:28:23','Viewed HR Master Payslip page','10932104','192.168.1.21'),(1385,'2017-11-29 11:28:53','Viewed Customer Bills report page','10932104','192.168.1.21'),(1386,'2017-11-29 11:28:53','Viewed Customer Bills report page','10932104','192.168.1.21'),(1387,'2017-11-29 11:28:54','Viewed HR Master Payslip page','10932104','192.168.1.21'),(1388,'2017-11-29 11:29:36','Viewed Class list','admin','127.0.0.1'),(1389,'2017-11-29 11:29:38','Viewed Class list','admin','127.0.0.1'),(1390,'2017-11-29 11:29:56','Viewed HR Master Payslip page','10932104','192.168.1.21'),(1391,'2017-11-29 11:30:23','Viewed Class list','admin','127.0.0.1'),(1392,'2017-11-29 11:30:23','Viewed Class list','admin','127.0.0.1'),(1393,'2017-11-29 11:31:21','Successful Logout','10932104','192.168.1.21'),(1394,'2017-11-29 11:32:05','Successful Login','10932104','192.168.1.21'),(1395,'2017-11-29 11:32:05','View Accountant*s Dashboard','10932104','192.168.1.21'),(1396,'2017-11-29 11:32:15','View HR Dashboard','10932104','192.168.1.21'),(1397,'2017-11-29 11:32:26','Viewed Class list','admin','127.0.0.1'),(1398,'2017-11-29 11:32:27','Viewed Class list','admin','127.0.0.1'),(1399,'2017-11-29 11:32:42','View Finance Dashboard','10932104','192.168.1.21'),(1400,'2017-11-29 11:32:48','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1401,'2017-11-29 11:34:05','Viewed Class list','admin','127.0.0.1'),(1402,'2017-11-29 11:34:07','Viewed Class list','admin','127.0.0.1'),(1403,'2017-11-29 11:34:50','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1404,'2017-11-29 11:34:50','made an expese on PE on NHIF for  1350','10932104','192.168.1.21'),(1405,'2017-11-29 11:34:53','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1406,'2017-11-29 11:35:04','Viewed student list','admin','127.0.0.1'),(1407,'2017-11-29 11:35:04','Viewed student list','admin','127.0.0.1'),(1408,'2017-11-29 11:35:05','Viewed Finance expenses list page','10932104','192.168.1.21'),(1409,'2017-11-29 11:36:46','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1410,'2017-11-29 11:37:50','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1411,'2017-11-29 11:37:50','made an expese on ADMIN_COST on ONION for  1000','10932104','192.168.1.21'),(1412,'2017-11-29 11:37:52','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1413,'2017-11-29 11:38:04','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1414,'2017-11-29 11:38:45','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1415,'2017-11-29 11:40:52','Viewed student list','admin','127.0.0.1'),(1416,'2017-11-29 11:40:52','Viewed student list','admin','127.0.0.1'),(1417,'2017-11-29 11:45:54','Viewed student list','admin','127.0.0.1'),(1418,'2017-11-29 11:45:54','Viewed student list','admin','127.0.0.1'),(1419,'2017-11-29 11:47:41','Received Invoice Ref # 0292  from CRIMOSKA LTD','10932104','192.168.1.21'),(1420,'2017-11-29 11:47:44','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1421,'2017-11-29 11:47:57','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1422,'2017-11-29 11:48:19','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1423,'2017-11-29 11:50:20','Viewed student list','admin','127.0.0.1'),(1424,'2017-11-29 11:50:20','Viewed student list','admin','127.0.0.1'),(1425,'2017-11-29 11:50:31','Viewed Finance expenses list page','10932104','192.168.1.21'),(1426,'2017-11-29 11:51:22','Viewed student list','admin','127.0.0.1'),(1427,'2017-11-29 11:51:22','Viewed student list','admin','127.0.0.1'),(1428,'2017-11-29 11:51:32','Successful Logout','10932104','192.168.1.21'),(1429,'2017-11-29 11:52:21','Viewed student list','admin','127.0.0.1'),(1430,'2017-11-29 11:52:37','Viewed student list','admin','127.0.0.1'),(1431,'2017-11-29 11:53:16','Viewed student list','admin','127.0.0.1'),(1432,'2017-11-29 11:53:20','Viewed student list','admin','127.0.0.1'),(1433,'2017-11-29 11:53:40','Viewed student list','admin','127.0.0.1'),(1434,'2017-11-29 11:54:15','Viewed Deans Exams Settings page','admin','127.0.0.1'),(1435,'2017-11-29 11:55:02','Viewed student list','admin','127.0.0.1'),(1436,'2017-11-29 11:55:03','Viewed student list','admin','127.0.0.1'),(1437,'2017-11-29 11:55:19','Viewed student list','admin','127.0.0.1'),(1438,'2017-11-29 11:55:19','Viewed student list','admin','127.0.0.1'),(1439,'2017-11-29 11:56:04','Successful Login','10932104','192.168.1.21'),(1440,'2017-11-29 11:56:04','View Accountant*s Dashboard','10932104','192.168.1.21'),(1441,'2017-11-29 11:56:12','View Finance Dashboard','10932104','192.168.1.21'),(1442,'2017-11-29 11:56:33','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1443,'2017-11-29 11:56:33','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1444,'2017-11-29 11:56:49','Viewed student list','admin','127.0.0.1'),(1445,'2017-11-29 11:56:50','Viewed student list','admin','127.0.0.1'),(1446,'2017-11-29 11:57:14','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1447,'2017-11-29 12:00:55','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1448,'2017-11-29 12:01:40','Viewed student list','admin','127.0.0.1'),(1449,'2017-11-29 12:01:40','Viewed student list','admin','127.0.0.1'),(1450,'2017-11-29 12:02:25','Viewed student list','admin','127.0.0.1'),(1451,'2017-11-29 12:02:25','Viewed student list','admin','127.0.0.1'),(1452,'2017-11-29 12:28:03','View HR Dashboard','admin','127.0.0.1'),(1453,'2017-11-29 12:28:06','View Finance Dashboard','admin','127.0.0.1'),(1454,'2017-11-29 12:28:26','Viewed Votehead Balances page','admin','127.0.0.1'),(1455,'2017-11-29 12:28:49','Viewed student list','admin','127.0.0.1'),(1456,'2017-11-29 12:29:11','Viewed Votehead Balances page','admin','127.0.0.1'),(1457,'2017-11-29 12:31:13','View Finance Dashboard','10932104','192.168.1.21'),(1458,'2017-11-29 12:31:14','View Finance Dashboard','10932104','192.168.1.21'),(1459,'2017-11-29 12:31:20','View Finance Dashboard','10932104','192.168.1.21'),(1460,'2017-11-29 12:31:27','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1461,'2017-11-29 12:31:50','View Administrator*s Dashboard','admin','127.0.0.1'),(1462,'2017-11-29 12:31:54','Viewed student list','10932104','192.168.1.21'),(1463,'2017-11-29 12:31:59','Viewed student list','admin','127.0.0.1'),(1464,'2017-11-29 12:31:59','Viewed student list','admin','127.0.0.1'),(1465,'2017-11-29 12:32:08','Viewed Class list','admin','127.0.0.1'),(1466,'2017-11-29 12:32:13','Viewed Class list','admin','127.0.0.1'),(1467,'2017-11-29 12:32:31','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1468,'2017-11-29 12:32:34','Viewed Class list','admin','127.0.0.1'),(1469,'2017-11-29 12:32:37','Viewed Class list','admin','127.0.0.1'),(1470,'2017-11-29 12:33:02','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1471,'2017-11-29 12:35:27','View HR Dashboard','10932104','192.168.1.21'),(1472,'2017-11-29 12:35:54','Viewed HR Create Payslip page','10932104','192.168.1.21'),(1473,'2017-11-29 12:40:41','Viewed Class list','admin','127.0.0.1'),(1474,'2017-11-29 12:40:42','Viewed Class list','admin','127.0.0.1'),(1475,'2017-11-29 12:41:50','Viewed Class list','admin','127.0.0.1'),(1476,'2017-11-29 12:41:51','Viewed Class list','admin','127.0.0.1'),(1477,'2017-11-29 12:42:14','Viewed HR Create Payslip page','10932104','192.168.1.21'),(1478,'2017-11-29 12:48:04','Successful Login','admin','192.168.1.235'),(1479,'2017-11-29 12:48:04','View Administrator*s Dashboard','admin','192.168.1.235'),(1480,'2017-11-29 12:48:06','View HR Dashboard','admin','192.168.1.235'),(1481,'2017-11-29 12:48:08','Viewed HR Create Payslip page','admin','192.168.1.235'),(1482,'2017-11-29 12:48:20','Viewed Customer Bills report page','admin','192.168.1.235'),(1483,'2017-11-29 12:48:20','Viewed HR Master Payslip page','admin','192.168.1.235'),(1484,'2017-11-29 12:48:28','Viewed Class list','admin','127.0.0.1'),(1485,'2017-11-29 12:48:29','Viewed HR Create Payslip page','admin','192.168.1.235'),(1486,'2017-11-29 12:48:33','Viewed Class list','admin','127.0.0.1'),(1487,'2017-11-29 12:49:02','Viewed HR Create Payslip page','admin','192.168.1.235'),(1488,'2017-11-29 12:52:16','Viewed Class list','admin','127.0.0.1'),(1489,'2017-11-29 12:52:34','Successful Logout','admin','192.168.1.235'),(1490,'2017-11-29 12:53:58','Viewed Class list','admin','127.0.0.1'),(1491,'2017-11-29 12:53:59','Viewed Class list','admin','127.0.0.1'),(1492,'2017-11-29 12:54:02','View Finance Dashboard','10932104','192.168.1.21'),(1493,'2017-11-29 12:54:07','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1494,'2017-11-29 12:54:53','View Finance Dashboard','10932104','192.168.1.21'),(1495,'2017-11-29 12:54:57','Viewed Class list','admin','127.0.0.1'),(1496,'2017-11-29 12:54:58','Viewed Class list','admin','127.0.0.1'),(1497,'2017-11-29 12:55:03','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1498,'2017-11-29 12:55:10','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1499,'2017-11-29 12:58:35','View Finance Dashboard','10932104','192.168.1.21'),(1500,'2017-11-29 12:58:39','Viewed Votehead Balances page','10932104','192.168.1.21'),(1501,'2017-11-29 12:58:51','Viewed Votehead Balances page','10932104','192.168.1.21'),(1502,'2017-11-29 12:59:35','Viewed Votehead Balances page','10932104','192.168.1.21'),(1503,'2017-11-29 12:59:45','Viewed Votehead Balances page','10932104','192.168.1.21'),(1504,'2017-11-29 12:59:50','Viewed Votehead Balances page','10932104','192.168.1.21'),(1505,'2017-11-29 12:59:57','Viewed Votehead Balances page','10932104','192.168.1.21'),(1506,'2017-11-29 12:59:58','Viewed Votehead Balances page','10932104','192.168.1.21'),(1507,'2017-11-29 13:00:00','Viewed Class list','admin','127.0.0.1'),(1508,'2017-11-29 13:00:02','Viewed Class list','admin','127.0.0.1'),(1509,'2017-11-29 13:01:26','Viewed fees register','10932104','192.168.1.21'),(1510,'2017-11-29 13:02:14','Successful Login','11054704','127.0.0.1'),(1511,'2017-11-29 13:02:15','View Secretary*s Dashboard','11054704','127.0.0.1'),(1512,'2017-11-29 13:03:00','View Secretary*s Dashboard','11054704','127.0.0.1'),(1513,'2017-11-29 13:03:02','Viewed student list','11054704','127.0.0.1'),(1514,'2017-11-29 13:03:03','Viewed student list','11054704','127.0.0.1'),(1515,'2017-11-29 13:03:21','Viewed Class list','11054704','127.0.0.1'),(1516,'2017-11-29 13:03:35','View Finance Dashboard','10932104','192.168.1.21'),(1517,'2017-11-29 13:03:46','Backed up Database','10932104','192.168.1.21'),(1518,'2017-11-29 13:03:55','Backed up Database','10932104','192.168.1.21'),(1519,'2017-11-29 13:07:14','Viewed Class list','11054704','127.0.0.1'),(1520,'2017-11-29 13:07:23','Viewed student list','11054704','127.0.0.1'),(1521,'2017-11-29 13:07:23','Viewed student list','11054704','127.0.0.1'),(1522,'2017-11-29 13:07:57','Viewed student list','11054704','127.0.0.1'),(1523,'2017-11-29 13:08:27','Viewed student list','11054704','127.0.0.1'),(1524,'2017-11-29 13:08:42','Moved 20030to Stranferred','11054704','127.0.0.1'),(1525,'2017-11-29 13:09:00','deleted 20030to completely','11054704','127.0.0.1'),(1526,'2017-11-30 10:58:22','Successful Login','11054704','127.0.0.1'),(1527,'2017-11-30 10:58:22','View Secretary*s Dashboard','11054704','127.0.0.1'),(1528,'2017-11-30 10:58:53','Viewed student list','11054704','127.0.0.1'),(1529,'2017-11-30 10:58:53','Viewed student list','11054704','127.0.0.1'),(1530,'2017-11-30 11:00:22','Viewed student list','11054704','127.0.0.1'),(1531,'2017-11-30 11:00:22','Viewed student list','11054704','127.0.0.1'),(1532,'2017-11-30 11:03:19','Edited 4134 Details','11054704','127.0.0.1'),(1533,'2017-11-30 11:03:21','Viewed student list','11054704','127.0.0.1'),(1534,'2017-11-30 11:09:00','Viewed student list','11054704','127.0.0.1'),(1535,'2017-11-30 11:09:00','Viewed student list','11054704','127.0.0.1'),(1536,'2017-11-30 11:09:45','Viewed student list','11054704','127.0.0.1'),(1537,'2017-11-30 11:09:45','Viewed student list','11054704','127.0.0.1'),(1538,'2017-11-30 11:13:05','Viewed student list','11054704','127.0.0.1'),(1539,'2017-11-30 11:13:05','Viewed student list','11054704','127.0.0.1'),(1540,'2017-11-30 11:14:19','Edited 4134 Details','11054704','127.0.0.1'),(1541,'2017-11-30 11:14:20','Viewed student list','11054704','127.0.0.1'),(1542,'2017-11-30 11:14:58','Viewed student list','11054704','127.0.0.1'),(1543,'2017-11-30 11:14:58','Viewed student list','11054704','127.0.0.1'),(1544,'2017-11-30 11:17:11','Viewed student list','11054704','127.0.0.1'),(1545,'2017-11-30 11:17:27','Viewed Class list','11054704','127.0.0.1'),(1546,'2017-11-30 11:17:32','Viewed Class list','11054704','127.0.0.1'),(1547,'2017-11-30 11:21:52','Viewed student list','11054704','127.0.0.1'),(1548,'2017-11-30 11:21:52','Viewed student list','11054704','127.0.0.1'),(1549,'2017-11-30 11:22:49','Viewed student list','11054704','127.0.0.1'),(1550,'2017-11-30 11:22:49','Viewed student list','11054704','127.0.0.1'),(1551,'2017-11-30 11:22:59','Viewed Class list','11054704','127.0.0.1'),(1552,'2017-11-30 11:23:00','Viewed Class list','11054704','127.0.0.1'),(1553,'2017-11-30 11:23:06','Viewed Class list','11054704','127.0.0.1'),(1554,'2017-11-30 11:23:18','Viewed student list','11054704','127.0.0.1'),(1555,'2017-11-30 11:23:19','Viewed student list','11054704','127.0.0.1'),(1556,'2017-11-30 11:24:01','Edited 4137 Details','11054704','127.0.0.1'),(1557,'2017-11-30 11:24:03','Viewed student list','11054704','127.0.0.1'),(1558,'2017-11-30 11:24:28','Viewed student list','11054704','127.0.0.1'),(1559,'2017-11-30 11:24:28','Viewed student list','11054704','127.0.0.1'),(1560,'2017-11-30 11:24:51','Edited 4137 Details','11054704','127.0.0.1'),(1561,'2017-11-30 11:24:53','Viewed student list','11054704','127.0.0.1'),(1562,'2017-11-30 11:25:46','Viewed student list','11054704','127.0.0.1'),(1563,'2017-11-30 11:25:47','Viewed student list','11054704','127.0.0.1'),(1564,'2017-11-30 11:26:23','Edited 4140 Details','11054704','127.0.0.1'),(1565,'2017-11-30 11:26:24','Viewed student list','11054704','127.0.0.1'),(1566,'2017-11-30 11:26:51','Edited 4141 Details','11054704','127.0.0.1'),(1567,'2017-11-30 11:26:53','Viewed student list','11054704','127.0.0.1'),(1568,'2017-11-30 11:27:21','Edited 4142 Details','11054704','127.0.0.1'),(1569,'2017-11-30 11:27:22','Viewed student list','11054704','127.0.0.1'),(1570,'2017-11-30 11:27:43','Edited 4143 Details','11054704','127.0.0.1'),(1571,'2017-11-30 11:27:45','Viewed student list','11054704','127.0.0.1'),(1572,'2017-11-30 11:28:08','Edited 4144 Details','11054704','127.0.0.1'),(1573,'2017-11-30 11:28:09','Viewed student list','11054704','127.0.0.1'),(1574,'2017-11-30 11:28:32','Edited 4145 Details','11054704','127.0.0.1'),(1575,'2017-11-30 11:28:33','Viewed student list','11054704','127.0.0.1'),(1576,'2017-11-30 11:29:40','Edited 4146 Details','11054704','127.0.0.1'),(1577,'2017-11-30 11:29:41','Viewed student list','11054704','127.0.0.1'),(1578,'2017-11-30 11:30:38','Edited 4148 Details','11054704','127.0.0.1'),(1579,'2017-11-30 11:30:40','Viewed student list','11054704','127.0.0.1'),(1580,'2017-11-30 11:31:14','Edited 4149 Details','11054704','127.0.0.1'),(1581,'2017-11-30 11:31:15','Viewed student list','11054704','127.0.0.1'),(1582,'2017-11-30 11:31:37','Edited 4150 Details','11054704','127.0.0.1'),(1583,'2017-11-30 11:31:38','Viewed student list','11054704','127.0.0.1'),(1584,'2017-11-30 11:32:05','Edited 4151 Details','11054704','127.0.0.1'),(1585,'2017-11-30 11:32:06','Viewed student list','11054704','127.0.0.1'),(1586,'2017-11-30 11:32:33','Edited 4152 Details','11054704','127.0.0.1'),(1587,'2017-11-30 11:32:34','Viewed student list','11054704','127.0.0.1'),(1588,'2017-11-30 11:32:56','Edited 4153 Details','11054704','127.0.0.1'),(1589,'2017-11-30 11:32:57','Viewed student list','11054704','127.0.0.1'),(1590,'2017-11-30 11:33:30','Edited 4154 Details','11054704','127.0.0.1'),(1591,'2017-11-30 11:33:31','Viewed student list','11054704','127.0.0.1'),(1592,'2017-11-30 11:33:57','Edited 4155 Details','11054704','127.0.0.1'),(1593,'2017-11-30 11:33:58','Viewed student list','11054704','127.0.0.1'),(1594,'2017-11-30 11:34:55','Edited 4158 Details','11054704','127.0.0.1'),(1595,'2017-11-30 11:34:56','Viewed student list','11054704','127.0.0.1'),(1596,'2017-11-30 11:35:27','Edited 4159 Details','11054704','127.0.0.1'),(1597,'2017-11-30 11:35:28','Viewed student list','11054704','127.0.0.1'),(1598,'2017-11-30 11:36:01','Edited 4160 Details','11054704','127.0.0.1'),(1599,'2017-11-30 11:36:02','Viewed student list','11054704','127.0.0.1'),(1600,'2017-11-30 11:36:29','Edited 4161 Details','11054704','127.0.0.1'),(1601,'2017-11-30 11:36:30','Viewed student list','11054704','127.0.0.1'),(1602,'2017-11-30 11:37:01','Edited 4162 Details','11054704','127.0.0.1'),(1603,'2017-11-30 11:37:03','Viewed student list','11054704','127.0.0.1'),(1604,'2017-11-30 11:37:39','Edited 4163 Details','11054704','127.0.0.1'),(1605,'2017-11-30 11:37:40','Viewed student list','11054704','127.0.0.1'),(1606,'2017-11-30 11:38:38','Edited 4164 Details','11054704','127.0.0.1'),(1607,'2017-11-30 11:38:39','Viewed student list','11054704','127.0.0.1'),(1608,'2017-11-30 11:39:28','Edited 4165 Details','11054704','127.0.0.1'),(1609,'2017-11-30 11:39:30','Viewed student list','11054704','127.0.0.1'),(1610,'2017-11-30 11:39:59','Edited 4166 Details','11054704','127.0.0.1'),(1611,'2017-11-30 11:40:00','Viewed student list','11054704','127.0.0.1'),(1612,'2017-11-30 11:40:35','Edited 4167 Details','11054704','127.0.0.1'),(1613,'2017-11-30 11:40:36','Viewed student list','11054704','127.0.0.1'),(1614,'2017-11-30 11:41:23','Edited 4168 Details','11054704','127.0.0.1'),(1615,'2017-11-30 11:41:24','Viewed student list','11054704','127.0.0.1'),(1616,'2017-11-30 12:06:42','Edited 4164 Details','11054704','127.0.0.1'),(1617,'2017-11-30 12:06:43','Viewed student list','11054704','127.0.0.1'),(1618,'2017-11-30 12:07:16','Edited 4165 Details','11054704','127.0.0.1'),(1619,'2017-11-30 12:07:18','Viewed student list','11054704','127.0.0.1'),(1620,'2017-11-30 12:07:53','Edited 4167 Details','11054704','127.0.0.1'),(1621,'2017-11-30 12:07:55','Viewed student list','11054704','127.0.0.1'),(1622,'2017-11-30 12:12:33','Viewed student list','11054704','127.0.0.1'),(1623,'2017-11-30 12:12:33','Viewed student list','11054704','127.0.0.1'),(1624,'2017-11-30 13:11:59','Viewed Class list','11054704','127.0.0.1'),(1625,'2017-11-30 13:12:03','Viewed Class list','11054704','127.0.0.1'),(1626,'2017-11-30 13:12:25','Viewed student list','11054704','127.0.0.1'),(1627,'2017-11-30 13:12:26','Viewed student list','11054704','127.0.0.1'),(1628,'2017-11-30 13:13:40','Viewed student list','11054704','127.0.0.1'),(1629,'2017-11-30 13:13:40','Viewed student list','11054704','127.0.0.1'),(1630,'2017-11-30 13:14:04','Viewed student list','11054704','127.0.0.1'),(1631,'2017-11-30 13:14:04','Viewed student list','11054704','127.0.0.1'),(1632,'2017-11-30 13:14:20','Viewed student list','11054704','127.0.0.1'),(1633,'2017-11-30 13:14:20','Viewed student list','11054704','127.0.0.1'),(1634,'2017-11-30 13:15:43','Edited 4170 Details','11054704','127.0.0.1'),(1635,'2017-11-30 13:15:44','Viewed student list','11054704','127.0.0.1'),(1636,'2017-11-30 13:16:25','Edited 4171 Details','11054704','127.0.0.1'),(1637,'2017-11-30 13:16:26','Viewed student list','11054704','127.0.0.1'),(1638,'2017-11-30 13:17:15','Edited 4172 Details','11054704','127.0.0.1'),(1639,'2017-11-30 13:17:16','Viewed student list','11054704','127.0.0.1'),(1640,'2017-11-30 13:18:12','Edited 4173 Details','11054704','127.0.0.1'),(1641,'2017-11-30 13:18:14','Viewed student list','11054704','127.0.0.1'),(1642,'2017-11-30 14:02:34','Viewed student list','11054704','127.0.0.1'),(1643,'2017-11-30 14:02:34','Viewed student list','11054704','127.0.0.1'),(1644,'2017-11-30 14:03:21','Edited 4174 Details','11054704','127.0.0.1'),(1645,'2017-11-30 14:03:23','Viewed student list','11054704','127.0.0.1'),(1646,'2017-11-30 14:03:51','Edited 4175 Details','11054704','127.0.0.1'),(1647,'2017-11-30 14:03:52','Viewed student list','11054704','127.0.0.1'),(1648,'2017-11-30 14:04:28','Edited 4179 Details','11054704','127.0.0.1'),(1649,'2017-11-30 14:04:29','Viewed student list','11054704','127.0.0.1'),(1650,'2017-11-30 14:04:58','Edited 4177 Details','11054704','127.0.0.1'),(1651,'2017-11-30 14:04:59','Viewed student list','11054704','127.0.0.1'),(1652,'2017-11-30 14:05:27','Edited 4176 Details','11054704','127.0.0.1'),(1653,'2017-11-30 14:05:28','Viewed student list','11054704','127.0.0.1'),(1654,'2017-11-30 14:05:45','Viewed student list','11054704','127.0.0.1'),(1655,'2017-11-30 14:05:46','Viewed student list','11054704','127.0.0.1'),(1656,'2017-11-30 14:06:22','Edited 4180 Details','11054704','127.0.0.1'),(1657,'2017-11-30 14:06:24','Viewed student list','11054704','127.0.0.1'),(1658,'2017-11-30 14:06:50','Edited 4181 Details','11054704','127.0.0.1'),(1659,'2017-11-30 14:06:51','Viewed student list','11054704','127.0.0.1'),(1660,'2017-11-30 14:07:13','Edited 4182 Details','11054704','127.0.0.1'),(1661,'2017-11-30 14:07:14','Viewed student list','11054704','127.0.0.1'),(1662,'2017-11-30 14:07:37','Edited 4183 Details','11054704','127.0.0.1'),(1663,'2017-11-30 14:07:38','Viewed student list','11054704','127.0.0.1'),(1664,'2017-11-30 14:08:12','Edited 4184 Details','11054704','127.0.0.1'),(1665,'2017-11-30 14:08:13','Viewed student list','11054704','127.0.0.1'),(1666,'2017-11-30 14:08:45','Edited 4186 Details','11054704','127.0.0.1'),(1667,'2017-11-30 14:08:46','Viewed student list','11054704','127.0.0.1'),(1668,'2017-11-30 14:09:11','Edited 4187 Details','11054704','127.0.0.1'),(1669,'2017-11-30 14:09:12','Viewed student list','11054704','127.0.0.1'),(1670,'2017-11-30 14:10:01','Edited 4188 Details','11054704','127.0.0.1'),(1671,'2017-11-30 14:10:02','Viewed student list','11054704','127.0.0.1'),(1672,'2017-11-30 14:11:10','Edited 4189 Details','11054704','127.0.0.1'),(1673,'2017-11-30 14:11:12','Viewed student list','11054704','127.0.0.1'),(1674,'2017-11-30 14:11:36','Edited 4190 Details','11054704','127.0.0.1'),(1675,'2017-11-30 14:11:37','Viewed student list','11054704','127.0.0.1'),(1676,'2017-11-30 14:12:18','Edited 4191 Details','11054704','127.0.0.1'),(1677,'2017-11-30 14:12:19','Viewed student list','11054704','127.0.0.1'),(1678,'2017-11-30 14:13:30','Edited 4193 Details','11054704','127.0.0.1'),(1679,'2017-11-30 14:13:31','Viewed student list','11054704','127.0.0.1'),(1680,'2017-11-30 14:13:58','Edited 4194 Details','11054704','127.0.0.1'),(1681,'2017-11-30 14:13:59','Viewed student list','11054704','127.0.0.1'),(1682,'2017-11-30 14:14:21','Edited 4195 Details','11054704','127.0.0.1'),(1683,'2017-11-30 14:14:21','Viewed student list','11054704','127.0.0.1'),(1684,'2017-11-30 14:14:47','Edited 4196 Details','11054704','127.0.0.1'),(1685,'2017-11-30 14:14:48','Viewed student list','11054704','127.0.0.1'),(1686,'2017-11-30 14:15:11','Edited 4197 Details','11054704','127.0.0.1'),(1687,'2017-11-30 14:15:12','Viewed student list','11054704','127.0.0.1'),(1688,'2017-11-30 14:15:35','Edited 4198 Details','11054704','127.0.0.1'),(1689,'2017-11-30 14:15:36','Viewed student list','11054704','127.0.0.1'),(1690,'2017-11-30 14:16:06','Edited 4199 Details','11054704','127.0.0.1'),(1691,'2017-11-30 14:16:07','Viewed student list','11054704','127.0.0.1'),(1692,'2017-11-30 14:16:31','Edited 4200 Details','11054704','127.0.0.1'),(1693,'2017-11-30 14:16:32','Viewed student list','11054704','127.0.0.1'),(1694,'2017-11-30 14:17:14','Edited 4202 Details','11054704','127.0.0.1'),(1695,'2017-11-30 14:17:15','Viewed student list','11054704','127.0.0.1'),(1696,'2017-11-30 14:17:38','Edited 4203 Details','11054704','127.0.0.1'),(1697,'2017-11-30 14:17:39','Viewed student list','11054704','127.0.0.1'),(1698,'2017-11-30 14:18:02','Edited 4204 Details','11054704','127.0.0.1'),(1699,'2017-11-30 14:18:03','Viewed student list','11054704','127.0.0.1'),(1700,'2017-11-30 14:18:48','Viewed student list','11054704','127.0.0.1'),(1701,'2017-11-30 14:18:48','Viewed student list','11054704','127.0.0.1'),(1702,'2017-11-30 14:19:28','Edited 4206 Details','11054704','127.0.0.1'),(1703,'2017-11-30 14:19:29','Viewed student list','11054704','127.0.0.1'),(1704,'2017-11-30 14:20:08','Edited 4207 Details','11054704','127.0.0.1'),(1705,'2017-11-30 14:20:09','Viewed student list','11054704','127.0.0.1'),(1706,'2017-11-30 14:20:36','Edited 4208 Details','11054704','127.0.0.1'),(1707,'2017-11-30 14:20:37','Viewed student list','11054704','127.0.0.1'),(1708,'2017-11-30 14:21:01','Edited 4209 Details','11054704','127.0.0.1'),(1709,'2017-11-30 14:21:03','Viewed student list','11054704','127.0.0.1'),(1710,'2017-11-30 14:21:39','Edited 4210 Details','11054704','127.0.0.1'),(1711,'2017-11-30 14:21:41','Viewed student list','11054704','127.0.0.1'),(1712,'2017-11-30 14:21:58','Viewed student list','11054704','127.0.0.1'),(1713,'2017-11-30 14:21:58','Viewed student list','11054704','127.0.0.1'),(1714,'2017-11-30 14:22:23','Viewed student list','11054704','127.0.0.1'),(1715,'2017-11-30 14:22:23','Viewed student list','11054704','127.0.0.1'),(1716,'2017-11-30 14:23:15','Viewed student list','11054704','127.0.0.1'),(1717,'2017-11-30 14:23:15','Viewed student list','11054704','127.0.0.1'),(1718,'2017-11-30 14:23:15','Viewed student list','11054704','127.0.0.1'),(1719,'2017-11-30 14:23:16','Viewed student list','11054704','127.0.0.1'),(1720,'2017-11-30 14:23:49','Edited 4211 Details','11054704','127.0.0.1'),(1721,'2017-11-30 14:23:50','Viewed student list','11054704','127.0.0.1'),(1722,'2017-11-30 14:24:16','Edited 4212 Details','11054704','127.0.0.1'),(1723,'2017-11-30 14:24:17','Viewed student list','11054704','127.0.0.1'),(1724,'2017-11-30 14:25:00','Edited 4213 Details','11054704','127.0.0.1'),(1725,'2017-11-30 14:25:01','Viewed student list','11054704','127.0.0.1'),(1726,'2017-11-30 14:25:32','Edited 4214 Details','11054704','127.0.0.1'),(1727,'2017-11-30 14:25:33','Viewed student list','11054704','127.0.0.1'),(1728,'2017-11-30 14:25:59','Edited 4215 Details','11054704','127.0.0.1'),(1729,'2017-11-30 14:26:00','Viewed student list','11054704','127.0.0.1'),(1730,'2017-11-30 14:26:28','Edited 4216 Details','11054704','127.0.0.1'),(1731,'2017-11-30 14:26:29','Viewed student list','11054704','127.0.0.1'),(1732,'2017-11-30 14:27:03','Edited 4218 Details','11054704','127.0.0.1'),(1733,'2017-11-30 14:27:04','Viewed student list','11054704','127.0.0.1'),(1734,'2017-11-30 14:28:37','Viewed student list','11054704','127.0.0.1'),(1735,'2017-11-30 14:28:38','Viewed student list','11054704','127.0.0.1'),(1736,'2017-11-30 14:29:20','Edited 4221 Details','11054704','127.0.0.1'),(1737,'2017-11-30 14:29:21','Viewed student list','11054704','127.0.0.1'),(1738,'2017-11-30 14:29:49','Edited 4222 Details','11054704','127.0.0.1'),(1739,'2017-11-30 14:29:50','Viewed student list','11054704','127.0.0.1'),(1740,'2017-11-30 14:30:15','Edited 4223 Details','11054704','127.0.0.1'),(1741,'2017-11-30 14:30:16','Viewed student list','11054704','127.0.0.1'),(1742,'2017-11-30 14:30:46','Edited 4224 Details','11054704','127.0.0.1'),(1743,'2017-11-30 14:30:47','Viewed student list','11054704','127.0.0.1'),(1744,'2017-11-30 14:31:09','Edited 4225 Details','11054704','127.0.0.1'),(1745,'2017-11-30 14:31:10','Viewed student list','11054704','127.0.0.1'),(1746,'2017-11-30 14:31:31','Edited 4226 Details','11054704','127.0.0.1'),(1747,'2017-11-30 14:31:32','Viewed student list','11054704','127.0.0.1'),(1748,'2017-11-30 14:32:06','Edited 4228 Details','11054704','127.0.0.1'),(1749,'2017-11-30 14:32:07','Viewed student list','11054704','127.0.0.1'),(1750,'2017-11-30 14:32:55','Edited 4229 Details','11054704','127.0.0.1'),(1751,'2017-11-30 14:32:57','Viewed student list','11054704','127.0.0.1'),(1752,'2017-11-30 14:33:22','Edited 4230 Details','11054704','127.0.0.1'),(1753,'2017-11-30 14:33:24','Viewed student list','11054704','127.0.0.1'),(1754,'2017-11-30 14:33:51','Edited 4231 Details','11054704','127.0.0.1'),(1755,'2017-11-30 14:33:52','Viewed student list','11054704','127.0.0.1'),(1756,'2017-11-30 15:05:50','Edited 4232 Details','11054704','127.0.0.1'),(1757,'2017-11-30 15:05:52','Viewed student list','11054704','127.0.0.1'),(1758,'2017-11-30 15:06:56','Edited 4233 Details','11054704','127.0.0.1'),(1759,'2017-11-30 15:06:58','Viewed student list','11054704','127.0.0.1'),(1760,'2017-11-30 15:07:20','Edited 4234 Details','11054704','127.0.0.1'),(1761,'2017-11-30 15:07:21','Viewed student list','11054704','127.0.0.1'),(1762,'2017-11-30 15:07:43','Edited 4235 Details','11054704','127.0.0.1'),(1763,'2017-11-30 15:07:44','Viewed student list','11054704','127.0.0.1'),(1764,'2017-11-30 15:08:08','Edited 4236 Details','11054704','127.0.0.1'),(1765,'2017-11-30 15:08:09','Viewed student list','11054704','127.0.0.1'),(1766,'2017-11-30 15:19:49','Edited 4237 Details','11054704','127.0.0.1'),(1767,'2017-11-30 15:19:50','Viewed student list','11054704','127.0.0.1'),(1768,'2017-11-30 15:21:02','Edited 4238 Details','11054704','127.0.0.1'),(1769,'2017-11-30 15:21:03','Viewed student list','11054704','127.0.0.1'),(1770,'2017-11-30 15:24:01','Edited 4240 Details','11054704','127.0.0.1'),(1771,'2017-11-30 15:24:02','Viewed student list','11054704','127.0.0.1'),(1772,'2017-11-30 15:26:16','Edited 4241 Details','11054704','127.0.0.1'),(1773,'2017-11-30 15:26:18','Viewed student list','11054704','127.0.0.1'),(1774,'2017-11-30 15:28:17','Viewed student list','11054704','127.0.0.1'),(1775,'2017-11-30 15:28:17','Viewed student list','11054704','127.0.0.1'),(1776,'2017-11-30 15:29:24','Viewed student list','11054704','127.0.0.1'),(1777,'2017-11-30 15:29:24','Viewed student list','11054704','127.0.0.1'),(1778,'2017-11-30 15:29:25','Viewed student list','11054704','127.0.0.1'),(1779,'2017-11-30 15:29:26','Viewed student list','11054704','127.0.0.1'),(1780,'2017-12-05 11:48:24','Successful Login','10932104','192.168.1.21'),(1781,'2017-12-05 11:48:25','View Accountant*s Dashboard','10932104','192.168.1.21'),(1782,'2017-12-05 11:48:38','View Finance Dashboard','10932104','192.168.1.21'),(1783,'2017-12-05 11:58:01','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1784,'2017-12-05 11:58:03','View Finance Dashboard','10932104','192.168.1.21'),(1785,'2017-12-05 11:58:05','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1786,'2017-12-05 11:58:06','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1787,'2017-12-05 11:59:13','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1788,'2017-12-06 10:50:32','Successful Login','10932104','192.168.1.21'),(1789,'2017-12-06 10:50:33','View Accountant*s Dashboard','10932104','192.168.1.21'),(1790,'2017-12-06 10:50:43','View Finance Dashboard','10932104','192.168.1.21'),(1791,'2017-12-06 10:50:52','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1792,'2017-12-06 10:51:36','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1793,'2017-12-06 10:52:46','Successful Login','admin','127.0.0.1'),(1794,'2017-12-06 10:52:47','View Administrator*s Dashboard','admin','127.0.0.1'),(1795,'2017-12-06 10:52:50','Viewed student list','admin','127.0.0.1'),(1796,'2017-12-06 10:52:51','Viewed student list','admin','127.0.0.1'),(1797,'2017-12-06 10:53:52','Viewed Votehead Balances page','10932104','192.168.1.21'),(1798,'2017-12-06 10:54:03','Viewed Votehead Balances page','10932104','192.168.1.21'),(1799,'2017-12-06 10:55:01','Viewed Votehead Balances page','10932104','192.168.1.21'),(1800,'2017-12-06 10:55:14','Viewed Receipt Copy 10','10932104','192.168.1.21'),(1801,'2017-12-06 10:55:31','Viewed Votehead Balances page','10932104','192.168.1.21'),(1802,'2017-12-06 10:55:40','Viewed Votehead Balances page','10932104','192.168.1.21'),(1803,'2017-12-06 10:55:51','Viewed Votehead Balances page','10932104','192.168.1.21'),(1804,'2017-12-06 10:56:26','Viewed Finance pocket money page','10932104','192.168.1.21'),(1805,'2017-12-06 10:56:30','Viewed Finance finance pocketmoney report page','10932104','192.168.1.21'),(1806,'2017-12-06 10:56:35','Viewed Finance finance pocketmoney report page','10932104','192.168.1.21'),(1807,'2017-12-06 10:57:12','Viewed Finance pocket money page','10932104','192.168.1.21'),(1808,'2017-12-06 10:58:08','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1809,'2017-12-06 10:58:12','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1810,'2017-12-06 10:58:23','Viewed Parents Cashbook Finance Voteheads Setting page','10932104','192.168.1.21'),(1811,'2017-12-06 10:58:36','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1812,'2017-12-06 11:01:34','Viewed Votehead Balances page','10932104','192.168.1.21'),(1813,'2017-12-06 11:01:39','Viewed Votehead Balances page','10932104','192.168.1.21'),(1814,'2017-12-06 11:02:51','Viewed Finance Voteheads Setting page','10932104','192.168.1.21'),(1815,'2017-12-06 13:01:33','Successful Login','admin','127.0.0.1'),(1816,'2017-12-06 13:01:33','View Administrator*s Dashboard','admin','127.0.0.1'),(1817,'2017-12-06 13:01:44','Viewed Deans Exams Settings page','admin','127.0.0.1'),(1818,'2017-12-06 13:01:47','Viewed Deans Exams Settings page','admin','127.0.0.1'),(1819,'2017-12-06 13:02:00','Viewed Deans Exams Settings page','admin','127.0.0.1'),(1820,'2017-12-06 13:02:06','View Administrator*s Dashboard','admin','127.0.0.1'),(1821,'2017-12-06 13:02:10','Viewed student list','admin','127.0.0.1'),(1822,'2017-12-06 13:02:10','Viewed student list','admin','127.0.0.1'),(1823,'2017-12-06 13:02:54','View Administrator*s Dashboard','admin','127.0.0.1'),(1824,'2017-12-06 13:04:19','Viewed student list','admin','127.0.0.1'),(1825,'2017-12-06 13:04:19','Viewed student list','admin','127.0.0.1'),(1826,'2017-12-06 13:12:48','Viewed Class list','admin','127.0.0.1'),(1827,'2017-12-06 13:12:57','Viewed Class list','admin','127.0.0.1'),(1828,'2017-12-06 13:13:22','Viewed Class list','admin','127.0.0.1'),(1829,'2017-12-06 13:13:28','Viewed Class list','admin','127.0.0.1'),(1830,'2017-12-06 13:13:41','Viewed Class list','admin','127.0.0.1'),(1831,'2017-12-06 13:13:47','Viewed Class list','admin','127.0.0.1'),(1832,'2017-12-06 13:13:59','Viewed Class list','admin','127.0.0.1'),(1833,'2017-12-06 13:14:04','Viewed Class list','admin','127.0.0.1'),(1834,'2017-12-06 13:14:25','Viewed Class list','admin','127.0.0.1'),(1835,'2017-12-06 13:14:31','Viewed Class list','admin','127.0.0.1'),(1836,'2017-12-06 13:14:40','Viewed Class list','admin','127.0.0.1'),(1837,'2017-12-06 13:14:51','Viewed Class list','admin','127.0.0.1'),(1838,'2017-12-06 13:15:28','Viewed Class list','admin','127.0.0.1'),(1839,'2017-12-06 13:16:11','Viewed Class list','admin','127.0.0.1'),(1840,'2017-12-06 13:16:19','Viewed Class list','admin','127.0.0.1'),(1841,'2017-12-06 13:16:33','Viewed Class list','admin','127.0.0.1'),(1842,'2017-12-06 13:17:39','Viewed Class list','admin','127.0.0.1'),(1843,'2017-12-06 13:17:45','Viewed Class list','admin','127.0.0.1'),(1844,'2017-12-06 13:18:02','Viewed Class list','admin','127.0.0.1'),(1845,'2017-12-06 13:20:05','View Administrator*s Dashboard','admin','127.0.0.1'),(1846,'2017-12-06 13:20:09','Viewed student list','admin','127.0.0.1'),(1847,'2017-12-06 13:20:10','Viewed student list','admin','127.0.0.1'),(1848,'2017-12-06 15:05:50','Successful Login','ADMIN','192.168.1.235'),(1849,'2017-12-06 15:05:51','View Administrator*s Dashboard','ADMIN','192.168.1.235'),(1850,'2017-12-06 15:05:53','Backed up Database','ADMIN','192.168.1.235');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tblaudittrail` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbldispline`
+--
+
+DROP TABLE IF EXISTS `tbldispline`;
+CREATE TABLE `tbldispline` (
+  `id` int(11) NOT NULL auto_increment,
+  `admno` varchar(100) NOT NULL,
+  `comments` text NOT NULL,
+  `comment_by` varchar(100) NOT NULL,
+  `date_added` varchar(100) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbldispline`
+--
+
+
+/*!40000 ALTER TABLE `tbldispline` DISABLE KEYS */;
+LOCK TABLES `tbldispline` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbldispline` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbleperformancetrack`
+--
+
+DROP TABLE IF EXISTS `tbleperformancetrack`;
+CREATE TABLE `tbleperformancetrack` (
+  `admno` varchar(100) NOT NULL,
+  `form` varchar(100) NOT NULL,
+  `year` int(4) NOT NULL,
+  `term` int(5) NOT NULL,
+  `stream` varchar(100) NOT NULL,
+  `s_status` int(1) NOT NULL default '0',
+  PRIMARY KEY  (`admno`,`form`,`year`,`term`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbleperformancetrack`
+--
+
+
+/*!40000 ALTER TABLE `tbleperformancetrack` DISABLE KEYS */;
+LOCK TABLES `tbleperformancetrack` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbleperformancetrack` ENABLE KEYS */;
+
+--
+-- Table structure for table `tbleperformancetrackmock`
+--
+
+DROP TABLE IF EXISTS `tbleperformancetrackmock`;
+CREATE TABLE `tbleperformancetrackmock` (
+  `admno` varchar(100) NOT NULL,
+  `form` varchar(100) NOT NULL,
+  `year` int(4) NOT NULL,
+  `term` int(5) NOT NULL,
+  `stream` varchar(100) NOT NULL,
+  `s_status` int(1) NOT NULL default '0',
+  PRIMARY KEY  (`admno`,`form`,`year`,`term`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbleperformancetrackmock`
+--
+
+
+/*!40000 ALTER TABLE `tbleperformancetrackmock` DISABLE KEYS */;
+LOCK TABLES `tbleperformancetrackmock` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tbleperformancetrackmock` ENABLE KEYS */;
+
+--
+-- Table structure for table `tblgrades`
+--
+
+DROP TABLE IF EXISTS `tblgrades`;
+CREATE TABLE `tblgrades` (
+  `subject` varchar(100) NOT NULL,
+  `minv` decimal(18,2) NOT NULL,
+  `maxv` decimal(18,2) NOT NULL,
+  `grade` varchar(2) NOT NULL,
+  `remarks` text NOT NULL,
+  `points` int(2) NOT NULL,
+  `form` varchar(3) NOT NULL,
+  PRIMARY KEY  (`subject`,`minv`,`maxv`,`grade`,`form`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tblgrades`
+--
+
+
+/*!40000 ALTER TABLE `tblgrades` DISABLE KEYS */;
+LOCK TABLES `tblgrades` WRITE;
+INSERT INTO `tblgrades` VALUES ('ENGLISH','0.00','29.00','E','Work Harder',1,'1-2'),('ENGLISH','30.00','34.00','D-','Work Harder',2,'1-2'),('ENGLISH','35.00','39.00','D','Improve',3,'1-2'),('ENGLISH','40.00','44.00','D+','Can do better',4,'1-2'),('ENGLISH','45.00','49.00','C-','Fair',5,'1-2'),('ENGLISH','50.00','54.00','C','Fair',6,'1-2'),('ENGLISH','55.00','59.00','C+','Fair',7,'1-2'),('ENGLISH','60.00','64.00','B-','Good',8,'1-2'),('ENGLISH','65.00','69.00','B','Good',9,'1-2'),('ENGLISH','70.00','74.00','B+','Good',10,'1-2'),('ENGLISH','75.00','79.00','A-','Very Good',11,'1-2'),('ENGLISH','80.00','100.00','A','Excellent',12,'1-2'),('KISWAHILI','0.00','29.00','E','Sharti Usome',1,'1-2'),('KISWAHILI','30.00','34.00','D-','Tia bidii',2,'1-2'),('KISWAHILI','35.00','39.00','D','Tia bidii',3,'1-2'),('KISWAHILI','40.00','44.00','D+','Tia bidii',4,'1-2'),('KISWAHILI','45.00','49.00','C-','Jitahidi',5,'1-2'),('KISWAHILI','50.00','54.00','C','Jitahidi',6,'1-2'),('KISWAHILI','55.00','59.00','C+','Jaribio Zuri',7,'1-2'),('KISWAHILI','60.00','64.00','B-','Jaribio Zuri',8,'1-2'),('KISWAHILI','65.00','69.00','B','Njema',9,'1-2'),('KISWAHILI','70.00','74.00','B+','Njema',10,'1-2'),('KISWAHILI','75.00','79.00','A-','Hongera',11,'1-2'),('KISWAHILI','80.00','100.00','A','Hongera',12,'1-2'),('HISTORY','0.00','29.00','E','Work Harder',1,'1-2'),('HISTORY','30.00','34.00','D-','Work Hard',2,'1-2'),('HISTORY','35.00','39.00','D','Improve',3,'1-2'),('HISTORY','40.00','44.00','D+','Can do better',4,'1-2'),('HISTORY','45.00','49.00','C-','Fair',5,'1-2'),('HISTORY','50.00','54.00','C','Fair',6,'1-2'),('HISTORY','55.00','59.00','C+','Fair',7,'1-2'),('HISTORY','60.00','64.00','B-','Good',8,'1-2'),('HISTORY','65.00','69.00','B','Good',9,'1-2'),('HISTORY','70.00','74.00','B+','Good',10,'1-2'),('HISTORY','75.00','79.00','A-','Very Good',11,'1-2'),('HISTORY','80.00','100.00','A','Excellent',12,'1-2'),('HISTORY','40.00','44.00','D+','Can do better',4,'3-4'),('HISTORY','35.00','39.00','D','Improve',3,'3-4'),('HISTORY','30.00','34.00','D-','Work Hard',2,'3-4'),('HISTORY','0.00','29.00','E','Work Harder',1,'3-4'),('CRE','80.00','100.00','A','Excellent',12,'3-4'),('CRE','75.00','79.00','A-','Very Good',11,'3-4'),('CRE','70.00','74.00','B+','Good',10,'3-4'),('CRE','65.00','69.00','B','Good',9,'3-4'),('CRE','60.00','64.00','B-','Good',8,'3-4'),('CRE','55.00','59.00','C+','Fair',7,'3-4'),('CRE','50.00','54.00','C','Fair',6,'3-4'),('CRE','35.00','39.00','D','Improve',3,'3-4'),('CRE','30.00','34.00','D-','Work Hard',2,'3-4'),('CRE','0.00','29.00','E','Work Harder',1,'3-4'),('CRE','80.00','100.00','A','Excellent',12,'1-2'),('CRE','0.00','29.00','E','Work Harder',1,'1-2'),('GEOGRAPHY','75.00','79.00','A-','Very Good',11,'1-2'),('GEOGRAPHY','65.00','69.00','B','Good',9,'1-2'),('GEOGRAPHY','50.00','54.00','C','Fair',6,'1-2'),('GEOGRAPHY','45.00','49.00','C-','Fair',5,'1-2'),('B/STUDIES','80.00','100.00','A','Excellent',12,'1-2'),('B/STUDIES','70.00','74.00','B+','Good',10,'1-2'),('B/STUDIES','60.00','64.00','B-','Good',8,'1-2'),('B/STUDIES','50.00','54.00','C','Fair',6,'1-2'),('B/STUDIES','30.00','34.00','D-','Work Hard',2,'1-2'),('AGRICULTURE','69.50','74.49','B+','Good',10,'1-2'),('AGRICULTURE','60.00','64.00','B-','Good',8,'1-2'),('AGRICULTURE','50.00','54.00','C','Fair',6,'1-2'),('AGRICULTURE','35.00','39.00','D','Improve',3,'1-2'),('AGRICULTURE','30.00','34.00','D-','Work Hard',2,'1-2'),('AGRICULTURE','80.00','100.00','A','Excellent',12,'3-4'),('AGRICULTURE','65.00','69.00','B','Good',9,'3-4'),('AGRICULTURE','60.00','64.00','B-','Good',8,'3-4'),('AGRICULTURE','55.00','59.00','C+','Fair',7,'3-4'),('AGRICULTURE','35.00','39.00','D','Improve',3,'3-4'),('AGRICULTURE','30.00','34.00','D-','Work Hard',2,'3-4'),('MATHS','0.00','25.00','E','Work Harder',1,'3-4'),('MATHS','26.00','34.00','D-','Work Harder',2,'3-4'),('MATHS','35.00','39.00','D','Improve',3,'3-4'),('MATHS','40.00','44.00','D+','Can do better',4,'3-4'),('MATHS','45.00','49.00','C-','Fair',5,'3-4'),('MATHS','50.00','54.00','C','Fair',6,'3-4'),('MATHS','55.00','59.00','C+','Fair',7,'3-4'),('MATHS','60.00','64.00','B-','Good',8,'3-4'),('MATHS','65.00','69.00','B','Good',9,'3-4'),('MATHS','70.00','74.00','B+','Good',10,'3-4'),('MATHS','75.00','79.00','A-','Very Good',11,'3-4'),('MATHS','80.00','100.00','A','Excellent',12,'3-4'),('BIOLOGY','0.00','25.00','E','Work Harder',1,'3-4'),('BIOLOGY','26.00','34.00','D-','Work Harder',2,'3-4'),('BIOLOGY','35.00','39.00','D','Improve',3,'3-4'),('BIOLOGY','40.00','44.00','D+','Can do better',4,'3-4'),('BIOLOGY','45.00','49.00','C-','Fair',5,'3-4'),('BIOLOGY','50.00','54.00','C','Fair',6,'3-4'),('BIOLOGY','55.00','59.00','C+','Fair',7,'3-4'),('BIOLOGY','60.00','64.00','B-','Good',8,'3-4'),('BIOLOGY','65.00','69.00','B','Good',9,'3-4'),('BIOLOGY','70.00','74.00','B+','Good',10,'3-4'),('BIOLOGY','75.00','79.00','A-','Very Good',11,'3-4'),('BIOLOGY','80.00','100.00','A','Excellent',12,'3-4'),('PHYSICS','0.00','25.00','E','Work Harder',1,'3-4'),('PHYSICS','26.00','34.00','D-','Work Harder',2,'3-4'),('PHYSICS','35.00','39.00','D','Improve',3,'3-4'),('PHYSICS','40.00','44.00','D+','Can do better',4,'3-4'),('PHYSICS','45.00','49.00','C-','Fair',5,'3-4'),('PHYSICS','50.00','54.00','C','Fair',6,'3-4'),('PHYSICS','55.00','59.00','C+','Fair',7,'3-4'),('PHYSICS','60.00','64.00','B-','Good',8,'3-4'),('PHYSICS','65.00','69.00','B','Good',9,'3-4'),('PHYSICS','70.00','74.00','B+','Good',10,'3-4'),('PHYSICS','75.00','79.00','A-','Very Good',11,'3-4'),('PHYSICS','80.00','100.00','A','Excellent',12,'3-4'),('CHEMISTRY','0.00','25.00','E','Work Harder',1,'3-4'),('CHEMISTRY','26.00','34.00','D-','Work Harder',2,'3-4'),('CHEMISTRY','35.00','39.00','D','Improve',3,'3-4'),('CHEMISTRY','40.00','44.00','D+','Can do better',4,'3-4'),('CHEMISTRY','45.00','49.00','C-','Fair',5,'3-4'),('CHEMISTRY','50.00','54.00','C','Fair',6,'3-4'),('CHEMISTRY','55.00','59.00','C+','Fair',7,'3-4'),('CHEMISTRY','60.00','64.00','B-','Good',8,'3-4'),('CHEMISTRY','65.00','69.00','B','Good',9,'3-4'),('CHEMISTRY','70.00','74.00','B+','Good',10,'3-4'),('CHEMISTRY','75.00','79.00','A-','Very Good',11,'3-4'),('CHEMISTRY','80.00','100.00','A','Excellent',12,'3-4'),('MATHS','0.00','25.00','E','Work Harder',1,'1-2'),('MATHS','26.00','34.00','D-','Work Harder',2,'1-2'),('MATHS','35.00','39.00','D','Improve',3,'1-2'),('MATHS','40.00','44.00','D+','Can do better',4,'1-2'),('MATHS','45.00','49.00','C-','Fair',5,'1-2'),('MATHS','50.00','54.00','C','Fair',6,'1-2'),('MATHS','55.00','59.00','C+','Fair',7,'1-2'),('MATHS','60.00','64.00','B-','Good',8,'1-2'),('MATHS','65.00','69.00','B','Good',9,'1-2'),('MATHS','70.00','74.00','B+','Good',10,'1-2'),('MATHS','75.00','79.00','A-','Very Good',11,'1-2'),('MATHS','80.00','100.00','A','Excellent',12,'1-2'),('BIOLOGY','0.00','25.00','E','Work Harder',1,'1-2'),('BIOLOGY','26.00','34.00','D-','Work Harder',2,'1-2'),('BIOLOGY','35.00','39.00','D','Improve',3,'1-2'),('BIOLOGY','40.00','44.00','D+','Can do better',4,'1-2'),('BIOLOGY','45.00','49.00','C-','Fair',5,'1-2'),('BIOLOGY','50.00','54.00','C','Fair',6,'1-2'),('BIOLOGY','55.00','59.00','C+','Fair',7,'1-2'),('BIOLOGY','60.00','64.00','B-','Good',8,'1-2'),('BIOLOGY','65.00','69.00','B','Good',9,'1-2'),('BIOLOGY','70.00','74.00','B+','Good',10,'1-2'),('BIOLOGY','75.00','79.00','A-','Very Good',11,'1-2'),('BIOLOGY','80.00','100.00','A','Excellent',12,'1-2'),('PHYSICS','0.00','25.00','E','Work Harder',1,'1-2'),('PHYSICS','26.00','34.00','D-','Work Harder',2,'1-2'),('PHYSICS','35.00','39.00','D','Improve',3,'1-2'),('PHYSICS','40.00','44.00','D+','Can do better',4,'1-2'),('PHYSICS','45.00','49.00','C-','Fair',5,'1-2'),('PHYSICS','50.00','54.00','C','Fair',6,'1-2'),('PHYSICS','55.00','59.00','C+','Fair',7,'1-2'),('PHYSICS','60.00','64.00','B-','Good',8,'1-2'),('PHYSICS','65.00','69.00','B','Good',9,'1-2'),('PHYSICS','70.00','74.00','B+','Good',10,'1-2'),('PHYSICS','75.00','79.00','A-','Very Good',11,'1-2'),('PHYSICS','80.00','100.00','A','Excellent',12,'1-2'),('CHEMISTRY','0.00','25.00','E','Work Harder',1,'1-2'),('CHEMISTRY','26.00','34.00','D-','Work Harder',2,'1-2'),('CHEMISTRY','35.00','39.00','D','Improve',3,'1-2'),('CHEMISTRY','40.00','44.00','D+','Can do better',4,'1-2'),('CHEMISTRY','45.00','49.00','C-','Fair',5,'1-2'),('CHEMISTRY','50.00','54.00','C','Fair',6,'1-2'),('CHEMISTRY','55.00','59.00','C+','Fair',7,'1-2'),('CHEMISTRY','60.00','64.00','B-','Good',8,'1-2'),('CHEMISTRY','65.00','69.00','B','Good',9,'1-2'),('CHEMISTRY','70.00','74.00','B+','Good',10,'1-2'),('CHEMISTRY','75.00','79.00','A-','Very Good',11,'1-2'),('CHEMISTRY','80.00','100.00','A','Excellent',12,'1-2'),('ENGLISH','0.00','29.00','E','Work Harder',1,'3-4'),('ENGLISH','30.00','34.00','D-','Work Harder',2,'3-4'),('ENGLISH','34.00','39.00','D','Improve',3,'3-4'),('ENGLISH','40.00','44.00','D+','Can do better',4,'3-4'),('ENGLISH','45.00','49.00','C-','Fair',5,'3-4'),('ENGLISH','50.00','54.00','C','Fair',6,'3-4'),('ENGLISH','55.00','59.00','C+','Fair',7,'3-4'),('ENGLISH','60.00','64.00','B-','Good',8,'3-4'),('ENGLISH','65.00','69.00','B','Good',9,'3-4'),('ENGLISH','70.00','74.00','B+','Good',10,'3-4'),('ENGLISH','75.00','79.00','A-','Very Good',11,'3-4'),('ENGLISH','80.00','100.00','A','Excellent',12,'3-4'),('KISWAHILI','0.00','29.00','E','Sharti Usome',1,'3-4'),('KISWAHILI','30.00','34.00','D-','Tia bidii',2,'3-4'),('KISWAHILI','35.00','39.00','D','Tia bidii',3,'3-4'),('KISWAHILI','40.00','44.00','D+','Tia bidii',4,'3-4'),('KISWAHILI','45.00','49.00','C-','Jitahidi',5,'3-4'),('KISWAHILI','50.00','54.00','C','Jitahidi',6,'3-4'),('KISWAHILI','55.00','59.00','C+','Jaribio Zuri',7,'3-4'),('KISWAHILI','60.00','64.00','B-','Jaribio Zuri',8,'3-4'),('KISWAHILI','65.00','69.00','B','Njema',9,'3-4'),('KISWAHILI','70.00','74.00','B+','Njema',10,'3-4'),('KISWAHILI','75.00','79.00','A-','Hongera',11,'3-4'),('KISWAHILI','80.00','100.00','A','Hongera',12,'3-4'),('CRE','30.00','34.00','D-','Work Hard',2,'1-2'),('CRE','35.00','39.00','D','Improve',3,'1-2'),('CRE','40.00','44.00','D+','Can do better',4,'1-2'),('CRE','45.00','49.00','C-','Fair',5,'1-2'),('CRE','50.00','54.00','C','Fair',6,'1-2'),('CRE','55.00','59.00','C+','Fair',7,'1-2'),('CRE','60.00','64.00','B-','Good',8,'1-2'),('CRE','65.00','69.00','B','Good',9,'1-2'),('CRE','70.00','74.00','B+','Good',10,'1-2'),('CRE','75.00','79.00','A-','Very Good',11,'1-2'),('GEOGRAPHY','70.00','74.00','B+','Good',10,'1-2'),('GEOGRAPHY','60.00','64.00','B-','Good',8,'1-2'),('GEOGRAPHY','55.00','59.00','C+','Fair',7,'1-2'),('GEOGRAPHY','40.00','44.00','D+','Can do better',4,'1-2'),('GEOGRAPHY','35.00','39.00','D','Improve',3,'1-2'),('GEOGRAPHY','30.00','34.00','D-','Work Hard',2,'1-2'),('B/STUDIES','55.00','59.00','C+','Fair',7,'3-4'),('B/STUDIES','60.00','64.00','B-','Good',8,'3-4'),('B/STUDIES','65.00','69.00','B','Good',9,'3-4'),('B/STUDIES','70.00','74.00','B+','Good',10,'3-4'),('B/STUDIES','75.00','79.00','A-','Very Good',11,'3-4'),('B/STUDIES','80.00','100.00','A','Excellent',12,'3-4'),('GEOGRAPHY','0.00','29.00','E','Work Harder',1,'3-4'),('GEOGRAPHY','30.00','34.00','D-','Work Hard',2,'3-4'),('GEOGRAPHY','35.00','39.00','D','Improve',3,'3-4'),('B/STUDIES','75.00','79.00','A-','Very Good',11,'1-2'),('B/STUDIES','65.00','69.00','B','Good',9,'1-2'),('B/STUDIES','55.00','59.00','C+','Fair',7,'1-2'),('B/STUDIES','45.00','49.00','C-','Fair',5,'1-2'),('B/STUDIES','40.00','44.00','D+','Can do better',4,'1-2'),('B/STUDIES','35.00','39.00','D','Improve',3,'1-2'),('B/STUDIES','0.00','29.00','E','Work Harder',1,'1-2'),('AGRICULTURE','80.00','100.00','A','Excellent',12,'1-2'),('AGRICULTURE','75.00','79.00','A-','Very Good',11,'1-2'),('AGRICULTURE','65.00','69.00','B','Good',9,'1-2'),('AGRICULTURE','55.00','59.00','C+','Fair',7,'1-2'),('AGRICULTURE','45.00','49.00','C-','Fair',5,'1-2'),('AGRICULTURE','40.00','44.00','D+','Can do better',4,'1-2'),('AGRICULTURE','0.00','29.00','E','Work Harder',1,'1-2'),('AGRICULTURE','75.00','79.00','A-','Very Good',11,'3-4'),('AGRICULTURE','70.00','74.00','B+','Good',10,'3-4'),('AGRICULTURE','50.00','54.00','C','Fair',6,'3-4'),('AGRICULTURE','45.00','49.00','C-','Fair',5,'3-4'),('AGRICULTURE','40.00','44.00','D+','Can do better',4,'3-4'),('AGRICULTURE','0.00','29.00','E','Work Harder',1,'3-4'),('CRE','45.00','49.00','D+','Can do better',4,'3-4'),('CRE','50.00','54.00','C-','Fair',5,'3-4'),('GEOGRAPHY','80.00','100.00','A','Excellent',12,'1-2'),('GEOGRAPHY','40.00','44.00','D+','Can do better',4,'3-4'),('GEOGRAPHY','45.00','49.00','C-','Fair',5,'3-4'),('GEOGRAPHY','50.00','54.00','C','Fair',6,'3-4'),('GEOGRAPHY','55.00','59.00','C+','Fair',7,'3-4'),('GEOGRAPHY','60.00','64.00','B-','Good',8,'3-4'),('GEOGRAPHY','65.00','69.00','B','Good',9,'3-4'),('GEOGRAPHY','70.00','74.00','B+','Good',10,'3-4'),('GEOGRAPHY','75.00','79.00','A-','Very Good',11,'3-4'),('GEOGRAPHY','80.00','100.00','A','Excellent',12,'3-4'),('GEOGRAPHY','0.00','29.00','E','Work Harder',1,'1-2'),('B/STUDIES','0.00','29.00','E','Work Harder',1,'3-4'),('B/STUDIES','30.00','34.00','D-','Work Hard',2,'3-4'),('B/STUDIES','35.00','39.00','D','Improve',3,'3-4'),('B/STUDIES','40.00','44.00','D+','Can do better',4,'3-4'),('B/STUDIES','45.00','49.00','C-','Fair',5,'3-4'),('B/STUDIES','50.00','54.00','C','Fair',6,'3-4'),('HISTORY','45.00','49.00','C-','Fair',5,'3-4'),('HISTORY','50.00','54.00','C','Fair',6,'3-4'),('HISTORY','55.00','59.00','C+','Fair',7,'3-4'),('HISTORY','60.00','64.00','B-','Good',8,'3-4'),('HISTORY','65.00','69.00','B','Good',9,'3-4'),('HISTORY','70.00','74.00','B+','Good',10,'3-4'),('HISTORY','75.00','79.00','A-','Very Good',11,'3-4'),('HISTORY','80.00','100.00','A','Excellent',12,'3-4');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tblgrades` ENABLE KEYS */;
+
+--
+-- Table structure for table `test`
+--
+
+DROP TABLE IF EXISTS `test`;
+CREATE TABLE `test` (
+  `id` int(110) NOT NULL auto_increment,
+  `valuesp` text NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `test`
+--
+
+
+/*!40000 ALTER TABLE `test` DISABLE KEYS */;
+LOCK TABLES `test` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `test` ENABLE KEYS */;
+
+--
+-- Table structure for table `totalmockperformanceindex`
+--
+
+DROP TABLE IF EXISTS `totalmockperformanceindex`;
+CREATE TABLE `totalmockperformanceindex` (
+  `adm` varchar(100) NOT NULL,
+  `names` varchar(100) NOT NULL,
+  `kcpemean` decimal(18,2) default '0.00',
+  `previous` decimal(18,2) default '0.00',
+  `current` decimal(18,2) default '0.00',
+  `pindex` decimal(18,2) default '0.00',
+  `vap` decimal(18,2) default '0.00',
+  `term` int(100) NOT NULL,
+  `year` int(100) NOT NULL,
+  `form` int(100) NOT NULL,
+  `classin` varchar(100) NOT NULL,
+  PRIMARY KEY  (`adm`,`year`,`term`,`form`,`classin`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `totalmockperformanceindex`
+--
+
+
+/*!40000 ALTER TABLE `totalmockperformanceindex` DISABLE KEYS */;
+LOCK TABLES `totalmockperformanceindex` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `totalmockperformanceindex` ENABLE KEYS */;
+
+--
+-- Table structure for table `totalperformanceindex`
+--
+
+DROP TABLE IF EXISTS `totalperformanceindex`;
+CREATE TABLE `totalperformanceindex` (
+  `adm` varchar(100) NOT NULL,
+  `names` varchar(100) NOT NULL,
+  `kcpemean` decimal(18,2) default '0.00',
+  `previous` decimal(18,2) default '0.00',
+  `current` decimal(18,2) default '0.00',
+  `pindex` decimal(18,2) default '0.00',
+  `vap` decimal(18,2) default '0.00',
+  `term` int(100) NOT NULL,
+  `year` int(100) NOT NULL,
+  `form` int(100) NOT NULL,
+  `classin` varchar(100) NOT NULL,
+  `exam` varchar(10) NOT NULL,
+  PRIMARY KEY  (`adm`,`term`,`year`,`form`,`classin`,`exam`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `totalperformanceindex`
+--
+
+
+/*!40000 ALTER TABLE `totalperformanceindex` DISABLE KEYS */;
+LOCK TABLES `totalperformanceindex` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `totalperformanceindex` ENABLE KEYS */;
+
+--
+-- Table structure for table `totalygradedcatsubjectsanalysis`
+--
+
+DROP TABLE IF EXISTS `totalygradedcatsubjectsanalysis`;
+CREATE TABLE `totalygradedcatsubjectsanalysis` (
+  `subject` varchar(100) NOT NULL,
+  `form` int(1) NOT NULL,
+  `stream` varchar(100) NOT NULL,
+  `term` int(1) NOT NULL,
+  `year` varchar(4) NOT NULL,
+  `meanscore` float(18,2) NOT NULL,
+  `A` int(4) NOT NULL,
+  `A_m` int(4) NOT NULL,
+  `B_p` int(4) NOT NULL,
+  `B` int(4) NOT NULL,
+  `B_m` int(4) NOT NULL,
+  `C_p` int(4) NOT NULL,
+  `C` int(4) NOT NULL,
+  `C_m` int(4) NOT NULL,
+  `D_p` int(4) NOT NULL,
+  `D` int(4) NOT NULL,
+  `D_m` int(4) NOT NULL,
+  `E` int(4) NOT NULL,
+  `points` decimal(18,2) NOT NULL,
+  `students` int(100) NOT NULL,
+  `grade` varchar(10) NOT NULL,
+  PRIMARY KEY  (`subject`,`form`,`stream`,`term`,`year`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `totalygradedcatsubjectsanalysis`
+--
+
+
+/*!40000 ALTER TABLE `totalygradedcatsubjectsanalysis` DISABLE KEYS */;
+LOCK TABLES `totalygradedcatsubjectsanalysis` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `totalygradedcatsubjectsanalysis` ENABLE KEYS */;
+
+--
+-- Table structure for table `totalygradedexamanalysis`
+--
+
+DROP TABLE IF EXISTS `totalygradedexamanalysis`;
+CREATE TABLE `totalygradedexamanalysis` (
+  `adm` int(10) NOT NULL,
+  `names` varchar(40) NOT NULL,
+  `eng1` int(10) NOT NULL,
+  `eng1grade` varchar(5) NOT NULL,
+  `kis1` int(10) NOT NULL,
+  `kis1grade` varchar(5) NOT NULL,
+  `math1` int(10) NOT NULL,
+  `math1grade` varchar(5) NOT NULL,
+  `bio1` int(10) NOT NULL,
+  `bio1grade` varchar(5) NOT NULL,
+  `chem1` int(10) NOT NULL,
+  `chem1grade` varchar(5) NOT NULL,
+  `phy1` int(10) NOT NULL,
+  `phy1grade` varchar(100) NOT NULL,
+  `his1` int(5) NOT NULL,
+  `his1grade` varchar(10) NOT NULL,
+  `geo1` int(10) NOT NULL,
+  `geo1grade` varchar(5) NOT NULL,
+  `cre1` int(10) NOT NULL,
+  `cre1grade` varchar(5) NOT NULL,
+  `agr1` int(10) NOT NULL,
+  `agr1grade` varchar(5) NOT NULL,
+  `bst1` int(10) NOT NULL,
+  `bst1grade` varchar(5) NOT NULL,
+  `fre1` int(10) NOT NULL,
+  `fre1grade` varchar(100) NOT NULL,
+  `comp1` int(10) NOT NULL,
+  `comp1grade` varchar(100) NOT NULL,
+  `home1` int(10) NOT NULL,
+  `home1grade` varchar(100) NOT NULL,
+  `wat1totals` int(10) NOT NULL,
+  `totalmarks` int(10) NOT NULL,
+  `totalpoints1` int(10) NOT NULL,
+  `averagepoints` decimal(18,3) NOT NULL default '0.000',
+  `average` decimal(18,2) NOT NULL default '0.00',
+  `fgrade` varchar(3) NOT NULL,
+  `term` int(100) NOT NULL,
+  `year` int(100) NOT NULL,
+  `form` int(100) NOT NULL,
+  `stream` varchar(100) NOT NULL,
+  PRIMARY KEY  (`adm`,`term`,`year`,`form`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `totalygradedexamanalysis`
+--
+
+
+/*!40000 ALTER TABLE `totalygradedexamanalysis` DISABLE KEYS */;
+LOCK TABLES `totalygradedexamanalysis` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `totalygradedexamanalysis` ENABLE KEYS */;
+
+--
+-- Table structure for table `totalygradedmarks`
+--
+
+DROP TABLE IF EXISTS `totalygradedmarks`;
+CREATE TABLE `totalygradedmarks` (
+  `marks` int(10) NOT NULL,
+  `grade` varchar(10) NOT NULL,
+  `adm` int(10) NOT NULL,
+  `names` varchar(40) NOT NULL,
+  `english` int(10) NOT NULL,
+  `englishgrade` varchar(10) NOT NULL,
+  `engremarks` varchar(100) NOT NULL,
+  `kiswahili` int(10) NOT NULL,
+  `kiswahiligrade` varchar(10) NOT NULL,
+  `kisremarks` varchar(100) NOT NULL,
+  `mathematics` int(10) NOT NULL,
+  `mathimaticsgrade` varchar(10) NOT NULL,
+  `mathremarks` varchar(100) NOT NULL,
+  `biology` int(10) NOT NULL,
+  `biologygrade` varchar(10) NOT NULL,
+  `bioremarks` varchar(100) NOT NULL,
+  `chemistry` int(10) NOT NULL,
+  `chemistrygrade` varchar(10) NOT NULL,
+  `chemremarks` varchar(100) NOT NULL,
+  `physics` int(10) NOT NULL,
+  `physicsgrade` varchar(100) NOT NULL,
+  `phyremarks` varchar(100) NOT NULL,
+  `history` int(10) NOT NULL,
+  `historygrade` varchar(10) NOT NULL,
+  `hisremarks` varchar(10) NOT NULL,
+  `geography` int(10) NOT NULL,
+  `geographygrade` varchar(10) NOT NULL,
+  `georemarks` varchar(100) NOT NULL,
+  `cre` int(10) NOT NULL,
+  `cregrade` varchar(10) NOT NULL,
+  `creremarks` varchar(100) NOT NULL,
+  `agriculture` int(10) NOT NULL,
+  `agriculturegrade` varchar(10) NOT NULL,
+  `agrremarks` varchar(100) NOT NULL,
+  `businesStudies` int(10) NOT NULL,
+  `businesStudiesgrade` varchar(10) NOT NULL,
+  `bstremarks` varchar(100) NOT NULL,
+  `french` int(10) NOT NULL,
+  `frenchgrade` varchar(100) NOT NULL,
+  `frenchremarks` varchar(100) NOT NULL,
+  `computer` int(10) NOT NULL,
+  `computergrade` varchar(100) NOT NULL,
+  `computerremarks` varchar(100) NOT NULL,
+  `home` int(10) NOT NULL,
+  `homegrade` varchar(100) NOT NULL,
+  `homeremarks` varchar(100) NOT NULL,
+  `points` varchar(10) NOT NULL,
+  `tgrade` varchar(10) NOT NULL,
+  `totalmarks` int(10) NOT NULL,
+  `average` double NOT NULL,
+  `averagepoints` double NOT NULL,
+  `term` int(100) NOT NULL,
+  `year` int(100) NOT NULL,
+  `form` int(100) NOT NULL,
+  `classin` varchar(100) NOT NULL,
+  `htremarks` varchar(100) NOT NULL,
+  PRIMARY KEY  (`adm`,`term`,`year`,`form`,`classin`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `totalygradedmarks`
+--
+
+
+/*!40000 ALTER TABLE `totalygradedmarks` DISABLE KEYS */;
+LOCK TABLES `totalygradedmarks` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `totalygradedmarks` ENABLE KEYS */;
+
+--
+-- Table structure for table `totalygradedmidterm`
+--
+
+DROP TABLE IF EXISTS `totalygradedmidterm`;
+CREATE TABLE `totalygradedmidterm` (
+  `adm` int(10) NOT NULL,
+  `names` varchar(40) NOT NULL,
+  `eng1` int(10) NOT NULL,
+  `eng1grade` varchar(5) NOT NULL,
+  `kis1` int(10) NOT NULL,
+  `kis1grade` varchar(5) NOT NULL,
+  `math1` int(10) NOT NULL,
+  `math1grade` varchar(5) NOT NULL,
+  `bio1` int(10) NOT NULL,
+  `bio1grade` varchar(5) NOT NULL,
+  `chem1` int(10) NOT NULL,
+  `chem1grade` varchar(5) NOT NULL,
+  `phy1` int(10) NOT NULL,
+  `phy1grade` varchar(100) NOT NULL,
+  `his1` int(5) NOT NULL,
+  `his1grade` varchar(10) NOT NULL,
+  `geo1` int(10) NOT NULL,
+  `geo1grade` varchar(5) NOT NULL,
+  `cre1` int(10) NOT NULL,
+  `cre1grade` varchar(5) NOT NULL,
+  `agr1` int(10) NOT NULL,
+  `agr1grade` varchar(5) NOT NULL,
+  `bst1` int(10) NOT NULL,
+  `bst1grade` varchar(5) NOT NULL,
+  `fre1` int(10) NOT NULL,
+  `fre1grade` varchar(100) NOT NULL,
+  `comp1` int(10) NOT NULL,
+  `comp1grade` varchar(100) NOT NULL,
+  `home1` int(10) NOT NULL,
+  `home1grade` varchar(100) NOT NULL,
+  `wat1totals` int(10) NOT NULL,
+  `totalmarks` int(10) NOT NULL,
+  `totalpoints1` int(10) NOT NULL,
+  `averagepoints` decimal(18,3) NOT NULL default '0.000',
+  `average` decimal(18,2) NOT NULL default '0.00',
+  `fgrade` varchar(3) NOT NULL,
+  `term` int(100) NOT NULL,
+  `year` int(100) NOT NULL,
+  `form` int(100) NOT NULL,
+  `stream` varchar(100) NOT NULL,
+  PRIMARY KEY  (`adm`,`term`,`year`,`form`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `totalygradedmidterm`
+--
+
+
+/*!40000 ALTER TABLE `totalygradedmidterm` DISABLE KEYS */;
+LOCK TABLES `totalygradedmidterm` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `totalygradedmidterm` ENABLE KEYS */;
+
+--
+-- Table structure for table `totalygradedmockmarks`
+--
+
+DROP TABLE IF EXISTS `totalygradedmockmarks`;
+CREATE TABLE `totalygradedmockmarks` (
+  `marks` int(100) NOT NULL,
+  `grade` varchar(100) NOT NULL,
+  `adm` int(100) NOT NULL,
+  `names` varchar(100) NOT NULL,
+  `english` int(100) NOT NULL,
+  `englishgrade` varchar(100) NOT NULL,
+  `engremarks` varchar(100) NOT NULL,
+  `kiswahili` int(100) NOT NULL,
+  `kiswahiligrade` varchar(100) NOT NULL,
+  `kisremarks` varchar(100) NOT NULL,
+  `mathematics` int(100) NOT NULL,
+  `mathimaticsgrade` varchar(100) NOT NULL,
+  `mathremarks` varchar(100) NOT NULL,
+  `biology` int(100) NOT NULL,
+  `biologygrade` varchar(100) NOT NULL,
+  `bioremarks` varchar(100) NOT NULL,
+  `chemistry` int(100) NOT NULL,
+  `chemistrygrade` varchar(100) NOT NULL,
+  `chemremarks` varchar(100) NOT NULL,
+  `physics` int(100) NOT NULL,
+  `physicsgrade` varchar(100) NOT NULL,
+  `phyremarks` varchar(100) NOT NULL,
+  `history` int(100) NOT NULL,
+  `historygrade` varchar(100) NOT NULL,
+  `hisremarks` varchar(100) NOT NULL,
+  `geography` int(100) NOT NULL,
+  `geographygrade` varchar(100) NOT NULL,
+  `georemarks` varchar(100) NOT NULL,
+  `cre` int(100) NOT NULL,
+  `cregrade` varchar(100) NOT NULL,
+  `creremarks` varchar(100) NOT NULL,
+  `agriculture` int(100) NOT NULL,
+  `agriculturegrade` varchar(100) NOT NULL,
+  `agrremarks` varchar(100) NOT NULL,
+  `businesStudies` int(100) NOT NULL,
+  `businesStudiesgrade` varchar(100) NOT NULL,
+  `bstremarks` varchar(100) NOT NULL,
+  `french` int(100) NOT NULL,
+  `frenchgrade` varchar(100) NOT NULL,
+  `frenchremarks` varchar(100) NOT NULL,
+  `computer` int(100) NOT NULL,
+  `computergrade` varchar(100) NOT NULL,
+  `computerremarks` varchar(100) NOT NULL,
+  `home` int(10) NOT NULL,
+  `homegrade` varchar(100) NOT NULL,
+  `homeremarks` varchar(100) NOT NULL,
+  `points` varchar(100) NOT NULL,
+  `tgrade` varchar(100) NOT NULL,
+  `totalmarks` int(100) NOT NULL,
+  `average` double NOT NULL,
+  `averagepoints` double NOT NULL,
+  `term` int(100) NOT NULL,
+  `year` int(100) NOT NULL,
+  `form` int(100) NOT NULL,
+  `classin` varchar(100) NOT NULL,
+  `htremarks` varchar(100) NOT NULL,
+  PRIMARY KEY  (`adm`,`term`,`year`,`form`,`classin`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `totalygradedmockmarks`
+--
+
+
+/*!40000 ALTER TABLE `totalygradedmockmarks` DISABLE KEYS */;
+LOCK TABLES `totalygradedmockmarks` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `totalygradedmockmarks` ENABLE KEYS */;
+
+--
+-- Table structure for table `totalygradedsubjectsanalysis`
+--
+
+DROP TABLE IF EXISTS `totalygradedsubjectsanalysis`;
+CREATE TABLE `totalygradedsubjectsanalysis` (
+  `subject` varchar(100) NOT NULL,
+  `form` int(1) NOT NULL,
+  `stream` varchar(100) NOT NULL,
+  `term` int(1) NOT NULL,
+  `year` varchar(4) NOT NULL,
+  `meanscore` float(18,2) NOT NULL,
+  `A` int(4) NOT NULL,
+  `A_m` int(4) NOT NULL,
+  `B_p` int(4) NOT NULL,
+  `B` int(4) NOT NULL,
+  `B_m` int(4) NOT NULL,
+  `C_p` int(4) NOT NULL,
+  `C` int(4) NOT NULL,
+  `C_m` int(4) NOT NULL,
+  `D_p` int(4) NOT NULL,
+  `D` int(4) NOT NULL,
+  `D_m` int(4) NOT NULL,
+  `E` int(4) NOT NULL,
+  `points` decimal(18,2) NOT NULL,
+  `students` int(100) NOT NULL,
+  `grade` varchar(10) NOT NULL,
+  PRIMARY KEY  (`subject`,`form`,`stream`,`term`,`year`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `totalygradedsubjectsanalysis`
+--
+
+
+/*!40000 ALTER TABLE `totalygradedsubjectsanalysis` DISABLE KEYS */;
+LOCK TABLES `totalygradedsubjectsanalysis` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `totalygradedsubjectsanalysis` ENABLE KEYS */;
+
+--
+-- Table structure for table `totalygradedsubjectsanalysismock`
+--
+
+DROP TABLE IF EXISTS `totalygradedsubjectsanalysismock`;
+CREATE TABLE `totalygradedsubjectsanalysismock` (
+  `subject` varchar(100) NOT NULL,
+  `form` int(1) NOT NULL,
+  `stream` varchar(100) NOT NULL,
+  `term` int(1) NOT NULL,
+  `year` varchar(4) NOT NULL,
+  `meanscore` float(18,2) NOT NULL,
+  `A` int(4) NOT NULL,
+  `A_m` int(4) NOT NULL,
+  `B_p` int(4) NOT NULL,
+  `B` int(4) NOT NULL,
+  `B_m` int(4) NOT NULL,
+  `C_p` int(4) NOT NULL,
+  `C` int(4) NOT NULL,
+  `C_m` int(4) NOT NULL,
+  `D_p` int(4) NOT NULL,
+  `D` int(4) NOT NULL,
+  `D_m` int(4) NOT NULL,
+  `E` int(4) NOT NULL,
+  `points` decimal(18,2) NOT NULL,
+  `students` int(100) NOT NULL,
+  `grade` varchar(10) NOT NULL,
+  PRIMARY KEY  (`subject`,`form`,`stream`,`term`,`year`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `totalygradedsubjectsanalysismock`
+--
+
+
+/*!40000 ALTER TABLE `totalygradedsubjectsanalysismock` DISABLE KEYS */;
+LOCK TABLES `totalygradedsubjectsanalysismock` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `totalygradedsubjectsanalysismock` ENABLE KEYS */;
+
+--
+-- Table structure for table `transfers`
+--
+
+DROP TABLE IF EXISTS `transfers`;
+CREATE TABLE `transfers` (
+  `admno` varchar(10) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `gender` varchar(100) NOT NULL,
+  `form` varchar(100) NOT NULL,
+  `deleted` varchar(100) NOT NULL,
+  `yr` varchar(100) NOT NULL,
+  PRIMARY KEY  (`admno`,`form`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transfers`
+--
+
+
+/*!40000 ALTER TABLE `transfers` DISABLE KEYS */;
+LOCK TABLES `transfers` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `transfers` ENABLE KEYS */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
